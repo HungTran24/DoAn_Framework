@@ -10880,19 +10880,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tranq\\.nuget\\packages\\": {}
+    "C:\\Users\\DELL\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\WorkSpace\\Study Material\\Framework\\DoAn_FrameWork\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
+      "projectUniqueName": "D:\\ASP.NET\\Project_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
       "projectName": "DoAn_FrameWork",
-      "projectPath": "E:\\WorkSpace\\Study Material\\Framework\\DoAn_FrameWork\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
-      "packagesPath": "C:\\Users\\tranq\\.nuget\\packages\\",
-      "outputPath": "E:\\WorkSpace\\Study Material\\Framework\\DoAn_FrameWork\\DoAn_FrameWork\\obj\\",
+      "projectPath": "D:\\ASP.NET\\Project_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "D:\\ASP.NET\\Project_Framework\\DoAn_FrameWork\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tranq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10964,7 +10964,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
