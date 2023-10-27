@@ -1,12 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\bin",
-    "\\Controllers",
-    "\\obj",
-    "\\Properties",
-    "\\wwwroot"
+    "\\Views",
+    "\\Views\\Home",
+    "\\Views\\Shared"
   ],
-  "SelectedNode": "\\Areas",
   "PreviewInSolutionExplorer": false
 }
