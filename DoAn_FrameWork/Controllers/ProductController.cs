@@ -18,11 +18,11 @@ namespace DoAn_FrameWork.Controllers
         }
         public IActionResult Product_Detail(int id)
         {
-            //var product = _context.Products.Include(x => x.CategoryId).FirstOrDefault(x => x.ProductId == id);
-            //if (product == null)
-            //{
-            //    return RedirectToAction("Index");
-            //}
+            var product = _context.Products.Include(x => x.Category).FirstOrDefault(x => x.ProductId == id);
+            if (product == null)
+            {
+                return RedirectToAction("Index");
+            }
             return View();
         }
     }

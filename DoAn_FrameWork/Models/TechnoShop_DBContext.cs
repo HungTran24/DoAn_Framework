@@ -33,6 +33,7 @@ namespace DoAn_FrameWork.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=DESKTOP-LTA3PDR;Database=TechnoShop_DB;Integrated Security=true;");
             }
         }
@@ -103,6 +104,16 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.PaymentId).HasColumnName("payment_id");
 
                 entity.Property(e => e.ShippingId).HasColumnName("shipping_id");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_orders_customers");
+
+                entity.HasOne(d => d.Shipping)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.ShippingId)
+                    .HasConstraintName("FK_orders_shipping");
             });
 
             modelBuilder.Entity<Payment>(entity =>
@@ -146,6 +157,11 @@ namespace DoAn_FrameWork.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.ProductPrice).HasColumnName("product_price");
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("FK_products_categories");
             });
 
             modelBuilder.Entity<ProductImage>(entity =>
@@ -160,6 +176,11 @@ namespace DoAn_FrameWork.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.ProductImages)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK_product_image_products");
             });
 
             modelBuilder.Entity<ProductTag>(entity =>
@@ -171,6 +192,11 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
 
                 entity.Property(e => e.TagId).HasColumnName("tag_id");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.ProductTags)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK_product_tag_products");
             });
 
             modelBuilder.Entity<Setting>(entity =>
