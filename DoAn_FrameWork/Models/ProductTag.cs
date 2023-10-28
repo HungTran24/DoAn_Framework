@@ -8,5 +8,7 @@ namespace DoAn_FrameWork.Models
         public int ProductTagId { get; set; }
         public int? ProductId { get; set; }
         public int? TagId { get; set; }
+
+        public virtual Product? Product { get; set; }
     }
 }
