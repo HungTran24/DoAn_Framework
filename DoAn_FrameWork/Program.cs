@@ -37,6 +37,7 @@
 //app.Run();
 using DoAn_FrameWork.Data;
 using DoAn_FrameWork.Models;
+using DoAn_FrameWork.Repository;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -49,6 +50,7 @@ builder.Services.AddDbContext<TechnoShop_DBContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All}));
 // Add services to the container.
 builder.Services.AddControllersWithViews();

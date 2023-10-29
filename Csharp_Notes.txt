@@ -1,1 +1,4 @@
-Scaffold-DbContext "Server=DESKTOP-LTA3PDR;Database=TechnoShop_DB;Integrated Security=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models - Force
+Scaffold-DbContext "Server=DESKTOP-LTA3PDR;Database=TechnoShop_DB;Integrated Security=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
+
+
+Scaffold-DbContext "Data Source=DESKTOP-LTA3PDR;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
