@@ -307,11 +307,6 @@ namespace DoAn_FrameWork.Models
             OnModelCreatingPartial(modelBuilder);
         }
 
-        //internal IEnumerable<Category> Categories()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

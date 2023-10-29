@@ -95,7 +95,7 @@
                         <div class="tab-pane fade show active" id="grid-view" role="tabpanel" aria-labelledby="grid-view-tab">
                             <div class="product-grid-view row">
                                 <div class="col-lg-3 col-sm-6">
-                                    <a asp-controller="Product" asp-action="Product_Detail" asp-route-product_Id="1">
+                                    <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="1">
                                         <div class="product-item">
                                             <div class="product-img img-zoom-effect">
                                                 <a href="">
@@ -144,12 +144,10 @@
                                 {
                                     @*   string url = $"/{item.ProductName}--{item.ProductId}.html"; *@
                                     <div class="col-lg-3 col-sm-6">
-                                        <a asp-controller="Product" asp-action="Product_Detail" asp-route-product_Id="1">
+                                        <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
                                             <div class="product-item">
                                                 <div class="product-img img-zoom-effect">
-                                                    <a href="">
                                                         <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/85/f8/63/dee737a78ed2344fffaecc857efda34a.jpg" alt="Product Images">
-                                                    </a>
                                                     <div class="product-add-action">
                                                         <ul>
                                                             <li>
@@ -172,7 +170,7 @@
                                                 </div>
 
                                                 <div class="product-content">
-                                                    <a class="product-name" href="">@item.ProductName</a>
+                                                    <span class="product-name" href="">@item.ProductName</span>
                                                     <div class="price-box pb-1">
                                                         <span class="new-price">@item.ProductPrice</span>
                                                     </div>

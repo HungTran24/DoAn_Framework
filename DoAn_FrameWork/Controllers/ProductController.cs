@@ -65,18 +65,13 @@ namespace DoAn_FrameWork.Controllers
             }
             
         }
-        //[Route("/{Alias}--{id}.html", Name = "Product_Detail")]
         public IActionResult Product_Detail(int id)
         {
             try 
             {
-                //var product = _context.Products.Include(x => x.Category).FirstOrDefault(x => x.ProductId == id);
+ 
                 var product = _context.Products.SingleOrDefault(x => x.ProductId == id);
-                //if (product == null)
-                //{
-                //    return RedirectToAction("Index");
-                //}
-                return View();
+                return View(product);
             }
             catch 
             {
