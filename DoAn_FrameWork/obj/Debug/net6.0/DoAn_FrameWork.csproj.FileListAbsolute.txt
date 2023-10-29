@@ -994,3 +994,6 @@ D:\ASP.NET\Project_Framework\DoAn_FrameWork\obj\Debug\net6.0\refint\DoAn_FrameWo
 D:\ASP.NET\Project_Framework\DoAn_FrameWork\obj\Debug\net6.0\DoAn_FrameWork.pdb
 D:\ASP.NET\Project_Framework\DoAn_FrameWork\obj\Debug\net6.0\DoAn_FrameWork.genruntimeconfig.cache
 D:\ASP.NET\Project_Framework\DoAn_FrameWork\obj\Debug\net6.0\ref\DoAn_FrameWork.dll
+D:\ASP.NET\Project_Framework\DoAn_FrameWork\bin\Debug\net6.0\JetBrains.Annotations.dll
+D:\ASP.NET\Project_Framework\DoAn_FrameWork\bin\Debug\net6.0\X.PagedList.dll
+D:\ASP.NET\Project_Framework\DoAn_FrameWork\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
