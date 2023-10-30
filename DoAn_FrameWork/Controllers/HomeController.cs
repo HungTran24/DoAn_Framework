@@ -1,7 +1,7 @@
 ﻿using DoAn_FrameWork.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+using DoAn_FrameWork.Models.Authentication;
 namespace DoAn_FrameWork.Controllers
 {
     public class HomeController : Controller
@@ -12,7 +12,7 @@ namespace DoAn_FrameWork.Controllers
         {
             _logger = logger;
         }
-
+        [Authentication]
         public IActionResult Index()
         {
             return View();
