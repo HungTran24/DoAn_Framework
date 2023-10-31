@@ -1,4 +1,7 @@
-﻿<header class="main-header_area position-relative">
+﻿@{
+    string username = Context.Session.GetString("Username");
+}
+<header class="main-header_area position-relative">
    
     <div class="header-middle py-5">
         <div class="container">
@@ -25,21 +28,35 @@
                                         <i class="pe-7s-users"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingButton">
-                                        <li><a class="dropdown-item">Thông tin tài khoản</a></li>
-                                        <li><a asp-controller="Login" asp-action="Logout" class="dropdown-item">Đăng nhập | Đăng xuất</a></li>
+                                            @if (username == null)
+                                        {
+                                            <li><a asp-controller="Login" asp-action="Register" class="dropdown-item">Đăng ký</a></li>
+                                            <li><a asp-controller="Login" asp-action="Login" class="dropdown-item">Đăng nhập</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a class="dropdown-item">Thông tin tài khoản</a></li>
+                                            <li><a asp-controller="Login" asp-action="Logout" class="dropdown-item">Đăng xuất</a></li>
+                                        }
+
                                     </ul>
                                 </li>
-                                <li class="d-block d-lg-none">
-                                    <a href="#searchBar" class="search-btn toolbar-btn">
-                                        <i class="pe-7s-search"></i>
-                                    </a>
+                                <li class="dropdown d-none d-md-block">
+                                    <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="pe-7s-shopbag"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingButton">
+                                        <li><a class="dropdown-item">Lịch sử mua hàng</a></li>
+                                        <li><a asp-controller="ShoppingCart" asp-action="Index" class="dropdown-item">Giỏ hàng</a></li>
+                                    </ul>
                                 </li>
-                                <li class="minicart-wrap me-3 me-lg-0">
-                                    <a href="#miniCart" class="minicart-btn toolbar-btn">
+                            @*     <li class="minicart-wrap me-3 me-lg-0">
+                                    <a asp-controller="ShoppingCart" asp-action="Index" class="minicart-btn toolbar-btn">
+                                        Cart
                                         <i class="pe-7s-shopbag"></i>
                                         <span class="quantity" style="background: #3399ff">3</span>
                                     </a>
-                                </li>
+                                </li> *@
                                 <li class="mobile-menu_wrap d-block d-lg-none">
                                     <a href="#mobileMenu" class="mobile-menu_btn toolbar-btn pl-0">
                                         <i class="pe-7s-menu"></i>
@@ -413,7 +430,7 @@
             </div>
         </div>
     </div>
-    <div class="offcanvas-minicart_wrapper" id="miniCart">
+   @*  <div class="offcanvas-minicart_wrapper" id="miniCart">
         <div class="harmic-offcanvas-body">
             <div class="minicart-content">
                 <div class="minicart-heading">
@@ -464,10 +481,10 @@
                 <span class="ammount">$240.00</span>
             </div>
             <div class="group-btn_wrap d-grid gap-2">
-                <a href="cart.html" class="btn btn-secondary btn-primary-hover">View Cart</a>
+                <a  class="btn btn-secondary btn-primary-hover">View Cart</a>
                 <a href="checkout.html" class="btn btn-secondary btn-primary-hover">Checkout</a>
             </div>
         </div>
-    </div>
+    </div> *@
     <div class="global-overlay"></div>
 </header>

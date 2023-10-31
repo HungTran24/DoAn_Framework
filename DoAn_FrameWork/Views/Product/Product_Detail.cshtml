@@ -499,3 +499,37 @@
         </div>
     </div>
 </main>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(function ()){
+                $(".wcart").click(function () {
+                    var productid = parseFloat($(this).attr("data-productid"));
+                    $.ajax({
+                        url: '/api/cart/add',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: { productid: productid },
+                        success: function (response) {
+                            if (response.result == 'Redirect') {
+                                window.location = response.url;
+                            }
+                                            esle {
+                                loadHeaderCart();
+                                location.reload();
+                            }
+                            console.log(response);
+                        },
+                        error: function (error) {
+                            alert("Error: " + error.responseText);
+                        }
+                    });
+                });
+            }
+
+            function loadHeaderCart() { 
+                $(#headerCart).load("/AjaxContent/HeaderCart");
+            }
+        });
+    </script>
+}
