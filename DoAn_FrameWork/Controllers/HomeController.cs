@@ -15,7 +15,7 @@ namespace DoAn_FrameWork.Controllers
         {
             _logger = logger;
         }
-        [Authentication]
+        //[Authentication]
         public IActionResult Index()
         {
             return View();
