@@ -10977,11 +10977,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ASP.NET\\Project_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
+      "projectUniqueName": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
       "projectName": "DoAn_FrameWork",
-      "projectPath": "D:\\ASP.NET\\Project_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
+      "projectPath": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "D:\\ASP.NET\\Project_Framework\\DoAn_FrameWork\\obj\\",
+      "outputPath": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",

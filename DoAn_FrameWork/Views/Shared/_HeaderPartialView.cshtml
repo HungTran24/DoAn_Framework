@@ -9,18 +9,14 @@
                             <img src="//laz-img-cdn.alicdn.com/images/ims-web/TB1T7K2d8Cw3KVjSZFuXXcAOpXa.png" style="width:138px;""" alt="Header Logo">
                         </a>
                         <div class="header-search-area d-none d-lg-block">
-                            <form action="#" class="header-searchbox">
-                              @*   <select class="nice-select select-search-category wide">
-                                    <option value="all">All Category</option>
-                                    <option value="product-item">Product Item</option>
-                                    <option value="product-item-2">Product Item 02</option>
-                                    <option value="product-item-3">Product Item 03</option>
-                                    <option value="product-item-4">Product Item 04</option>
-                                    <option value="product-item-5">Product Item 05</option>
-                                </select> *@
-                                <input class="input-field" type="text" placeholder="Nhập sản phẩm...">
-                                <button class="btn btn-outline-whisper btn-primary-hover" type="submit"><i class="pe-7s-search"></i></button>
-                            </form>
+                            @using (Html.BeginForm())
+                            {
+                                <div class="header-searchbox">
+                                    @Html.TextBox("SearchString", "", new{@class="input-field",type="text",  placeholder="Nhập sản phẩm..."})
+                                    <button class="btn btn-outline-whisper btn-primary-hover" type="submit"><i class="pe-7s-search"></i></button>
+                                </div>
+                            }
+                         
                         </div>
                         <div class="header-right">
                             <ul>
