@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7yr4A3R1FL/JZYBWJW7CqMpw08RkBKm982ix5A6CjlER/ZJM1QcTp6aFXOMxLw/m1sk2fMxPim15x4JCxCpXyA==",
+  "dgSpecHash": "ryt1wDuSeCnGN6js1bsUz6ckAiQWojmeksGDLlge7roND5sl3f/SA3di3LnHUkW4vBEh9eiHqxBD872cOTkhgw==",
   "success": true,
-  "projectFilePath": "D:\\ASP.NET\\Project_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
+  "projectFilePath": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

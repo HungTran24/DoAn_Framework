@@ -2,11 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using DoAn_FrameWork.Models.Authentication;
+using Microsoft.EntityFrameworkCore;
+
 namespace DoAn_FrameWork.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        TechnoShop_DBContext _context = new TechnoShop_DBContext();
 
         public HomeController(ILogger<HomeController> logger)
         {

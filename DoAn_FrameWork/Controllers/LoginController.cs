@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DoAn_FrameWork.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace DoAn_FrameWork.Controllers;
 
 public class LoginController : Controller
@@ -31,8 +33,13 @@ public class LoginController : Controller
                 && x.Password.Equals(user.Password)).FirstOrDefault();
             if (u != null)
             {
+                var lsDonhang = _context.Orders
+                    .AsNoTracking()
+                    .Where(x => x.CustomerId == u.CustomerId)
+                    .OrderByDescending(x => x.PaymentId).ToList();
+                ViewBag.Donhang = lsDonhang;
                 HttpContext.Session.SetString("Username", u.Username.ToString());
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Account");
             }
         }
         return View();
