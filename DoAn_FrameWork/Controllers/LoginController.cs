@@ -39,6 +39,8 @@ public class LoginController : Controller
                     .OrderByDescending(x => x.PaymentId).ToList();
                 ViewBag.Donhang = lsDonhang;
                 HttpContext.Session.SetString("Username", u.Username.ToString());
+                HttpContext.Session.SetString("CustomerName", u.CustomerName.ToString());
+                HttpContext.Session.SetString("CustomerEmail", u.CustomerEmail.ToString());
                 return RedirectToAction("Index", "Account");
             }
         }
@@ -52,6 +54,8 @@ public class LoginController : Controller
     {
         HttpContext.Session.Clear();
         HttpContext.Session.Remove("Username");
+        HttpContext.Session.Remove("CustomerName");
+        HttpContext.Session.Remove("CustomerEmail");
         return RedirectToAction("Login", "Login");
     }
 }
