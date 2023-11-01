@@ -6,11 +6,11 @@
 </style>
 <div class="col-lg-2">
     <div class="hero__categories">
-        <div class="hero__categories__all">
+        <div class="hero__categories__all" style="border-radius: 3px 3px 0 0; background: #fff; border-bottom: none; padding-bottom: 0;">
             <i class="fa fa-bars"></i>
-            <span>Danh mục</span>
+            <span style="color: #27272A; font-weight: 500;">Danh mục</span>
         </div>
-        <ul>
+        <ul style="background: #fff; border: none;">
             @foreach (var item in Model)
             {
                 <li class="category_product"><a asp-controller="Product" asp-action="ProductbyCategory" asp-route-id = "@item.CategoryId">@item.CategoryName</a></li>
