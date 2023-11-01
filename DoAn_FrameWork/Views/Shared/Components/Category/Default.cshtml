@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<Category>
+<style>
+    .category_product a:hover{
+        color: red;
+    }
+</style>
 <div class="col-lg-2">
     <div class="hero__categories">
         <div class="hero__categories__all">
@@ -8,7 +13,7 @@
         <ul>
             @foreach (var item in Model)
             {
-                <li><a asp-controller="Product" asp-action="ProductbyCategory" asp-route-id = "@item.CategoryId">@item.CategoryName</a></li>
+                <li class="category_product"><a asp-controller="Product" asp-action="ProductbyCategory" asp-route-id = "@item.CategoryId">@item.CategoryName</a></li>
             }
         </ul>
     </div>
