@@ -11,13 +11,13 @@
         font-size: 25px;
     }
 
-        .pagination li:hover {
-            background: #3399ff;
-        }
+    .pagination li:hover {
+        background: #3399ff;
+    }
 
-        .pagination li a:hover {
-            color: #fff !important;
-        }
+    .pagination li a:hover {
+        color: #fff !important;
+    }
 
     .hero__categories__all {
         background: #3399ff;
@@ -26,17 +26,17 @@
         cursor: pointer;
     }
 
-        .hero__categories__all i {
-            font-size: 16px;
-            color: #ffffff;
-            margin-right: 10px;
-        }
+    .hero__categories__all i {
+        font-size: 16px;
+        color: #ffffff;
+        margin-right: 10px;
+    }
 
-        .hero__categories__all span {
-            font-size: 18px;
-            font-weight: 700;
-            color: #ffffff;
-        }
+    .hero__categories__all span {
+        font-size: 18px;
+        font-weight: 700;
+        color: #ffffff;
+    }
 
     .hero__categories ul {
         border: 1px solid #ebebeb;
@@ -45,16 +45,25 @@
         padding-bottom: 12px;
     }
 
-        .hero__categories ul li {
-            list-style: none;
-        }
+    .hero__categories ul li {
+        list-style: none;
+    }
 
-            .hero__categories ul li a {
-                font-size: 16px;
-                color: #1c1c1c;
-                line-height: 39px;
-                display: block;
-            }
+    .hero__categories ul li a {
+        font-size: 16px;
+        color: #1c1c1c;
+        line-height: 39px;
+        display: block;
+    }
+
+    .product-item {
+        transition: transform 0.3s ease;
+    }
+
+    .product-item:hover {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+        transform: translateY(-1px);
+    }
 </style>
 <main class="main-content">
     <div class="shop-area section-space-y-axis-100">
@@ -94,103 +103,32 @@
                     <div class="tab-content text-charcoal pt-8">
                         <div class="tab-pane fade show active" id="grid-view" role="tabpanel" aria-labelledby="grid-view-tab">
                             <div class="product-grid-view row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="1">
-                                        <div class="product-item">
-                                            <div class="product-img img-zoom-effect">
-                                                <a href="">
-                                                    <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/85/f8/63/dee737a78ed2344fffaecc857efda34a.jpg" alt="Product Images">
-                                                </a>
-                                                <div class="product-add-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="cart.html">
-                                                                <i class="pe-7s-cart"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="compare.html">
-                                                                <i class="pe-7s-shuffle"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="wishlist.html">
-                                                                <i class="pe-7s-like"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div class="product-content">
-                                                <a class="product-name" href="">ProductName Demo</a>
-                                                <div class="price-box pb-1">
-                                                    <span class="new-price">ProductPrice Demo</span>
-                                                </div>
-                                                <div class="rating-box">
-                                                    <ul>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
                                 @foreach (var item in Model)
                                 {
-                                    @*   string url = $"/{item.ProductName}--{item.ProductId}.html"; *@
-                                    <div class="col-lg-3 col-sm-6">
+                                    <div class="col-lg-3 col-sm-6" style="margin-bottom: 14px;">
                                         <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
                                             <div class="product-item">
-                                                <div class="product-img img-zoom-effect">
-                                                        <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/85/f8/63/dee737a78ed2344fffaecc857efda34a.jpg" alt="Product Images">
-                                                    <div class="product-add-action">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="cart.html">
-                                                                    <i class="pe-7s-cart"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="compare.html">
-                                                                    <i class="pe-7s-shuffle"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="wishlist.html">
-                                                                    <i class="pe-7s-like"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                <div class="product-img">
+                                                    <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/85/f8/63/dee737a78ed2344fffaecc857efda34a.jpg" alt="Product Images">
                                                 </div>
-
-                                                <div class="product-content">
-                                                    <span class="product-name" style="display: -webkit-box;-webkit-box-orient: vertical; -webkit-line-clamp: 2;overflow: hidden;text-overflow: ellipsis;">@item.ProductName</span>
-                                                    <div class="price-box pb-1">
-                                                        <span class="new-price">@item.ProductPrice</span>
-                                                    </div>
+                                                <div class="product-content" style="border-radius: 0 0 5px 5px;padding: 5px 10px 10px 10px;text-align: left">
+                                                    <img src="https://salt.tikicdn.com/ts/tka/69/cf/22/1be823299ae34c7ddcd922e73abd4909.png" style="height: 20px; width: 80px;">
+                                                    <span class="new-price" style="font-size: 13px; font-weight: 400; color: rgb(39, 39, 42);display: -webkit-box;-webkit-box-orient: vertical; -webkit-line-clamp: 2;overflow: hidden;text-overflow: ellipsis;">@item.ProductName</span>
                                                     <div class="rating-box">
-                                                        <ul>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                        </ul>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                    </div>
+                                                    <div class="price-box pb-1">
+                                                        <span class="new-price" style="font-size:16px; font-weight: 500;">@item.ProductPrice.Value.ToString("#,##0") đ</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
                                     </div>
                                 }
-
-
-
                             </div>
                         </div>
                         <div class="tab-pane fade" id="list-view" role="tabpanel" aria-labelledby="list-view-tab">
