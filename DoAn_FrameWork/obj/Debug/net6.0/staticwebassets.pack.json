@@ -9245,6 +9245,14 @@
       "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome-webfont.woff2"
     },
     {
+      "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\1.png"
+    },
+    {
+      "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\Freeship.png",
+      "PackagePath": "staticwebassets\\assets\\images\\Freeship.png"
+    },
+    {
       "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\about\\banner\\1-1-1920x598.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\about\\banner\\1-1-1920x598.jpg"
     },
@@ -9545,6 +9553,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\product\\small-size\\1-6-112x124.jpg"
     },
     {
+      "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\security.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\security.jpg"
+    },
+    {
       "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\shape\\1.png",
       "PackagePath": "staticwebassets\\assets\\images\\shape\\1.png"
     },
@@ -9591,6 +9603,10 @@
     {
       "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\slider\\inner-img\\2-1-601x426.png",
       "PackagePath": "staticwebassets\\assets\\images\\slider\\inner-img\\2-1-601x426.png"
+    },
+    {
+      "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\support.png",
+      "PackagePath": "staticwebassets\\assets\\images\\support.png"
     },
     {
       "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\testimonial\\user\\1.png",
