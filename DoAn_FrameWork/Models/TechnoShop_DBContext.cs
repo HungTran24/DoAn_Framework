@@ -19,6 +19,7 @@ namespace DoAn_FrameWork.Models
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<ProductImage> ProductImages { get; set; } = null!;
@@ -47,7 +48,7 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
                 entity.Property(e => e.CategoryName)
-                    .HasMaxLength(50)
+                    .HasMaxLength(300)
                     .HasColumnName("category_name")
                     .IsFixedLength();
             });
@@ -59,12 +60,12 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.CustomerId).HasColumnName("customer_id");
 
                 entity.Property(e => e.CustomerEmail)
-                    .HasMaxLength(50)
+                    .HasMaxLength(300)
                     .HasColumnName("customer_email")
                     .IsFixedLength();
 
                 entity.Property(e => e.CustomerName)
-                    .HasMaxLength(50)
+                    .HasMaxLength(300)
                     .HasColumnName("customer_name")
                     .IsFixedLength();
 
@@ -84,7 +85,7 @@ namespace DoAn_FrameWork.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.Username)
-                    .HasMaxLength(50)
+                    .HasMaxLength(300)
                     .HasColumnName("username")
                     .IsFixedLength();
             });
@@ -110,10 +111,40 @@ namespace DoAn_FrameWork.Models
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_orders_customers");
 
+                entity.HasOne(d => d.Payment)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.PaymentId)
+                    .HasConstraintName("FK_orders_payments");
+
                 entity.HasOne(d => d.Shipping)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.ShippingId)
                     .HasConstraintName("FK_orders_shipping");
+            });
+
+            modelBuilder.Entity<OrderDetail>(entity =>
+            {
+                entity.HasKey(e => e.OrderDetailsId);
+
+                entity.ToTable("order_details");
+
+                entity.Property(e => e.OrderDetailsId).HasColumnName("order_details_id");
+
+                entity.Property(e => e.OrderId).HasColumnName("order_id");
+
+                entity.Property(e => e.ProductId).HasColumnName("product_id");
+
+                entity.Property(e => e.ProductSalesQuantity).HasColumnName("product_sales_quantity");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.OrderId)
+                    .HasConstraintName("FK_order_details_orders");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK_order_details_products");
             });
 
             modelBuilder.Entity<Payment>(entity =>
@@ -142,7 +173,7 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
                 entity.Property(e => e.ProductDesc)
-                    .HasMaxLength(50)
+                    .HasMaxLength(1000)
                     .HasColumnName("product_desc")
                     .IsFixedLength();
 
@@ -152,7 +183,7 @@ namespace DoAn_FrameWork.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.ProductName)
-                    .HasMaxLength(50)
+                    .HasMaxLength(300)
                     .HasColumnName("product_name")
                     .IsFixedLength();
 
@@ -197,6 +228,11 @@ namespace DoAn_FrameWork.Models
                     .WithMany(p => p.ProductTags)
                     .HasForeignKey(d => d.ProductId)
                     .HasConstraintName("FK_product_tag_products");
+
+                entity.HasOne(d => d.Tag)
+                    .WithMany(p => p.ProductTags)
+                    .HasForeignKey(d => d.TagId)
+                    .HasConstraintName("FK_product_tag_tags");
             });
 
             modelBuilder.Entity<Setting>(entity =>
