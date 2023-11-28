@@ -1,0 +1,7 @@
+D:\ASP.NET\DoAn\BTTH3_Frame\BTTH3_Frame\bin\Debug\BTTH3_Frame.exe.config
+D:\ASP.NET\DoAn\BTTH3_Frame\BTTH3_Frame\bin\Debug\BTTH3_Frame.exe
+D:\ASP.NET\DoAn\BTTH3_Frame\BTTH3_Frame\bin\Debug\BTTH3_Frame.pdb
+D:\ASP.NET\DoAn\BTTH3_Frame\BTTH3_Frame\obj\Debug\BTTH3_Frame.csproj.AssemblyReference.cache
+D:\ASP.NET\DoAn\BTTH3_Frame\BTTH3_Frame\obj\Debug\BTTH3_Frame.csproj.CoreCompileInputs.cache
+D:\ASP.NET\DoAn\BTTH3_Frame\BTTH3_Frame\obj\Debug\BTTH3_Frame.exe
+D:\ASP.NET\DoAn\BTTH3_Frame\BTTH3_Frame\obj\Debug\BTTH3_Frame.pdb

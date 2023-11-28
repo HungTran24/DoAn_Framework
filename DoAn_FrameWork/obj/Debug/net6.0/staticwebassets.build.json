@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Q8PJjRZibL0OJjBG72Oa/rCkDoBYvzExmx2zmGnKwXQ=",
+  "Hash": "SXGY9V1V4lVm7edbWQAwj3okvOlIkjbzvEjAfrYbkOw=",
   "Source": "DoAn_FrameWork",
   "BasePath": "_content/DoAn_FrameWork",
   "Mode": "Default",
@@ -36123,6 +36123,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\logo\\dark.png"
+    },
+    {
+      "Identity": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\Logo_full_black.svg",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "assets/images/Logo_full_black.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\Logo_full_black.svg"
     },
     {
       "Identity": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\megamenu\\slider\\1.jpg",
