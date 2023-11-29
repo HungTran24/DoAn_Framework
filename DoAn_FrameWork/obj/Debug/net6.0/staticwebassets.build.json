@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SXGY9V1V4lVm7edbWQAwj3okvOlIkjbzvEjAfrYbkOw=",
+  "Hash": "G9MNUnj6SFveZsTML3vfVWPhDm5Q8dO3BE2nkIZsf60=",
   "Source": "DoAn_FrameWork",
   "BasePath": "_content/DoAn_FrameWork",
   "Mode": "Default",
@@ -36871,6 +36871,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\inner-img\\2-1-601x426.png"
+    },
+    {
+      "Identity": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\slider1.jpg",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "assets/images/slider1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\slider1.jpg"
+    },
+    {
+      "Identity": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\slider2.jpg",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "assets/images/slider2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\slider2.jpg"
     },
     {
       "Identity": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\support.png",
