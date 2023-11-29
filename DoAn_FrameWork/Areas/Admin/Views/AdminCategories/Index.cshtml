@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DoAn_FrameWork.Models.Category>
+
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                    Overview
+                </div>
+                <h2 class="page-title">
+                    Danh mục sản phẩm
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-body">
+    <div class="container-xl">
+        <div class="card">
+            <div class="card-body">
+                <div id="table-default" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><button class="table-sort" data-sort="sort-name">ID</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Name</button></th>
+                                <th><button class="table-sort" data-sort="sort-type">Action</button></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="sort-name">@item.CategoryId</td>
+                                    <td class="sort-city">@item.CategoryName</td>
+                                    <td class="sort-type">
+                                        <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminCategory" asp-action="Edit" asp-route-id="@item.CategoryId">
+                                            Chỉnh sửa
+                                        </a>
+                                        <a class="btn btn-warning w-10" asp-area="Admin" asp-controller="AdminCategory" asp-action="Delete" asp-route-id="@item.CategoryId">
+                                            Xóa
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
