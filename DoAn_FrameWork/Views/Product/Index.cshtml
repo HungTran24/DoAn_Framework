@@ -200,18 +200,15 @@
         </div>
     </div>n
 </main>
-<script>
+    <script>
     $(document).ready(function () {
         $('#sort-select').change(function () {
-            var selectedOption = $(this).val();
+            var selectedValue = $(this).val();
             $.ajax({
-                url: '/ProductController/Index',
-                type: 'get',
-                data: { sort: selectedOption },
+                url: '@Url.Action("Index", "ProductController")',
+                type: 'POST',
+                data: { selectedValue: selectedValue },
                 success: function (result) {
-                    
-                },
-                error: function (error) {
                     
                 }
             });

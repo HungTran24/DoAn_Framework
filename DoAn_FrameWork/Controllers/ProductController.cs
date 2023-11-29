@@ -15,7 +15,7 @@ namespace DoAn_FrameWork.Controllers
             _context = context;
         }
   
-        public IActionResult Index(int? page, String SearchString = "", String sort = "")
+        public IActionResult Index(int? page, String SearchString = "", String selectedValue = "")
         {
             try
             {
@@ -31,18 +31,18 @@ namespace DoAn_FrameWork.Controllers
                     PagedList<Product> searchProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
                     return View(searchProduct);
                 }
-                if (sort == "2")
+                if (selectedValue == "2")
                 {
                     var sanPham = _context.Products.Include(s => s.Category)
                     .OrderByDescending(x => x.ProductPrice);
-                    PagedList<Product> searchProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
-                    return View(searchProduct);
+                    PagedList<Product> sortProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
+                    return View(sortProduct);
                 }
-                else if (sort == "3") {
+                else if (selectedValue == "3") {
                     var sanPham = _context.Products.Include(s => s.Category)
                    .OrderBy(x => x.ProductPrice);
-                    PagedList<Product> searchProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
-                    return View(searchProduct);
+                    PagedList<Product> sortProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
+                    return View(sortProduct);
                 }
                 PagedList<Product> models = new PagedList<Product>(lsProducts, pageNumber, pageSize);
                 ViewBag.CurrentPage = page;
