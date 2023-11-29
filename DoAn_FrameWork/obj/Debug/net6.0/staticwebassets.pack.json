@@ -9581,6 +9581,14 @@
       "PackagePath": "staticwebassets\\assets\\images\\shipping\\icon\\shield.png"
     },
     {
+      "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\slider1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\slider1.jpg"
+    },
+    {
+      "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\slider2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\slider2.jpg"
+    },
+    {
       "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\slider\\bg\\1-1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\slider\\bg\\1-1.jpg"
     },

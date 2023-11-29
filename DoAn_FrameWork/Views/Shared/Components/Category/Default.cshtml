@@ -3,6 +3,10 @@
     .category_product a:hover{
         color: red;
     }
+
+    .cat_item.active {
+        color: red;
+    }
 </style>
 <div class="col-lg-2">
     <div class="hero__categories">
@@ -13,8 +17,16 @@
         <ul style="background: #fff; border: none;">
             @foreach (var item in Model)
             {
-                <li class="category_product"><a asp-controller="Product" asp-action="ProductbyCategory" asp-route-id = "@item.CategoryId">@item.CategoryName</a></li>
+                <li class="category_product"><a asp-controller="Product" asp-action="ProductbyCategory" asp-route-id = "@item.CategoryId" class="cat_item">@item.CategoryName</a></li>
             }
         </ul>
     </div>
 </div>
+<script>
+    var items = document.querySelectorAll(".category_product");
+    items.forEach(function (item) {
+        item.addEventListener("click", function () {
+            this.querySelector("a").style.color = "red";
+        });
+    });
+</script>
