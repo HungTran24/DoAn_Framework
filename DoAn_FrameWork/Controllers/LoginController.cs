@@ -3,6 +3,9 @@ using DoAn_FrameWork.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoAn_FrameWork.Controllers;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Hosting;
+using System.Runtime.InteropServices;
 
 public class LoginController : Controller
 {
@@ -43,6 +46,9 @@ public class LoginController : Controller
                 HttpContext.Session.SetString("CustomerEmail", u.CustomerEmail.ToString());
                 return RedirectToAction("Index", "Account");
             }
+            else {
+                ViewBag.LoginFail = "Sai thông tin tài khoản!";
+            }
         }
         return View();
     }
@@ -50,6 +56,31 @@ public class LoginController : Controller
     {
         return View();
     }
+
+    [HttpPost]
+    public IActionResult Register(Customer user)
+    {
+        if (ModelState.IsValid)
+        {
+            var existingUser = _context.Customers.FirstOrDefault(x => x.Username.Equals(user.Username));
+            if (existingUser == null)
+            {
+
+                _context.Customers.Add(user);
+                _context.SaveChanges();
+                ViewBag.RegisterSuccess = "Đăng ký thành công!";
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                ViewBag.RegisterFail = "Tài khoản đã tồn tại!";
+            }
+        }
+        return View();
+    }
+
+
+
     public IActionResult Logout()
     {
         HttpContext.Session.Clear();

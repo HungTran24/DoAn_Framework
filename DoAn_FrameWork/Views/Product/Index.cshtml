@@ -90,8 +90,8 @@
                                 </ul>
                             </li>
                          
-                            <li class="short">
-                                <select class="nice-select wide rounded-0">
+                            <li class="sort">
+                                <select id="sort-select" class="nice-select wide rounded-0">
                                     <option value="1">Sắp xếp theo</option>
                                     <option value="2">Giá thấp nhất</option>
                                     <option value="3">Giá cao nhất</option>
@@ -198,5 +198,23 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>n
 </main>
+<script>
+    $(document).ready(function () {
+        $('#sort-select').change(function () {
+            var selectedOption = $(this).val();
+            $.ajax({
+                url: '/ProductController/Index',
+                type: 'get',
+                data: { sort: selectedOption },
+                success: function (result) {
+                    
+                },
+                error: function (error) {
+                    
+                }
+            });
+        });
+    });
+</script>

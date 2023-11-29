@@ -18,6 +18,7 @@ namespace DoAn_FrameWork.Models
         public int? OrderStatus { get; set; }
 
         public virtual Customer? Customer { get; set; }
+        public virtual Payment? Payment { get; set; }
         public virtual Shipping? Shipping { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

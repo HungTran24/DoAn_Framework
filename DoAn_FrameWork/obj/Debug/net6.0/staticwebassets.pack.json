@@ -6617,7 +6617,15 @@
       "PackagePath": "staticwebassets\\assets\\images\\Freeship.png"
     },
     {
+<<<<<<< .merge_file_agkLMf
       "Id": "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\about\\banner\\1-1-1920x598.jpg",
+=======
+      "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\Logo_full_black.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\Logo_full_black.svg"
+    },
+    {
+      "Id": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\about\\banner\\1-1-1920x598.jpg",
+>>>>>>> .merge_file_5CAnRS
       "PackagePath": "staticwebassets\\assets\\images\\about\\banner\\1-1-1920x598.jpg"
     },
     {

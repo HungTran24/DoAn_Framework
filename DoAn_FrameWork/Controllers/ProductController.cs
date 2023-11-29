@@ -15,16 +15,11 @@ namespace DoAn_FrameWork.Controllers
             _context = context;
         }
   
-        public IActionResult Index(int? page, String SearchString = "")
+        public IActionResult Index(int? page, String SearchString = "", String sort = "")
         {
-            //if (SearchString != "")
-            //{
-            //    var sanPham = _context.Products.Include(s => s.Category)
-            //        .Where(x => x.ProductName.ToUpper().Contains(SearchString.ToUpper()));
-            //    return View(sanPham.ToList());
-            //}
             try
             {
+                //sort = Request.Form["sort-select"];
                 var pageNumber = page == null || page <= 0 ? 1 : page.Value;
                 var pageSize = 8;
                 var lsProducts = _context.Products
@@ -33,6 +28,19 @@ namespace DoAn_FrameWork.Controllers
                 if (SearchString != "") {
                     var sanPham = _context.Products.Include(s => s.Category)
                     .Where(x => x.ProductName.ToUpper().Contains(SearchString.ToUpper()));
+                    PagedList<Product> searchProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
+                    return View(searchProduct);
+                }
+                if (sort == "2")
+                {
+                    var sanPham = _context.Products.Include(s => s.Category)
+                    .OrderByDescending(x => x.ProductPrice);
+                    PagedList<Product> searchProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
+                    return View(searchProduct);
+                }
+                else if (sort == "3") {
+                    var sanPham = _context.Products.Include(s => s.Category)
+                   .OrderBy(x => x.ProductPrice);
                     PagedList<Product> searchProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
                     return View(searchProduct);
                 }

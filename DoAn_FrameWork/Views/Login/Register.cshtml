@@ -64,7 +64,7 @@ form .input-box span.details{
 }
 .user-details .input-box input{
   height: 45px;
-  width: 100%;
+  width: 130%;
   outline: none;
   font-size: 16px;
   border-radius: 5px;
@@ -158,45 +158,49 @@ form .user-details .input-box{
   <div class="container" style="box-shadow: 1px 1px 10px #fff;">
     <div class="title">Đăng ký</div>
     <div class="content">
-      @using (Html.BeginForm("Login", "Register", FormMethod.Post))
+      @using (Html.BeginForm("Register", "Login", FormMethod.Post))
             {
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Tài khoản</span>
-                @Html.TextBoxFor(x=>x.Username, new{@type="text", placeholder="Nhập tài khoản",
-                name="customer_username", required="required", })
-            @* <input type="text" placeholder="Nhập tài khoản" name="customer_username" required> *@
-          </div>
-          <div class="input-box">
-            <span class="details">Mật khẩu</span>
-                        @Html.TextBoxFor(x=>x.Password, new{@type="text", placeholder="Nhập mật khẩu",
+        <div class="user-details" style="display:flex;">
+            <div class="col_1">
+                        <div class="input-box">
+                            <span class="details">Tài khoản</span>
+                            @Html.TextBoxFor(x=>x.Username, new{@type="text", placeholder="Nhập tài khoản",
+                        name="customer_username", required="required", })
+                            @* <input type="text" placeholder="Nhập tài khoản" name="customer_username" required> *@
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Mật khẩu</span>
+                            @Html.TextBoxFor(x=>x.Password, new{@type="password", placeholder="Nhập mật khẩu",
                         name="customer_password", required="required", })
-            @* <input type="password" placeholder="Nhập mật khẩu" name="customer_password"required> *@
-          </div>
-          <div class="input-box">
-            <span class="details">Nhập lại mật khẩu</span>
-                        @Html.TextBoxFor(x=>x.RePassword, new{@type="text", placeholder="Nhập mật khẩu",
+                            @* <input type="password" placeholder="Nhập mật khẩu" name="customer_password"required> *@
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Nhập lại mật khẩu</span>
+                            @Html.TextBoxFor(x=>x.RePassword, new{@type="password", placeholder="Nhập mật khẩu",
                         name="customer_re_pass", required="required", })
-          @*   <input type="password" placeholder="Nhập mật khẩu" name="customer_re_pass" required> *@
-          </div>
-          <div class="input-box">
-            <span class="details">Nhập họ và tên</span>
-                        @Html.TextBoxFor(x=>x.CustomerName, new{@type="text", placeholder="Nhập họ và tên",
+                            @*   <input type="password" placeholder="Nhập mật khẩu" name="customer_re_pass" required> *@
+                        </div>
+            </div>
+            <div class="col_2" style="margin-right: 67px;">
+                        <div class="input-box">
+                            <span class="details">Nhập họ và tên</span>
+                            @Html.TextBoxFor(x=>x.CustomerName, new{@type="text", placeholder="Nhập họ và tên",
                         name="customer_name", required="required", })
-          @*   <input type="text" placeholder="Nhập họ và tên" name="customer_name" required> *@
-          </div>
-          <div class="input-box">
-            <span class="details">Email</span>
-                        @Html.TextBoxFor(x=>x.CustomerEmail, new{@type="text", placeholder="Nhập email",
+                            @*   <input type="text" placeholder="Nhập họ và tên" name="customer_name" required> *@
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Email</span>
+                            @Html.TextBoxFor(x=>x.CustomerEmail, new{@type="text", placeholder="Nhập email",
                         name="customer_email", required="required", })
-           @*  <input type="text" placeholder="Nhập email" name="customer_email" required> *@
-          </div>
-          <div class="input-box">
-            <span class="details">Số điện thoại</span>
-                        @Html.TextBoxFor(x=>x.Phone, new{@type="text", placeholder="Nhập số điện thoại",
+                            @*  <input type="text" placeholder="Nhập email" name="customer_email" required> *@
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Số điện thoại</span>
+                            @Html.TextBoxFor(x=>x.Phone, new{@type="text", placeholder="Nhập số điện thoại",
                         name="customer_phone", required="required", })
-            @* <input type="text" placeholder="Nhập số điện thoại" name="customer_phone" required> *@
-          </div>
+                            @* <input type="text" placeholder="Nhập số điện thoại" name="customer_phone" required> *@
+                        </div>
+            </div>
         </div>
           <div class="button">
               <input class = "register_customer" type="submit" name="dangky" value="Đăng ký">

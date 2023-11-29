@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< .merge_file_pK7U83
   "Hash": "q/AsPd0BBI44ZYVhjf7hXzVR328sDGUppo95vTanpIo=",
+=======
+  "Hash": "SXGY9V1V4lVm7edbWQAwj3okvOlIkjbzvEjAfrYbkOw=",
+>>>>>>> .merge_file_qmIqcb
   "Source": "DoAn_FrameWork",
   "BasePath": "_content/DoAn_FrameWork",
   "Mode": "Default",
@@ -24990,7 +24994,28 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\logo\\dark.png"
     },
     {
+<<<<<<< .merge_file_pK7U83
       "Identity": "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\megamenu\\slider\\1.jpg",
+=======
+      "Identity": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\Logo_full_black.svg",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "assets/images/Logo_full_black.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\Logo_full_black.svg"
+    },
+    {
+      "Identity": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\wwwroot\\assets\\images\\megamenu\\slider\\1.jpg",
+>>>>>>> .merge_file_qmIqcb
       "SourceId": "DoAn_FrameWork",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\",

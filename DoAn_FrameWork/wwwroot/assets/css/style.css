@@ -17766,7 +17766,7 @@ blockquote .inner-content .user-name:before {
 /*  04. Shipping
 /*----------------------------------------*/
 .shipping-item {
-  border: 2px solidvar(--primary-color);
+  border: 2px solid #3399ff;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
