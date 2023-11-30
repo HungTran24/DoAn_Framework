@@ -1,3 +1,6 @@
-/.vs/
-DoAn_FrameWork/bin/
-DoAn_FrameWork/obj/
+# Ignore .vs folder and its contents
+.vs/
+
+# Ignore bin and obj folders within DoAn_Framework directory
+DoAn_FrameWork/DoAn_FrameWork/bin/
+DoAn_FrameWork/DoAn_FrameWork/obj/
