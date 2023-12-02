@@ -4,22 +4,43 @@
     ViewData["Title"] = "Danh sách sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
 <div class="page-header d-print-none">
     <div class="container-xl">
+        <div class="col">
+            <h2 class="page-title">
+                Danh mục sản phẩm
+            </h2>
+        </div>
         <div class="row g-2 align-items-center">
-            <div class="col">
-                <!-- Page pre-title -->
-                <div class="page-pretitle">
-                    Overview
+            <div class="col-md-8">
+                <div class="card-body">
+                    <ol class="breadcrumb breadcrumb-arrows">
+                        <li class="breadcrumb-item active"><a href="#">List</a></li>
+                        <!-- Các mục breadcrumb khác nếu cần -->
+                    </ol>
                 </div>
-                <h2 class="page-title">
-                    Danh mục sản phẩm
-                </h2>
             </div>
+            <div class="col-md-auto">
+                <form asp-area="Admin" asp-controller="AdminCategories" asp-action="Index" autocomplete="off" novalidate="">
+                    <div class="input-icon">
+                        <span class="input-icon-addon">
+                            <!-- Biểu tượng tìm kiếm -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><circle cx="10" cy="10" r="7"></circle><line x1="21" y1="21" x2="15" y2="15"></line></svg>
+                        </span>
+                        <input type="text" value="@ViewBag.SearchTerm" class="form-control" placeholder="Search…" aria-label="Search in website" name="searchTerm">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-success w-100" asp-area="Admin" asp-controller="AdminCategories" asp-action="Create">
+                    Add
+                </a>
+            </div>
+            
         </div>
     </div>
 </div>
+
 <div class="page-body">
     <div class="container-xl">
         <div class="card">
@@ -40,11 +61,11 @@
                                     <td class="sort-name">@item.CategoryId</td>
                                     <td class="sort-city">@item.CategoryName</td>
                                     <td class="sort-type">
-                                        <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminCategory" asp-action="Edit" asp-route-id="@item.CategoryId">
-                                            Chỉnh sửa
+                                        <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminCategories" asp-action="Edit" asp-route-id="@item.CategoryId">
+                                            Edit
                                         </a>
-                                        <a class="btn btn-warning w-10" asp-area="Admin" asp-controller="AdminCategory" asp-action="Delete" asp-route-id="@item.CategoryId">
-                                            Xóa
+                                        <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminCategories", new { id = item.CategoryId })" data-toggle="tooltip" title="Delete">
+                                            Delete
                                         </a>
                                     </td>
                                 </tr>
@@ -52,8 +73,79 @@
 
                         </tbody>
                     </table>
+                    <div class="col-md-auton mt-3">
+                        <ul class="pagination">
+                            @if (ViewBag.TotalPages > 1)
+                            {
+                                @if (ViewBag.CurrentPage > 1)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, pageSize = ViewBag.PageSize })">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 6l-6 6l6 6"></path></svg>
+                                        </a>
+                                    </li>
+                                }
+
+                                for (int i = 1; i <= ViewBag.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                                    </li>
+                                }
+
+                                @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, pageSize = ViewBag.PageSize })">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 6l6 6l-6 6"></path></svg>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
                 </div>
+                
             </div>
+            
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.btn-delete').on('click', function (e) {
+            e.preventDefault();
+
+            var deleteUrl = $(this).attr('href');
+            var deleteButton = $(this);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Gửi yêu cầu Ajax để xóa
+                    $.ajax({
+                        url: deleteUrl,
+                        type: 'POST', // Hoặc 'DELETE' tùy thuộc vào cấu hình của bạn
+                        success: function (response) {
+                            // Xử lý thành công (có thể làm mới trang hoặc xóa hàng từ bảng)
+                            deleteButton.closest('tr').remove();
+                            Swal.fire('Deleted!', 'Your record has been deleted.', 'success');
+
+                        },
+                        error: function (error) {
+                            Swal.fire('Error!', 'An error occurred while deleting the record.', 'error');
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>

@@ -23,29 +23,32 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminCategory
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 8, string searchTerm = "")
         {
-            return _context.Categories != null ?
-                        View(await _context.Categories.ToListAsync()) :
-                        Problem("Entity set 'TechnoShop_DBContext.Categories'  is null.");
-        }
+            // Lọc dữ liệu theo tên nếu có giá trị tìm kiếm
+            var query = _context.Categories.AsQueryable();
 
-        // GET: Admin/AdminCategory/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Categories == null)
+            if (!string.IsNullOrEmpty(searchTerm))
             {
-                return NotFound();
+                query = query.Where(c => c.CategoryName.Contains(searchTerm));
             }
 
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
+            // Thực hiện phân trang
+            var categories = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
 
-            return View(category);
+            // Tính toán thông tin phân trang
+            int totalItems = await query.CountAsync();
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            // Truyền giá trị tìm kiếm để hiển thị lại trong ô tìm kiếm
+            ViewBag.SearchTerm = searchTerm;
+
+            return View(categories);
         }
 
         // GET: Admin/AdminCategory/Create
@@ -124,42 +127,48 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminCategory/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Categories == null)
+            try
             {
-                return NotFound();
-            }
+                var category = await _context.Categories.FindAsync(id);
+                if (category == null)
+                {
+                    return NotFound();
+                }
 
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
+
+                return Json(new { success = true, message = "Record deleted successfully." });
+            }
+            catch (Exception ex)
             {
-                return NotFound();
+                return Json(new { success = false, message = "An error occurred while deleting the record." });
             }
-
-            return View(category);
         }
+
 
         // POST: Admin/AdminCategory/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Categories == null)
-            {
-                return Problem("Entity set 'TechnoShop_DBContext.Categories'  is null.");
-            }
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
-            {
-                _context.Categories.Remove(category);
-            }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Categories == null)
+        //    {
+        //        return Problem("Entity set 'TechnoShop_DBContext.Categories'  is null.");
+        //    }
+        //    var category = await _context.Categories.FindAsync(id);
+        //    if (category != null)
+        //    {
+        //        _context.Categories.Remove(category);
+        //    }
 
-            await _context.SaveChangesAsync();
-            _notifyService.Success("Xóa thành công");
-            return RedirectToAction(nameof(Index));
-        }
+        //    await _context.SaveChangesAsync();
+        //    _notifyService.Success("Xóa thành công");
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool CategoryExists(int id)
         {
