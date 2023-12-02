@@ -8,13 +8,16 @@
     <div class="container-xl">
         <div class="row g-2 align-items-center">
             <div class="col">
-                <!-- Page pre-title -->
-                <div class="page-pretitle">
-                    Chỉnh sửa
-                </div>
                 <h2 class="page-title">
                     Danh mục sản phẩm
                 </h2>
+            </div>
+            <div class="card-body">
+                <ol class="breadcrumb breadcrumb-arrows">
+                    <li class="breadcrumb-item "><a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index">List</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Edit</a></li>
+                    <!-- Các mục breadcrumb khác nếu cần -->
+                </ol>
             </div>
         </div>
     </div>

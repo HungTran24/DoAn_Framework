@@ -14,10 +14,17 @@
     <link href="~/admintemplate/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
     <link href="~/admintemplate/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
     <link href="~/admintemplate/dist/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
     
   </head>
   <body >
     <script src="~/admintemplate/dist/js/demo-theme.min.js?1684106062"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+
     <div class="page">
       <!-- Sidebar -->
         @await Html.PartialAsync("_SideNavPartialView.cshtml")
@@ -727,6 +734,7 @@
       });
       
     </script>
+
 
     @await Component.InvokeAsync("Notyf")
    @await RenderSectionAsync("Scripts", required: false) 
