@@ -1,4 +1,5 @@
 ﻿using DoAn_FrameWork.Models;
+using DoAn_FrameWork.ModelViews;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Versioning;
@@ -14,7 +15,7 @@ namespace DoAn_FrameWork.Controllers
         {
             _context = context;
         }
-  
+
         public IActionResult Index(int? page, String SearchString = "", String selectedValue = "")
         {
             try
@@ -25,7 +26,8 @@ namespace DoAn_FrameWork.Controllers
                 var lsProducts = _context.Products
                     .AsNoTracking()
                     .OrderByDescending(x => x.ProductId);
-                if (SearchString != "") {
+                if (SearchString != "")
+                {
                     var sanPham = _context.Products.Include(s => s.Category)
                     .Where(x => x.ProductName.ToUpper().Contains(SearchString.ToUpper()));
                     PagedList<Product> searchProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
@@ -38,7 +40,8 @@ namespace DoAn_FrameWork.Controllers
                     PagedList<Product> sortProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
                     return View(sortProduct);
                 }
-                else if (selectedValue == "3") {
+                else if (selectedValue == "3")
+                {
                     var sanPham = _context.Products.Include(s => s.Category)
                    .OrderBy(x => x.ProductPrice);
                     PagedList<Product> sortProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
@@ -53,7 +56,8 @@ namespace DoAn_FrameWork.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        public IActionResult ProductbyCategory(int id, int? page){
+        public IActionResult ProductbyCategory(int id, int? page)
+        {
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 8;
             var lsProducts = _context.Products
@@ -65,7 +69,7 @@ namespace DoAn_FrameWork.Controllers
             return View(models);
         }
         //[Route("/{Alias}--{id}", Name = "ListProduct")]
-        public IActionResult List(int id, int page=1)
+        public IActionResult List(int id, int page = 1)
         {
             try
             {
@@ -80,25 +84,57 @@ namespace DoAn_FrameWork.Controllers
                 ViewBag.CurrentCat = page;
                 return View(models);
             }
-            catch 
+            catch
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+
         }
         public IActionResult Product_Detail(int id)
         {
-            try 
+            //try
+            //{
+
+            //    var product = _context.Products.SingleOrDefault(x => x.ProductId == id);
+            //    int categoryId = (int)product.CategoryId;
+            //    var relative_products = _context.Products
+            //        .AsNoTracking()
+            //        .Where(x => x.CategoryId == categoryId);
+            //    return View(product);
+            //}
+            //catch
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+            try
             {
- 
                 var product = _context.Products.SingleOrDefault(x => x.ProductId == id);
-                return View(product);
+
+                if (product == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                var categoryId = product.CategoryId;
+                var relative_products = _context.Products
+                    .AsNoTracking()
+                    .Where(x => x.CategoryId == categoryId && x.ProductId != id)
+                    .ToList();
+
+                var model = new ProductDetailViewModel
+                {
+                    Product = product,
+                    RelativeProducts = relative_products
+                };
+
+                return View(model);
             }
-            catch 
+            catch (Exception ex)
             {
+                // Log the exception
                 return RedirectToAction("Index", "Home");
             }
-         
+
         }
     }
-}
+        }
