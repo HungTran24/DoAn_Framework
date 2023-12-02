@@ -18,7 +18,6 @@ namespace DoAn_FrameWork.Models
 
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Customer> Customers { get; set; } = null!;
-        public virtual DbSet<Option> Options { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
@@ -85,38 +84,6 @@ namespace DoAn_FrameWork.Models
                     .HasMaxLength(300)
                     .HasColumnName("username")
                     .IsFixedLength();
-            });
-
-            modelBuilder.Entity<Option>(entity =>
-            {
-                entity.ToTable("options");
-
-                entity.Property(e => e.OptionId).HasColumnName("option_id");
-
-                entity.Property(e => e.OptionImage)
-                    .HasMaxLength(200)
-                    .HasColumnName("option_image");
-
-                entity.Property(e => e.OptionName)
-                    .HasMaxLength(200)
-                    .HasColumnName("option_name");
-
-                entity.Property(e => e.OptionPrice).HasColumnName("option_price");
-
-                entity.Property(e => e.OptionSaleQuantity)
-                    .HasColumnName("option_sale_quantity")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.OptionStockQuantity)
-                    .HasColumnName("option_stock_quantity")
-                    .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.ProductId).HasColumnName("product_id");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.Options)
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK_options_products");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -250,8 +217,6 @@ namespace DoAn_FrameWork.Models
 
                 entity.Property(e => e.ProductDetailId).HasColumnName("product_detail_id");
 
-                entity.Property(e => e.OptionId).HasColumnName("option_id");
-
                 entity.Property(e => e.ProductDetailDesc)
                     .HasMaxLength(200)
                     .HasColumnName("product_detail_desc");
@@ -261,11 +226,6 @@ namespace DoAn_FrameWork.Models
                     .HasColumnName("product_detail_name");
 
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
-
-                entity.HasOne(d => d.Option)
-                    .WithMany(p => p.ProductDetails)
-                    .HasForeignKey(d => d.OptionId)
-                    .HasConstraintName("FK_product_details_options");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ProductDetails)
@@ -284,14 +244,7 @@ namespace DoAn_FrameWork.Models
                     .HasColumnName("image")
                     .IsFixedLength();
 
-                entity.Property(e => e.OptionId).HasColumnName("option_id");
-
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
-
-                entity.HasOne(d => d.Option)
-                    .WithMany(p => p.ProductImages)
-                    .HasForeignKey(d => d.OptionId)
-                    .HasConstraintName("FK_product_image_options1");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ProductImages)
