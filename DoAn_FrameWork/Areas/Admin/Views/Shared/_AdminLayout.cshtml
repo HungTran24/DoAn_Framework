@@ -15,6 +15,7 @@
     <link href="~/admintemplate/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
     <link href="~/admintemplate/dist/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
+    @RenderSection("Styles", required: false)
     
   </head>
   <body >
@@ -22,6 +23,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
 
 
@@ -735,8 +737,8 @@
       
     </script>
 
-
     @await Component.InvokeAsync("Notyf")
    @await RenderSectionAsync("Scripts", required: false) 
+
   </body>
 </html>

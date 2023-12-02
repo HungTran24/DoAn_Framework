@@ -7,7 +7,6 @@ namespace DoAn_FrameWork.Models
     {
         public Product()
         {
-            Options = new HashSet<Option>();
             OrderDetails = new HashSet<OrderDetail>();
             ProductDetails = new HashSet<ProductDetail>();
             ProductImages = new HashSet<ProductImage>();
@@ -25,7 +24,6 @@ namespace DoAn_FrameWork.Models
         public int? WarrantyTime { get; set; }
 
         public virtual Category? Category { get; set; }
-        public virtual ICollection<Option> Options { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<ProductDetail> ProductDetails { get; set; }
         public virtual ICollection<ProductImage> ProductImages { get; set; }
