@@ -18,11 +18,11 @@ namespace DoAn_FrameWork.Models
 
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<GroupProduct> GroupProducts { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
-        public virtual DbSet<ProductDetail> ProductDetails { get; set; } = null!;
         public virtual DbSet<ProductImage> ProductImages { get; set; } = null!;
         public virtual DbSet<Shipping> Shippings { get; set; } = null!;
 
@@ -86,6 +86,16 @@ namespace DoAn_FrameWork.Models
                     .IsFixedLength();
             });
 
+            modelBuilder.Entity<GroupProduct>(entity =>
+            {
+                entity.ToTable("group_products");
+
+                entity.Property(e => e.GroupProductId).HasColumnName("group_product_id");
+
+                entity.Property(e => e.GroupProductName)
+                    .HasMaxLength(200)
+                    .HasColumnName("group_product_name");
+            });
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.ToTable("orders");
@@ -178,6 +188,8 @@ namespace DoAn_FrameWork.Models
                     .HasColumnName("discount_percentage")
                     .HasDefaultValueSql("((0))");
 
+                entity.Property(e => e.GroupProductId).HasColumnName("group_product_id");
+
                 entity.Property(e => e.ProductDesc)
                     .HasMaxLength(1000)
                     .HasColumnName("product_desc")
@@ -209,6 +221,11 @@ namespace DoAn_FrameWork.Models
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("FK_products_categories");
+
+                entity.HasOne(d => d.GroupProduct)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.GroupProductId)
+                    .HasConstraintName("FK_products_group_products");
             });
 
             modelBuilder.Entity<ProductDetail>(entity =>
