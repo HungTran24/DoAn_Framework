@@ -120,11 +120,16 @@ namespace DoAn_FrameWork.Controllers
                     .AsNoTracking()
                     .Where(x => x.CategoryId == categoryId && x.ProductId != id)
                     .ToList();
-
+                var groupProductId = product.GroupProductId;
+                var variant_products = _context.Products
+                    .AsNoTracking()
+                    .Where(x => x.GroupProductId == groupProductId && x.ProductId != id)
+                    .ToList();
                 var model = new ProductDetailViewModel
                 {
                     Product = product,
-                    RelativeProducts = relative_products
+                    RelativeProducts = relative_products,
+                    VariantProducts = variant_products
                 };
 
                 return View(model);

@@ -6,5 +6,6 @@ namespace DoAn_FrameWork.ModelViews
     {
         public Product Product { get; set; }
         public List<Product> RelativeProducts { get; set; }
+        public List<Product> VariantProducts { get; set; }
     }
 }

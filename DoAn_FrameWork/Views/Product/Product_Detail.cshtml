@@ -85,10 +85,28 @@
                                     <i class="fa-solid fa-location-dot"></i>
                                     Địa chỉ nhận hàng: Khu phố 6, phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh
                                 </p>
-                                <div class="quantity-with-btn pb-7">
+                                @if (@Model.Product.GroupProductId != null)
+                                {
+                                    <div class="varint_product_color" style="display: flex; margin-bottom: 15px;">
+                                        <label for="variant-color" style="line-height: 56px;">Màu sắc</label>
+                                        <div class="color-wrapper" style=" display: flex; margin-left: 25px;">
+                                            <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@Model.VariantProducts.FirstOrDefault().ProductId">
+                                                <div class="color-box" style="border: 1px solid #ccc; padding: 10px;margin: 5px;">Bạch Kim</div>
+                                            </a>
+                                            <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@Model.VariantProducts.Skip(1).FirstOrDefault().ProductId">
+                                                <div class="color-box" style="border: 1px solid #ccc; padding: 10px;margin: 5px;">Xanh</div>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                }
+                               
+                               
+                                <div class="quantity-with-btn pb-7" style="display: flex;">
+                                    <label style="line-height: 50px;">Số lượng</label>
                                     <div class="quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
+                                        <div class="cart-plus-minus" style="margin-left: 25px; margin-top: 10px;">
+                                            <input class="cart-plus-minus-box" value="1" type="text" style="height: 30px;">
                                         </div>
                                     </div>
                                 </div>
