@@ -31,7 +31,7 @@ namespace DoAn_FrameWork.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-LTA3PDR;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+                optionsBuilder.UseSqlServer("Data Source=Tri;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
             }
         }
 
@@ -96,7 +96,6 @@ namespace DoAn_FrameWork.Models
                     .HasMaxLength(200)
                     .HasColumnName("group_product_name");
             });
-
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.ToTable("orders");
@@ -227,6 +226,28 @@ namespace DoAn_FrameWork.Models
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.GroupProductId)
                     .HasConstraintName("FK_products_group_products");
+            });
+
+            modelBuilder.Entity<ProductDetail>(entity =>
+            {
+                entity.ToTable("product_details");
+
+                entity.Property(e => e.ProductDetailId).HasColumnName("product_detail_id");
+
+                entity.Property(e => e.ProductDetailDesc)
+                    .HasMaxLength(200)
+                    .HasColumnName("product_detail_desc");
+
+                entity.Property(e => e.ProductDetailName)
+                    .HasMaxLength(100)
+                    .HasColumnName("product_detail_name");
+
+                entity.Property(e => e.ProductId).HasColumnName("product_id");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.ProductDetails)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK_product_details_products");
             });
 
             modelBuilder.Entity<ProductImage>(entity =>

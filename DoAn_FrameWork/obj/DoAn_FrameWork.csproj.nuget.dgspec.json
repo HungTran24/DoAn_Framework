@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\DoAn_FrameWork.csproj": {}
+    "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj": {}
   },
   "projects": {
-    "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\DoAn_FrameWork.csproj": {
+    "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
+        "projectUniqueName": "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
         "projectName": "DoAn_FrameWork",
-        "projectPath": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\ASP.NET\\DoAn\\DoAn_FrameWork\\obj\\",
+        "projectPath": "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
+        "packagesPath": "C:\\Users\\Doan Cong Tri\\.nuget\\packages\\",
+        "outputPath": "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Doan Cong Tri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AspNetCoreHero.ToastNotification": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Bootstrap": {
+              "target": "Package",
+              "version": "[5.3.2, )"
+            },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[6.0.24, )"
@@ -51,6 +59,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.24, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.23, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -94,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
