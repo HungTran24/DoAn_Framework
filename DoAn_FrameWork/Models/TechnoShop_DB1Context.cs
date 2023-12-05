@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DoAn_FrameWork.Models
 {
-    public partial class TechnoShop_DBContext : DbContext
+    public partial class TechnoShop_DB1Context : DbContext
     {
-        public TechnoShop_DBContext()
+        public TechnoShop_DB1Context()
         {
         }
 
-        public TechnoShop_DBContext(DbContextOptions<TechnoShop_DBContext> options)
+        public TechnoShop_DB1Context(DbContextOptions<TechnoShop_DB1Context> options)
             : base(options)
         {
         }
@@ -31,7 +31,7 @@ namespace DoAn_FrameWork.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-LTA3PDR;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-LTA3PDR;Initial Catalog=TechnoShop_DB1;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
             }
         }
 

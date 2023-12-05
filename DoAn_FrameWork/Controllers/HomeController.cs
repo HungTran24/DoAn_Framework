@@ -31,7 +31,7 @@ namespace DoAn_FrameWork.Controllers
                 var pageSize = 8;
                 var lsProducts = _context.Products
                     .AsNoTracking()
-                    .OrderByDescending(x => x.ProductId);
+                    .OrderByDescending(x => x.SaleQuantity);
                 if (SearchString != "")
                 {
                     var sanPham = _context.Products.Include(s => s.Category)
