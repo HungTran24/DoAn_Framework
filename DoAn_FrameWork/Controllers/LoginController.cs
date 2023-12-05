@@ -40,7 +40,7 @@ public class LoginController : Controller
                     .AsNoTracking()
                     .Where(x => x.CustomerId == u.CustomerId)
                     .OrderByDescending(x => x.PaymentId).ToList();
-                ViewBag.Donhang = lsDonhang;
+                //ViewBag.Donhang = lsDonhang;
                 HttpContext.Session.SetString("Username", u.Username.ToString());
                 HttpContext.Session.SetString("CustomerName", u.CustomerName.ToString());
                 HttpContext.Session.SetString("CustomerEmail", u.CustomerEmail.ToString());
@@ -65,11 +65,28 @@ public class LoginController : Controller
             var existingUser = _context.Customers.FirstOrDefault(x => x.Username.Equals(user.Username));
             if (existingUser == null)
             {
-
-                _context.Customers.Add(user);
-                _context.SaveChanges();
-                ViewBag.RegisterSuccess = "Đăng ký thành công!";
-                return RedirectToAction("Login", "Login");
+                if (user.Phone.Length == 10 && user.Phone.StartsWith("0") && user.Password == user.RePassword && IsValidEmail(user.CustomerEmail))
+                {
+                    _context.Customers.Add(user);
+                    _context.SaveChanges();
+                    //TempData["RegisterSuccess"] = "Đăng ký thành công!";
+                    return RedirectToAction("Login", "Login");
+                }
+                else
+                {
+                    if (user.Phone.Length != 10 || !user.Phone.StartsWith("0"))
+                    {
+                        ModelState.AddModelError("Phone", "Số điện thoại không đúng định dạng!");
+                    }
+                    if (user.Password != user.RePassword)
+                    {
+                        ModelState.AddModelError("RePassword", "Mật khẩu không khớp!");
+                    }
+                    if (!IsValidEmail(user.CustomerEmail))
+                    {
+                        ModelState.AddModelError("CustomerEmail", "Email không đúng định dạng!");
+                    }
+                }
             }
             else
             {
@@ -77,6 +94,19 @@ public class LoginController : Controller
             }
         }
         return View();
+    }
+
+    private bool IsValidEmail(string email)
+    {
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
 

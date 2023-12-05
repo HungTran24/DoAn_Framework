@@ -91,7 +91,7 @@
                             </li>
                          
                             <li class="sort">
-                                <select id="sort-select" class="nice-select wide rounded-0">
+                                <select id="sort-select">
                                     <option value="1">Sắp xếp theo</option>
                                     <option value="2">Giá thấp nhất</option>
                                     <option value="3">Giá cao nhất</option>
@@ -198,20 +198,24 @@
                 </div>
             </div>
         </div>
-    </div>n
+    </div>
 </main>
-    <script>
-    $(document).ready(function () {
-        $('#sort-select').change(function () {
-            var selectedValue = $(this).val();
-            $.ajax({
-                url: '@Url.Action("Index", "ProductController")',
-                type: 'POST',
-                data: { selectedValue: selectedValue },
-                success: function (result) {
-                    
-                }
-            });
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.getElementById("sort-select").addEventListener("change", function () {
+        var selectedValue = this.value;
+        // alert("Bạn đã chọn: " + selectedValue);
+        $.ajax({
+            type: 'POST',
+            url: '/Product/SelectedValue',
+            data: { selectedValue: selectedValue },
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (error) {
+                console.log(error);
+            }
         });
     });
+
 </script>

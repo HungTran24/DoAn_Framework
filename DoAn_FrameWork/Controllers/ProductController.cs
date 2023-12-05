@@ -15,17 +15,34 @@ namespace DoAn_FrameWork.Controllers
         {
             _context = context;
         }
+        //[HttpPost]
+        //public String SelectedValue(String selected_value) {
 
+        //    return selected_value;
+        //}
         public IActionResult Index(int? page, String SearchString = "", String selectedValue = "")
         {
             try
             {
                 //sort = Request.Form["sort-select"];
+                //selectedValue = "2";
                 var pageNumber = page == null || page <= 0 ? 1 : page.Value;
                 var pageSize = 8;
                 var lsProducts = _context.Products
                     .AsNoTracking()
                     .OrderByDescending(x => x.ProductId);
+                if (selectedValue == "2")
+                {
+                    lsProducts = _context.Products
+                   .AsNoTracking()
+                   .OrderByDescending(x => x.ProductPrice);
+                }
+                else if(selectedValue == "3")
+                {
+                    lsProducts = _context.Products
+                  .AsNoTracking()
+                  .OrderBy(x => x.ProductPrice);
+                }
                 if (SearchString != "")
                 {
                     var sanPham = _context.Products.Include(s => s.Category)
@@ -33,20 +50,20 @@ namespace DoAn_FrameWork.Controllers
                     PagedList<Product> searchProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
                     return View(searchProduct);
                 }
-                if (selectedValue == "2")
-                {
-                    var sanPham = _context.Products.Include(s => s.Category)
-                    .OrderByDescending(x => x.ProductPrice);
-                    PagedList<Product> sortProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
-                    return View(sortProduct);
-                }
-                else if (selectedValue == "3")
-                {
-                    var sanPham = _context.Products.Include(s => s.Category)
-                   .OrderBy(x => x.ProductPrice);
-                    PagedList<Product> sortProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
-                    return View(sortProduct);
-                }
+                //if (selectedValue == "2")
+                //{
+                //    var sanPham = _context.Products.Include(s => s.Category)
+                //    .OrderByDescending(x => x.ProductPrice);
+                //    PagedList<Product> sortProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
+                //    return View(sortProduct);
+                //}
+                //else if (selectedValue == "3")
+                //{
+                //    var sanPham = _context.Products.Include(s => s.Category)
+                //   .OrderBy(x => x.ProductPrice);
+                //    PagedList<Product> sortProduct = new PagedList<Product>(sanPham.ToList(), pageNumber, pageSize);
+                //    return View(sortProduct);
+                //}
                 PagedList<Product> models = new PagedList<Product>(lsProducts, pageNumber, pageSize);
                 ViewBag.CurrentPage = page;
                 return View(models);
