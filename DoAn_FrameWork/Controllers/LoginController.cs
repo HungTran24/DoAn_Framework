@@ -126,10 +126,8 @@ public class LoginController : Controller
         {
             string newPassword = GenerateRandomPassword();
 
-            // Gửi mật khẩu mới đến email đã nhập
             SendNewPasswordByEmail(existingUser.CustomerEmail, newPassword);
 
-            // Cập nhật mật khẩu mới vào cơ sở dữ liệu
             existingUser.Password = newPassword;
             _context.Update(existingUser);
             _context.SaveChanges();
@@ -159,7 +157,7 @@ public class LoginController : Controller
 
     private void SendNewPasswordByEmail(string email, string newPassword)
     {
-        // Viết mã để gửi email chứa mật khẩu mới sử dụng thư viện MailKit
+
         var message = new MimeMessage();
         message.From.Add(new MailboxAddress("TechnoShop", "minhtamtele1@gmail.com"));
         message.To.Add(new MailboxAddress("", email));
@@ -181,8 +179,7 @@ public class LoginController : Controller
 
     private string HashPassword(string password)
     {
-        // Viết mã để mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
-        // Trả về mật khẩu đã mã hóa
+
         return "123";
     }
     public IActionResult Logout()
