@@ -139,7 +139,7 @@ form .user-details .input-box{
     width: 100%;
   }
   .content form .user-details{
-    max-height: 420px;
+    max-height: 448px;
     overflow-y: scroll;
   }
   .user-details::-webkit-scrollbar{
@@ -150,6 +150,14 @@ form .user-details .input-box{
             color: red;
             font-size: 15px;
             margin-left: 40px;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #3399ff;
+        }
+
+        ::placeholder {
+            font-size: 14px; 
         }
 /* #success-message {
   background-color: green;
@@ -214,6 +222,12 @@ form .user-details .input-box{
 
                         @Html.ValidationMessageFor(x => x.Phone)
                     </div>
+                    <div class="input-box">
+                        <div style="display: flex;justify-content: center;">
+                            <input type="checkbox" id="myCheckbox" name="myCheckbox" style="width: 8%; margin-left: 16px; height: 15px;">
+                            <label for="myCheckbox" style="font-size: 13px;">Tôi đồng ý với <span style="color: #3399ff">Điều khoản sử dụng</span> và <span style="color: #3399ff">Chính sách bảo mật</span></label>
+                        </div>
+                    </div>
                 </div>
                 <div class="button" style="display: flex; justify-content: center;">
                     <input class="register_customer" type="submit" name="dangky" value="Đăng ký" style="width: 80%;">
@@ -228,6 +242,14 @@ form .user-details .input-box{
             }
         </div>
   </div>
-
+    <script>
+        document.getElementById('myCheckbox').addEventListener('change', function () {
+            if (this.checked) {
+                this.style.backgroundColor = '#3399ff';
+            } else {
+                this.style.backgroundColor = 'initial';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DoAn_FrameWork.Models;
 using Microsoft.EntityFrameworkCore;
+using MailKit.Net.Smtp;
+using MimeKit;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace DoAn_FrameWork.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
 using System.Runtime.InteropServices;
+using System.Text;
 
 public class LoginController : Controller
 {
@@ -109,8 +114,77 @@ public class LoginController : Controller
         }
     }
 
+    public IActionResult ResetPassword()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult ResetPassword(Customer user)
+    {
+        var existingUser = _context.Customers.FirstOrDefault(x => x.CustomerEmail.Equals(user.CustomerEmail));
+        if (existingUser != null)
+        {
+            string newPassword = GenerateRandomPassword();
 
+            // Gửi mật khẩu mới đến email đã nhập
+            SendNewPasswordByEmail(existingUser.CustomerEmail, newPassword);
 
+            // Cập nhật mật khẩu mới vào cơ sở dữ liệu
+            existingUser.Password = newPassword;
+            _context.Update(existingUser);
+            _context.SaveChanges();
+
+            return RedirectToAction("Login", "Login");
+        }
+        else
+        {
+            return View("ResetPasswordError");
+        }
+    }
+
+    private string GenerateRandomPassword()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 7; i++)
+        {
+            int index = random.Next(chars.Length);
+            sb.Append(chars[index]);
+        }
+
+        return sb.ToString();
+    }
+
+    private void SendNewPasswordByEmail(string email, string newPassword)
+    {
+        // Viết mã để gửi email chứa mật khẩu mới sử dụng thư viện MailKit
+        var message = new MimeMessage();
+        message.From.Add(new MailboxAddress("TechnoShop", "minhtamtele1@gmail.com"));
+        message.To.Add(new MailboxAddress("", email));
+        message.Subject = "ĐỔI MẬT KHẨU - TECHNOSHOP";
+
+        message.Body = new TextPart("plain")
+        {
+            Text = "Mật khẩu mới của bạn là: " + newPassword
+        };
+
+        using (var client = new SmtpClient())
+        {
+            client.Connect("smtp.gmail.com", 587, false);
+            client.Authenticate("minhtamtele1@gmail.com", "zjvh eawi rwtk bkqp");
+            client.Send(message);
+            client.Disconnect(true);
+        }
+    }
+
+    private string HashPassword(string password)
+    {
+        // Viết mã để mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+        // Trả về mật khẩu đã mã hóa
+        return "123";
+    }
     public IActionResult Logout()
     {
         HttpContext.Session.Clear();

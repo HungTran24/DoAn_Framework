@@ -15,17 +15,11 @@ namespace DoAn_FrameWork.Controllers
         {
             _context = context;
         }
-        //[HttpPost]
-        //public String SelectedValue(String selected_value) {
 
-        //    return selected_value;
-        //}
         public IActionResult Index(int? page, String SearchString = "", String selectedValue = "")
         {
             try
             {
-                //sort = Request.Form["sort-select"];
-                //selectedValue = "2";
                 var pageNumber = page == null || page <= 0 ? 1 : page.Value;
                 var pageSize = 8;
                 var lsProducts = _context.Products
@@ -68,8 +62,11 @@ namespace DoAn_FrameWork.Controllers
                 ViewBag.CurrentPage = page;
                 return View(models);
             }
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine("Lỗi xảy ra: " + ex.Message);
+                // Nếu bạn muốn in ra cả stack trace của lỗi
+                Console.WriteLine("Stack trace: " + ex.StackTrace);
                 return RedirectToAction("Index", "Home");
             }
         }

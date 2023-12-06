@@ -194,7 +194,9 @@
                 required="required", autofocus="autofocus"})
                     @Html.TextBoxFor(x=>x.Password, new{@class="input-text",type="password", placeholder="Mật khẩu",
                 required="required", autofocus="autofocus"})
-                    <p class="forget-pass"><a href="#">Quên mật khẩu?</a></p>
+                        <p class="forget-pass">
+                            <a asp-controller="Login" asp-action="ResetPassword" style=" font-family: sans-serif;font-size: 12px;">Quên mật khẩu?</a>
+                        </p>
                     <div class="submit-container">
                         <button name="login" class="submit-login">ĐĂNG NHẬP</button>
                     </div>
