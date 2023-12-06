@@ -31,6 +31,13 @@
         height: 25px;
         margin-right: 4px;
     }
+
+    #CustomerEmail, #Password, #RePassword{
+        width: 160%;
+    }
+    ::placeholder{
+        font-size: 14px;
+    }
 </style>
 <main class="main-content">
     <div class="account-page-area section-space-y-axis-100" style="background: #F5F5FA; padding: 10px;">
@@ -123,40 +130,31 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <form action="#" class="myaccount-form" style="border: none;    margin-top: 40px;border-top: 1px solid #ddd;padding-top: 20px;">
+                                    <div class="myaccount-form" style="border: none;    margin-top: 40px;border-top: 1px solid #ddd;padding-top: 20px;">
                                         <p style="font-size: 15px; font-weight: 400; color: #3399ff">Thay đổi thông tin tài khoản</p>
                                         <div class="myaccount-form-inner">
-                                            <div class="single-input single-input-half">
-                                                <label>Họ và tên*</label>
-                                                <input type="text">
-                                            </div>
-                                            <div class="single-input">
-                                                <label>Email*</label>
-                                                <input type="email">
-                                            </div>
-                                            <div class="single-input">
-                                                <label>
-                                                    Mật khẩu hiện tại
-                                                </label>
-                                                <input type="password">
-                                            </div>
-                                            <div class="single-input">
-                                                <label>
-                                                    Mật khẩu mới
-                                                </label>
-                                                <input type="password">
-                                            </div>
-                                            <div class="single-input">
-                                                <label>Nhập lại mật khẩu mới</label>
-                                                <input type="password">
-                                            </div>
-                                            <div class="single-input">
-                                                <button class="btn" type="submit" style="background: #3399ff; border-radius: 5px; border:none; color: #fff;">
-                                                    <span>Lưu thay đổi</span>
-                                                </button>
-                                            </div>
+                                            
+                                            @using (Html.BeginForm("Index", "Account", FormMethod.Post))
+                                            {
+                                                <div class="single-input">
+                                                    @Html.TextBoxFor(x => x.CustomerEmail, new { @type = "email", placeholder = "Email của bạn", name = "customer_email", required = "required" })
+                                                </div>
+                                                <div class="single-input">
+                                                    @Html.TextBoxFor(x => x.Password, new { @type = "password", placeholder = "Mật khẩu hiện tại", name = "customer_currentpass", required = "required" })
+                                                </div>
+                                                <div class="single-input">
+                                                    @Html.TextBoxFor(x => x.Password, new { @type = "password", placeholder = "Mật khẩu mới", name = "customer_newpass", required = "required" })
+                                                </div>
+                                                <div class="single-input">
+                                                    @Html.TextBoxFor(x => x.RePassword, new { @type = "password", placeholder = "Xác nhận mật khẩu mới", name = "customer_renewpass", required = "required" })
+                                                </div>
+                                                <div class="single-input">
+                                                    <input class="btn" type="submit" name="luuthaydoi" value="Lưu thay đổi" style="background: #3399ff; border-radius: 5px; border:none; color: #fff;">
+                                                </div>
+
+                                            }
                                         </div>
-                                    </form>
+                                    </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">

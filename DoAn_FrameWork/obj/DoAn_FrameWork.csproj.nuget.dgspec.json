@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj": {}
+    "D:\\Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj": {}
   },
   "projects": {
-    "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj": {
+    "D:\\Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
+        "projectUniqueName": "D:\\Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
         "projectName": "DoAn_FrameWork",
-        "projectPath": "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
-        "packagesPath": "C:\\Users\\Doan Cong Tri\\.nuget\\packages\\",
-        "outputPath": "D:\\CodeSpace\\DoAn_Framework\\DoAn_FrameWork\\obj\\",
+        "projectPath": "D:\\Framework\\DoAn_FrameWork\\DoAn_FrameWork.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "D:\\Framework\\DoAn_FrameWork\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Doan Cong Tri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -47,6 +47,10 @@
             "Bootstrap": {
               "target": "Package",
               "version": "[5.3.2, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
@@ -106,7 +110,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
