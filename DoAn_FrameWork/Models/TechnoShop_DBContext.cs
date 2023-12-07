@@ -45,8 +45,7 @@ namespace DoAn_FrameWork.Models
 
                 entity.Property(e => e.CategoryName)
                     .HasMaxLength(300)
-                    .HasColumnName("category_name")
-                    .IsFixedLength();
+                    .HasColumnName("category_name");
             });
 
             modelBuilder.Entity<Customer>(entity =>
@@ -57,13 +56,11 @@ namespace DoAn_FrameWork.Models
 
                 entity.Property(e => e.CustomerEmail)
                     .HasMaxLength(300)
-                    .HasColumnName("customer_email")
-                    .IsFixedLength();
+                    .HasColumnName("customer_email");
 
                 entity.Property(e => e.CustomerName)
                     .HasMaxLength(300)
-                    .HasColumnName("customer_name")
-                    .IsFixedLength();
+                    .HasColumnName("customer_name");
 
                 entity.Property(e => e.Password)
                     .HasMaxLength(50)
@@ -82,8 +79,18 @@ namespace DoAn_FrameWork.Models
 
                 entity.Property(e => e.Username)
                     .HasMaxLength(300)
-                    .HasColumnName("username")
-                    .IsFixedLength();
+                    .HasColumnName("username");
+            });
+
+            modelBuilder.Entity<GroupProduct>(entity =>
+            {
+                entity.ToTable("group_products");
+
+                entity.Property(e => e.GroupProductId).HasColumnName("group_product_id");
+
+                entity.Property(e => e.GroupProductName)
+                    .HasMaxLength(200)
+                    .HasColumnName("group_product_name");
             });
 
             modelBuilder.Entity<GroupProduct>(entity =>
@@ -165,14 +172,12 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.PaymentId).HasColumnName("payment_id");
 
                 entity.Property(e => e.PaymentMethod)
-                    .HasMaxLength(50)
-                    .HasColumnName("payment_method")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("payment_method");
 
                 entity.Property(e => e.PaymentStatus)
-                    .HasMaxLength(20)
-                    .HasColumnName("payment_status")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("payment_status");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -192,19 +197,17 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.GroupProductId).HasColumnName("group_product_id");
 
                 entity.Property(e => e.ProductDesc)
-                    .HasMaxLength(1000)
-                    .HasColumnName("product_desc")
-                    .IsFixedLength();
+                    .HasMaxLength(2000)
+                    .HasColumnName("product_desc");
 
                 entity.Property(e => e.ProductImage)
-                    .HasMaxLength(50)
-                    .HasColumnName("product_image")
-                    .IsFixedLength();
+                    .HasMaxLength(2000)
+                    .IsUnicode(false)
+                    .HasColumnName("product_image");
 
                 entity.Property(e => e.ProductName)
                     .HasMaxLength(300)
-                    .HasColumnName("product_name")
-                    .IsFixedLength();
+                    .HasColumnName("product_name");
 
                 entity.Property(e => e.ProductPrice).HasColumnName("product_price");
 
@@ -236,9 +239,9 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.ProductImageId).HasColumnName("product_image_id");
 
                 entity.Property(e => e.Image)
-                    .HasMaxLength(50)
-                    .HasColumnName("image")
-                    .IsFixedLength();
+                    .HasMaxLength(2000)
+                    .IsUnicode(false)
+                    .HasColumnName("image");
 
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
 
@@ -255,29 +258,24 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.ShippingId).HasColumnName("shipping_id");
 
                 entity.Property(e => e.ShippingAddress)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_address")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_address");
 
                 entity.Property(e => e.ShippingEmail)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_email")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_email");
 
                 entity.Property(e => e.ShippingName)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_name")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_name");
 
                 entity.Property(e => e.ShippingNote)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_note")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_note");
 
                 entity.Property(e => e.ShippingPhone)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_phone")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_phone");
             });
 
             OnModelCreatingPartial(modelBuilder);

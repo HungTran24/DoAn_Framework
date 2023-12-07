@@ -1,4 +1,5 @@
-﻿@model DoAn_FrameWork.Models.Product
+﻿@using System.Collections;
+@model DoAn_FrameWork.Areas.Admin.ViewModels.ProductViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -34,7 +35,6 @@
         })
     </script>
     <script>
-
         document.addEventListener("DOMContentLoaded", function () {
             new Dropzone("#dropzone-custom")
         })
@@ -46,48 +46,15 @@
     </script>
     <script>
         $(document).ready(function () {
-            $('.btn-add-att').on('click', function () {
-                var svgElement = $(
-                    '<svg xmlns="http://www.w3.org/2000/svg" class="btn-remove icon icon-tabler icon-tabler-letter-x-small" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">' +
-                    '<path stroke="none" d="M0 0h24v24H0z" fill="none" />' +
-                    '<path d="M10 8l4 8" />' +
-                    '<path d="M10 16l4 -8" />' +
-                    '</svg>'
-                );
-
-                var newLabel = $('<label>').addClass('form-label').text('Tên đặc điểm');
-                newLabel.css('margin-right', '600px');
-                var newInput = $('<input>').addClass('form-control');
-                var newLabel2 = $('<label>').addClass('form-label').text('Mô tả');
-                var newInput2 = $('<input>').addClass('form-control');
-                var divCon = $('<div>').append(newLabel, svgElement);
-                divCon.css({
-                    display: 'flex',
-                    flexDirection: 'row', // Hiển thị các thành phần từ phải sang trái
-                    justifyContent: 'flex-start', // Đặt chiều trục chính để căn lề từ bên phải
-                    alignItems: 'center' // Đặt chiều trục phụ để căn giữa theo chiều dọc
-                });
-                // Sử dụng thẻ div để bao gồm thẻ svg, label, input
-                var div = $('<div>').append(divCon, newInput, newLabel2, newInput2);
-                div.addClass("card");
-                div.children().css('margin-right', '10px');
-                // Thêm div vào trong .att-main-container
-                $('.att-main-container').append(div);
-            });
-            $('.btn-remove').on('click', function () {
-                alert("Remove");
-                // var parentCard = $(this).parent().parent();
-
-                // // Sử dụng phương thức remove() để xóa phần tử cha
-                // parentCard.remove();
+            $('.btn-add-group').on('click', function () {
+                $("#group-add-block").show();
+                $('#select-group').prop('disabled', true);
             });
         });
 
     </script>
 
 }
-<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-x-small" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 8l4 8" /><path d="M10 16l4 -8" /></svg>
-
 <div class="page-header d-print-none">
     <div class="container-xl">
         <div class="row g-2 align-items-center">
@@ -98,7 +65,7 @@
             </div>
             <div class="card-body">
                 <ol class="breadcrumb breadcrumb-arrows">
-                    <li class="breadcrumb-item "><a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index">List</a></li>
+                    <li class="breadcrumb-item "><a asp-area="Admin" asp-controller="AdminProducts" asp-action="Index">List</a></li>
                     <li class="breadcrumb-item active"><a href="#">Add</a></li>
                     <!-- Các mục breadcrumb khác nếu cần -->
                 </ol>
@@ -110,7 +77,7 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="col-10">
-            <form method="post" asp-action="Create">
+            <form method="post" asp-action="Create" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="card">
                     <div class="card-header">
@@ -125,11 +92,17 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label" asp-for="ProductPrice">Danh mục</label>
-                            <select class="form-control">
-                                <option></option>
+                            <label class="form-label" asp-for="Category">Danh mục</label>
+                            <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.Categories">
+                                <option disabled selected>--select--</option>
+                                @* @if(ViewBag.Categories != null) {
+                                    @foreach (var item in ViewBag.Categories)
+                                    {
+                                        <option asp-for="Category">@item.CategoryName</option>
+                                    }
+                                } *@
                             </select>
-                            <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                            <span asp-validation-for="Category" class="text-danger"></span>
                         </div>
                     </div>
 
@@ -137,50 +110,44 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3 class="card-title">Ảnh sản phẩm</h3>
-                                    <div class="dropzone dz-clickable" id="dropzone-default" action="./" autocomplete="off" novalidate="">
-
-                                        <div class="dz-default dz-message"><button class="dz-button" type="button">Drop files here to upload</button></div>
+                                    <div class="dropzone" id="dropzone" action="." autocomplete="off" novalidate>
+                                        <div class="fallback">
+                                            <input asp-for="ProductImage" type="file" />
+                                            <span asp-validation-for="ProductImage" class="text-danger"></span>
+                                        </div>
+                                        <div class="dz-message">
+                                            <h3 class="dropzone-msg-title">Ảnh sản phẩm</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3 class="card-title">Các ảnh khác</h3>
-                                    <div class="dropzone dz-clickable" id="dropzone-multiple" action="./" autocomplete="off" novalidate="">
-
-                                        <div class="dz-default dz-message"><button class="dz-button" type="button">Drop files here to upload</button></div>
+                                    <div class="dropzone" id="dropzone" action="." autocomplete="off" novalidate>
+                                        <div class="fallback">
+                                            <input name="ProductImagesVM" type="file" multiple="multiple" />
+                                            <span asp-validation-for="ProductImages" class="text-danger"></span>
+                                        </div>
+                                        <div class="dz-message">
+                                            <h3 class="dropzone-msg-title">Các ảnh khác</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    @*                     <input type="file" multiple="multiple" class="dz-hidden-input" tabindex="-1" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
                     <input type="file" multiple="multiple" class="dz-hidden-input" tabindex="-1" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
-                    <input type="file" multiple="multiple" class="dz-hidden-input" tabindex="-1" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
-                    <input type="file" multiple="multiple" class="dz-hidden-input" tabindex="-1" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
-
+                    *@
 
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label" asp-for="ProductDesc">Mô tả sản phẩm</label>
-                            <textarea id="mytextarea"></textarea>
-                            <span asp-validation-for="ProductDesc" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <div style="display: flex;">
-                                <label class="form-label" asp-for="ProductDesc">Chi tiết sản phẩm (màu sắc,...)</label>
-                                <a class="btn btn-outline-dark w-5 h-4 btn-add-att" style="margin-left: 4px">
-                                    Add
-                                </a>
-                            </div>
-                            <div class="att-main-container">
-                            </div>
+                            <textarea id="mytextarea" asp-for="ProductDesc"></textarea>
                             <span asp-validation-for="ProductDesc" class="text-danger"></span>
                         </div>
                     </div>
@@ -225,6 +192,28 @@
                         </div>
                     </div>
 
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div style="display: flex;">
+                                <label class="form-label " asp-for="GroupProduct">Chọn nhóm sản phẩm (có thể không chọn)</label>
+                                <a class="btn btn-outline-dark w-5 h-4 btn-add-group" style="margin-left: 4px">Add</a>
+                            </div>
+                           
+                            <select class="form-control" id="select-group" asp-for="GroupProductId" asp-items="ViewBag.GroupProducts">
+                                <option disabled selected>--select--</option>
+                            </select>
+                            <span asp-validation-for="GroupProduct" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div id="group-add-block" class="card-body " style="display: none;" >
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="GroupProduct.GroupProductName">Tên nhóm sản phẩm</label>
+                            <input asp-for="GroupProduct.GroupProductName" class="form-control">
+                            <span asp-validation-for="GroupProduct.GroupProductName" class="text-danger"></span>
+                        </div>
+                    </div>
+             
                     <div class="card-footer text-end">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
@@ -233,3 +222,4 @@
         </div>
     </div>
 </div>
+
