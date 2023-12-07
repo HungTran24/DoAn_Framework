@@ -1,15 +1,16 @@
-﻿@model IEnumerable<DoAn_FrameWork.Models.Product>
+﻿@model IEnumerable<DoAn_FrameWork.Models.GroupProduct>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <div class="page-header d-print-none">
     <div class="container-xl">
         <div class="col">
             <h2 class="page-title">
-                Sản phẩm
+                Nhóm sản phẩm
             </h2>
         </div>
         <div class="row g-2 align-items-center">
@@ -22,7 +23,7 @@
                 </div>
             </div>
             <div class="col-md-auto">
-                <form asp-area="Admin" asp-controller="AdminProducts" asp-action="Index" autocomplete="off" novalidate="">
+                <form asp-area="Admin" asp-controller="AdminGroupProducts" asp-action="Index" autocomplete="off" novalidate="">
                     <div class="input-icon">
                         <span class="input-icon-addon">
                             <!-- Biểu tượng tìm kiếm -->
@@ -33,11 +34,11 @@
                 </form>
             </div>
             <div class="col-md-1">
-                <a class="btn btn-success w-100" asp-area="Admin" asp-controller="AdminProducts" asp-action="Create">
+                <a class="btn btn-success w-100" asp-area="Admin" asp-controller="AdminGroupProducts" asp-action="Create">
                     Add
                 </a>
             </div>
-
+            
         </div>
     </div>
 </div>
@@ -51,16 +52,7 @@
                         <thead>
                             <tr>
                                 <th><button class="table-sort" data-sort="sort-name">ID</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Tên</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Ảnh</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Mô tả</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Giá</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Giảm giá</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">SLB</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">SLK</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Bảo hành</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Danh mục</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Nhóm sản phẩm</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Name</button></th>
                                 <th><button class="table-sort" data-sort="sort-type">Action</button></th>
                             </tr>
                         </thead>
@@ -68,22 +60,13 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td class="sort-name">@item.ProductId</td>
-                                    <td class="sort-city">@item.ProductName</td>
-                                    <td class="sort-city"><img src="@item.ProductImage"/></td>
-                                    <td class="sort-city">@item.ProductDesc</td>
-                                    <td class="sort-city">@item.ProductPrice</td>
-                                    <td class="sort-city">@item.DiscountPercentage</td>
-                                    <td class="sort-city">@item.SaleQuantity</td>
-                                    <td class="sort-city">@item.StockQuantity</td>
-                                    <td class="sort-city">@item.WarrantyTime</td>
-                                    <td class="sort-city">@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>
-                                    <td class="sort-city">@Html.DisplayFor(modelItem => item.GroupProduct.GroupProductName)</td>
+                                    <td class="sort-name">@item.GroupProductId</td>
+                                    <td class="sort-city">@item.GroupProductName</td>
                                     <td class="sort-type">
-                                        <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId">
+                                        <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminGroupProducts" asp-action="Edit" asp-route-id="@item.GroupProductId">
                                             Edit
                                         </a>
-                                        <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminProducts", new { id = item.ProductId })" data-toggle="tooltip" title="Delete">
+                                        <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminGroupProducts", new { id = item.GroupProductId })" data-toggle="tooltip" title="Delete">
                                             Delete
                                         </a>
                                     </td>
@@ -92,7 +75,7 @@
 
                         </tbody>
                     </table>
-                    <div class="col-md-auton mt-3" style="display: flex; flex-grow: 1;">
+                    <div class="col-md-auton mt-3">
                         <ul class="pagination">
                             @if (ViewBag.TotalPages > 1)
                             {
@@ -122,17 +105,11 @@
                                 }
                             }
                         </ul>
-                        <div class="btn-export">
-                            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="ExportProductsInExcel" class="btn btn-outline-success w-10">
-                                Export to Excel
-                            </a>
-                        </div>
                     </div>
-                    
                 </div>
-
+                
             </div>
-
+            
         </div>
     </div>
 </div>
@@ -175,6 +152,7 @@
     });
 </script>
 
+
 @* <h1>Index</h1>
 
 <p>
@@ -184,34 +162,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductImage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductDesc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiscountPercentage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SaleQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StockQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WarrantyTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GroupProduct)
+                @Html.DisplayNameFor(model => model.GroupProductName)
             </th>
             <th></th>
         </tr>
@@ -220,39 +171,12 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
+                @Html.DisplayFor(modelItem => item.GroupProductName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductImage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiscountPercentage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SaleQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StockQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WarrantyTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GroupProduct.GroupProductName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.GroupProductId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GroupProductId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GroupProductId">Delete</a>
             </td>
         </tr>
 }

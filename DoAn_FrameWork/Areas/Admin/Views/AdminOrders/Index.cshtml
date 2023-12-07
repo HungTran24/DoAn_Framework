@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DoAn_FrameWork.Models.Product>
+﻿@model IEnumerable<DoAn_FrameWork.Models.Order>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,7 +9,7 @@
     <div class="container-xl">
         <div class="col">
             <h2 class="page-title">
-                Sản phẩm
+                Hóa đơn
             </h2>
         </div>
         <div class="row g-2 align-items-center">
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="col-md-auto">
-                <form asp-area="Admin" asp-controller="AdminProducts" asp-action="Index" autocomplete="off" novalidate="">
+                <form asp-area="Admin" asp-controller="AdminOrders" asp-action="Index" autocomplete="off" novalidate="">
                     <div class="input-icon">
                         <span class="input-icon-addon">
                             <!-- Biểu tượng tìm kiếm -->
@@ -32,11 +32,11 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-1">
-                <a class="btn btn-success w-100" asp-area="Admin" asp-controller="AdminProducts" asp-action="Create">
+           @*  <div class="col-md-1">
+                <a class="btn btn-success w-100" asp-area="Admin" asp-controller="AdminOrders" asp-action="Create">
                     Add
                 </a>
-            </div>
+            </div> *@
 
         </div>
     </div>
@@ -51,16 +51,12 @@
                         <thead>
                             <tr>
                                 <th><button class="table-sort" data-sort="sort-name">ID</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Tên</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Ảnh</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Mô tả</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Giá</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Giảm giá</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">SLB</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">SLK</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Bảo hành</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Danh mục</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Nhóm sản phẩm</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Khách hàng</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Vận chuyển</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Thanh toán</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Tổng giá</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Tình trạng</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Ngày lập</button></th>
                                 <th><button class="table-sort" data-sort="sort-type">Action</button></th>
                             </tr>
                         </thead>
@@ -68,24 +64,23 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td class="sort-name">@item.ProductId</td>
-                                    <td class="sort-city">@item.ProductName</td>
-                                    <td class="sort-city"><img src="@item.ProductImage"/></td>
-                                    <td class="sort-city">@item.ProductDesc</td>
-                                    <td class="sort-city">@item.ProductPrice</td>
-                                    <td class="sort-city">@item.DiscountPercentage</td>
-                                    <td class="sort-city">@item.SaleQuantity</td>
-                                    <td class="sort-city">@item.StockQuantity</td>
-                                    <td class="sort-city">@item.WarrantyTime</td>
-                                    <td class="sort-city">@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>
-                                    <td class="sort-city">@Html.DisplayFor(modelItem => item.GroupProduct.GroupProductName)</td>
+                                    <td class="sort-name">@item.OrderId</td>
+                                    <td class="sort-city">@item.Customer?.CustomerName</td>
+                                    <td class="sort-city">@item.Shipping?.ShippingName</td>
+                                    <td class="sort-city">@item.Payment?.PaymentMethod</td>
+                                    <td class="sort-city">@item.OrderTotal</td>
+                                    <td class="sort-city">@item.OrderStatus</td>
+                                    <td class="sort-city">@item.CreatedAt</td>
                                     <td class="sort-type">
-                                        <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId">
-                                            Edit
+                                        <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminOrders" asp-action="Details" asp-route-id="@item.OrderId">
+                                            View
                                         </a>
-                                        <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminProducts", new { id = item.ProductId })" data-toggle="tooltip" title="Delete">
+                                        <a href="#" class="btn btn-outline-danger w-10">
+                                            Export PDF
+                                        </a>
+                                        @* <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminOrders", new { id = item.OrderId })" data-toggle="tooltip" title="Delete">
                                             Delete
-                                        </a>
+                                        </a> *@
                                     </td>
                                 </tr>
                             }
@@ -123,12 +118,12 @@
                             }
                         </ul>
                         <div class="btn-export">
-                            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="ExportProductsInExcel" class="btn btn-outline-success w-10">
+                            <a asp-area="Admin" asp-controller="AdminOrders" asp-action="ExportOrdersInExcel" class="btn btn-outline-success w-10">
                                 Export to Excel
                             </a>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -175,6 +170,7 @@
     });
 </script>
 
+
 @* <h1>Index</h1>
 
 <p>
@@ -184,34 +180,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductName)
+                @Html.DisplayNameFor(model => model.OrderTotal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductPrice)
+                @Html.DisplayNameFor(model => model.OrderStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductImage)
+                @Html.DisplayNameFor(model => model.CreatedAt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductDesc)
+                @Html.DisplayNameFor(model => model.Customer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DiscountPercentage)
+                @Html.DisplayNameFor(model => model.Payment)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SaleQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StockQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WarrantyTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GroupProduct)
+                @Html.DisplayNameFor(model => model.Shipping)
             </th>
             <th></th>
         </tr>
@@ -220,42 +204,29 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
+                @Html.DisplayFor(modelItem => item.OrderTotal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductPrice)
+                @Html.DisplayFor(modelItem => item.OrderStatus)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductImage)
+                @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductDesc)
+                @Html.DisplayFor(modelItem => item.Customer.CustomerId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DiscountPercentage)
+                @Html.DisplayFor(modelItem => item.Payment.PaymentId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SaleQuantity)
+                @Html.DisplayFor(modelItem => item.Shipping.ShippingId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StockQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WarrantyTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GroupProduct.GroupProductName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
-</table>
- *@
+</table> *@

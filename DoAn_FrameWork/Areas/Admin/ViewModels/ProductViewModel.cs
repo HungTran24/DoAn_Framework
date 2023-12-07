@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DoAn_FrameWork.Models;
 
-namespace DoAn_FrameWork.Models
+namespace DoAn_FrameWork.Areas.Admin.ViewModels
 {
-    public partial class Product
+    public class ProductViewModel
     {
-        public Product()
+        public ProductViewModel()
         {
             OrderDetails = new HashSet<OrderDetail>();
             ProductImages = new HashSet<ProductImage>();
         }
-
         public int ProductId { get; set; }
         public string? ProductName { get; set; }
         public int? ProductPrice { get; set; }
-        public string? ProductImage { get; set; }
+        public IFormFile? ProductImage { get; set; }
         public string? ProductDesc { get; set; }
         public double? DiscountPercentage { get; set; }
         public int? CategoryId { get; set; }
