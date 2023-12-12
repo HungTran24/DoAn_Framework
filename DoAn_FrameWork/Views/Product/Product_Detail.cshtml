@@ -7,7 +7,7 @@
 }
 
 <main class="main-content">
-    <div class="breadcrumb-area breadcrumb-height" style="height: 50px;" data-bg-image="~/assets/images/breadcrumb/bg/1-1-1920x373.jpg">
+    <div class="breadcrumb-area breadcrumb-height" style="height: 50px;" data-bg-image="">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-lg-12">
@@ -34,7 +34,7 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <a href="@Model.Product.ProductImage" class="single-img gallery-popup">
-                                        <img class="img-full" src="@Model.Product.ProductImage" alt="Product Image" id="main_image"
+                                        <img class="img-full" src="@Model.Product.ProductImage" onerror="this.src='/assets/images/product/default_image.png';onerror='';" alt="Product Image" id="main_image"
                                         style="object-fit:contain;"
                                         >
                                     </a>
@@ -170,11 +170,7 @@
                         <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                             <div class="product-description-body">
                                 <p class="short-desc mb-0">
-                                    Thiết kế tối giản, trang nhã với mặt lưng tráng gương mờ hiện đại.<\br>
-
-                                     Màn hình Super AMOLED Infinity-U 6.6 inch với độ phân giải FHD+ và tần số quét 120Hz.<\br>
-
-                                     Bộ camera sau đa dạng với camera chính 48MP, camera góc siêu rộng 8MP và camera macro 5MP.<\br>
+                                    @Model.Product.ProductDesc
                                 </p>
                             </div>
                         </div>
@@ -334,6 +330,7 @@
                 $('#main_image').attr('src', src);           
            
             });
+           
             // $(function (){
             //     $(".wcart").click(function () {
             //         var productid = parseFloat($(this).attr("data-productid"));

@@ -1,4 +1,6 @@
+console.log("hello");)
 (function ($) {
+	lmao
 	'use strict';
 	/*----------------------------------------*/
 	/*  Check if element exists
@@ -167,45 +169,46 @@
 	}
 	/* --- Product Image Slider--- */
 
-	//if ($('.single-product-thumbs').elExists()) {
-	//	$('.swiper-button-next,.swiper-button-prev').css({
-	//		visibility: 'visible',
-	//		opacity: 0.6,
-	//		border: 'none',
-	//		backgroundColor: 'black',
-	//	});
+	if ($('.single-product-thumbs').elexists()) {
+		
+		$('.swiper-button-next,.swiper-button-prev').css({
+			visibility: 'visible',
+			opacity: 0.6,
+			border: 'none',
+			backgroundcolor: 'black',
+		});
 
-	//	var mySwiper = new Swiper('.single-product-thumbs', {
-	//		slidesPerView: 4,
-	//		spaceBetween: 30,
-	//		loop: true,
-	//		observer: true,
-	//		observeParents: true,
-	//		parallax: true,
-	//		pagination: {
-	//			el: '.swiper-pagination',
-	//			clickable: true,
-	//		}, 
-	//		navigation: {
-	//			nextEl: '.swiper-button-next',
-	//			prevEl: '.swiper-button-prev',
-	//		},
-	//		breakpoints: {
-	//			320: {
-	//				slidesPerView: 1,
-	//			},
-	//			576: {
-	//				slidesPerView: 2,
-	//			},
-	//			992: {
-	//				slidesPerView: 3,
-	//			},
-	//			1501: {
-	//				slidesPerView: 4,
-	//			}
-	//		}
-	//	});
-	//}
+		var myswiper = new swiper('.single-product-thumbs', {
+			slidesperview: 4,
+			spacebetween: 30,
+			loop: true,
+			observer: true,
+			observeparents: true,
+			parallax: true,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			}, 
+			navigation: {
+				nextel: '.swiper-button-next',
+				prevel: '.swiper-button-prev',
+			},
+			breakpoints: {
+				320: {
+					slidesperview: 1,
+				},
+				576: {
+					slidesperview: 2,
+				},
+				992: {
+					slidesperview: 3,
+				},
+				1501: {
+					slidesperview: 4,
+				}
+			}
+		});
+	}
 
 	/* --- Product List Slider--- */
 	if ($('.product-list-slider').elExists()) {
@@ -398,6 +401,8 @@
 
 	/* ---Product Detail Horizontal Slider--- */
 	if ($('.single-product-slider').elExists()) {
+		
+		console.log("hello");
 		var singleProduct = new Swiper('.single-product-thumbs', {
 			spaceBetween: 30,
 			slidesPerView: 4,
@@ -406,6 +411,14 @@
 			watchSlidesProgress: true,
 			allowTouchMove: false,
 			loop: false,
+			navigation: {
+				nextEl: '.gallery-button-next',
+				prevEl: '.gallery-button-prev',
+			},
+			pagination: {
+				el: '.gallery-pagination',
+				clickable: true
+			},
 			breakpoints: {
 				320: {
 					slidesPerView: 3,
