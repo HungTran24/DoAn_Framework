@@ -15,7 +15,12 @@
 </style>
 <!-- Begin Slider Area -->
 <div class="slider-area">
-
+    @if(TempData["error"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["error"]
+        </div>
+    })
     <!-- Main Slider -->
     <div class="swiper-container main-slider swiper-arrow with-bg_white">
         <div class="swiper-wrapper" style="margin-bottom: -10px;">
@@ -118,7 +123,8 @@
                                         <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
                                             <div class="product-item">
                                                 <div class="product-img">
-                                                    <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/85/f8/63/dee737a78ed2344fffaecc857efda34a.jpg" alt="Product Images">
+
+                                                    <img class="img-full" src="@item.ProductImage" onerror="this.src='/assets/images/product/default_image.png';onerror='';"  alt="Product Images">
                                                 </div>
                                                 <div class="product-content" style="border-radius: 0 0 5px 5px;padding: 5px 10px 10px 10px;text-align: left">
                                                     <img src="https://salt.tikicdn.com/ts/tka/69/cf/22/1be823299ae34c7ddcd922e73abd4909.png" style="height: 20px; width: 80px;">

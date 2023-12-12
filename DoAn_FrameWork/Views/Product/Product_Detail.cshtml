@@ -33,8 +33,10 @@
                         <div class="swiper-container single-product-slider">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <a href="~/assets/images/product/large-size/2-1-555x645.jpg" class="single-img gallery-popup">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Image">
+                                    <a href="@Model.Product.ProductImage" class="single-img gallery-popup">
+                                        <img class="img-full" src="@Model.Product.ProductImage" alt="Product Image" id="main_image"
+                                        style="object-fit:contain;"
+                                        >
                                     </a>
                                 </div>
 @*                                 <div class="swiper-slide">
@@ -121,19 +123,21 @@
                         <div class="col-12 order-lg-2 order-1 pt-10 pt-lg-0">
                             <div class="swiper-container single-product-thumbs">
                                 <div class="swiper-wrapper">
-                                    <a href="javascript:void(0)" class="swiper-slide">
+                                  @*   <a href="javascript:void(0)" class="swiper-slide">
                                         <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Thumnail">
-                                    </a>
-                                    <a href="javascript:void(0)" class="swiper-slide">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Thumnail">
-                                    </a>
-                                    <a href="javascript:void(0)" class="swiper-slide">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Thumnail">
-                                    </a>
-                                    <a href="javascript:void(0)" class="swiper-slide">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Thumnail">
-                                    </a>
+                                    </a> *@
+                                   @foreach (var item in Model.ProductImages)
+                                    {
+                                        <div class="swiper-slide"  >
+                                            <img class="img-full feature_image" src="@item.Image" alt="Product Thumnail" >
+                                        </div>
+                                    }
+                                    
                                 </div>
+                                <div class="swiper-pagination"></div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                
                             </div>
                         </div>
                     </div>
@@ -324,34 +328,43 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
-            $(function ()){
-                $(".wcart").click(function () {
-                    var productid = parseFloat($(this).attr("data-productid"));
-                    $.ajax({
-                        url: '/api/cart/add',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: { productid: productid },
-                        success: function (response) {
-                            if (response.result == 'Redirect') {
-                                window.location = response.url;
-                            }
-                                            esle {
-                                loadHeaderCart();
-                                location.reload();
-                            }
-                            console.log(response);
-                        },
-                        error: function (error) {
-                            alert("Error: " + error.responseText);
-                        }
-                    });
-                });
-            }
+            $('.feature_image').click(function () {
+                console.log("click");
+               var src = $(this).attr('src');
+                $('#main_image').attr('src', src);           
+           
+            });
+            // $(function (){
+            //     $(".wcart").click(function () {
+            //         var productid = parseFloat($(this).attr("data-productid"));
+            //         $.ajax({
+            //             url: '/api/cart/add',
+            //             type: "POST",
+            //             dataType: "JSON",
+            //             data: { productid: productid },
+            //             success: function (response) {
+            //                 if (response.result == 'Redirect') {
+            //                     window.location = response.url;
+            //                 }
+            //                 else {
+            //                     loadHeaderCart();
+            //                     location.reload();
+            //                 }
+            //                 console.log(response);
+            //             },
+            //             error: function (error) {
+            //                 alert("Error: " + error.responseText);
+            //             }
+            //         });
+            //     });
+            // }
 
-            function loadHeaderCart() { 
-                $(#headerCart).load("/AjaxContent/HeaderCart");
-            }
+            // function loadHeaderCart() { 
+            //     $(#headerCart).load("/AjaxContent/HeaderCart");
+            // }
+           
+          
+            
         });
     </script>
 }

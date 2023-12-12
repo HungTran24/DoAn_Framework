@@ -32,6 +32,7 @@ namespace DoAn_FrameWork.Controllers
                 var lsProducts = _context.Products
                     .AsNoTracking()
                     .OrderByDescending(x => x.SaleQuantity);
+                 
                 if (SearchString != "")
                 {
                     var sanPham = _context.Products.Include(s => s.Category)
