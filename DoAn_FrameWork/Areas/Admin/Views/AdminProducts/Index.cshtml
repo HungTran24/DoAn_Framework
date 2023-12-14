@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DoAn_FrameWork.Models.Product>
+﻿@model IEnumerable<DoAn_FrameWork.Areas.Admin.Models.Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -83,6 +83,7 @@
                                         <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId">
                                             Edit
                                         </a>
+                                        
                                         <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminProducts", new { id = item.ProductId })" data-toggle="tooltip" title="Delete">
                                             Delete
                                         </a>
@@ -158,7 +159,7 @@
                     // Gửi yêu cầu Ajax để xóa
                     $.ajax({
                         url: deleteUrl,
-                        type: 'POST', // Hoặc 'DELETE' tùy thuộc vào cấu hình của bạn
+                        type: 'GET', // Hoặc 'DELETE' tùy thuộc vào cấu hình của bạn
                         success: function (response) {
                             // Xử lý thành công (có thể làm mới trang hoặc xóa hàng từ bảng)
                             deleteButton.closest('tr').remove();
@@ -167,6 +168,7 @@
                         },
                         error: function (error) {
                             Swal.fire('Error!', 'An error occurred while deleting the record.', 'error');
+                            console.log(deleteUrl);
                         }
                     });
                 }
