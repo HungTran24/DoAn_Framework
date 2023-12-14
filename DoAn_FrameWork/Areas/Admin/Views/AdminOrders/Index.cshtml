@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DoAn_FrameWork.Models.Order>
+﻿@model IEnumerable<DoAn_FrameWork.Areas.Admin.Models.Order>
 
 @{
     ViewData["Title"] = "Index";
@@ -75,7 +75,7 @@
                                         <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminOrders" asp-action="Details" asp-route-id="@item.OrderId">
                                             View
                                         </a>
-                                        <a href="#" class="btn btn-outline-danger w-10">
+                                        <a class="btn btn-outline-danger w-10" asp-area="Admin" asp-controller="AdminOrders" asp-action="GeneratePDF" asp-route-id="@item.OrderId">
                                             Export PDF
                                         </a>
                                         @* <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminOrders", new { id = item.OrderId })" data-toggle="tooltip" title="Delete">
@@ -132,7 +132,7 @@
     </div>
 </div>
 
-<script>
+@* <script>
     $(document).ready(function () {
         $('.btn-delete').on('click', function (e) {
             e.preventDefault();
@@ -168,7 +168,7 @@
             });
         });
     });
-</script>
+</script> *@
 
 
 @* <h1>Index</h1>

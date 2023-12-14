@@ -1,24 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DoAn_FrameWork.Models;
 using DoAn_FrameWork.Interfaces;
 using DoAn_FrameWork.Areas.Admin.ViewModels;
 using ClosedXML.Excel;
 using System.Data;
+using DoAn_FrameWork.Areas.Admin.Models;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminProductsController : Controller
     {
-        private readonly TechnoShop_DBContext _context;
+        private readonly AdminDBContext _context;
         private readonly IPhotoService _photoService;
+        public INotyfService _notifyService { get; }
 
-        public AdminProductsController(TechnoShop_DBContext context, IPhotoService photoService)
+        public AdminProductsController(AdminDBContext context, IPhotoService photoService, INotyfService notyfService)
         {
             _context = context;
             _photoService = photoService;
+            _notifyService = notyfService;
         }
 
         // GET: Admin/AdminProducts
@@ -213,8 +216,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             try
