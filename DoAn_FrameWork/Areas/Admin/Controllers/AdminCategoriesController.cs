@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DoAn_FrameWork.Models;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using DoAn_FrameWork.Areas.Admin.Models;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminCategoriesController : Controller
     {
-        private readonly TechnoShop_DBContext _context;
+        private readonly AdminDBContext _context;
         public INotyfService _notifyService { get; }
-        public AdminCategoriesController(TechnoShop_DBContext context, INotyfService notifyService)
+        public AdminCategoriesController(AdminDBContext context, INotyfService notifyService)
         {
             _context = context;
             _notifyService = notifyService;

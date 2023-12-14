@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DoAn_FrameWork.Models.GroupProduct>
+﻿@model IEnumerable<DoAn_FrameWork.Areas.Admin.Models.GroupProduct>
 
 @{
     ViewData["Title"] = "Index";
@@ -135,7 +135,7 @@
                     // Gửi yêu cầu Ajax để xóa
                     $.ajax({
                         url: deleteUrl,
-                        type: 'POST', // Hoặc 'DELETE' tùy thuộc vào cấu hình của bạn
+                        type: 'GET', // Hoặc 'DELETE' tùy thuộc vào cấu hình của bạn
                         success: function (response) {
                             // Xử lý thành công (có thể làm mới trang hoặc xóa hàng từ bảng)
                             deleteButton.closest('tr').remove();

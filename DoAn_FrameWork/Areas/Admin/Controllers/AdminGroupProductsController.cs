@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DoAn_FrameWork.Models;
 using System.Data;
+using DoAn_FrameWork.Areas.Admin.Models;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminGroupProductsController : Controller
     {
-        private readonly TechnoShop_DBContext _context;
+        private readonly AdminDBContext _context;
 
-        public AdminGroupProductsController(TechnoShop_DBContext context)
+        public AdminGroupProductsController(AdminDBContext context)
         {
             _context = context;
         }
@@ -140,8 +140,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
 
         // GET: Admin/AdminGroupProducts/Delete/5
         // POST: Admin/AdminGroupProducts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             try
