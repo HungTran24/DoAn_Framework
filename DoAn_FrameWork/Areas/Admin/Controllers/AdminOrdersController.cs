@@ -7,6 +7,7 @@ using DocumentFormat.OpenXml.Office2010.Excel;
 using Rotativa;
 using Rotativa.AspNetCore;
 using DoAn_FrameWork.Areas.Admin.Models;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
@@ -14,10 +15,12 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
     public class AdminOrdersController : Controller
     {
         private readonly AdminDBContext _context;
+        public INotyfService _notifyService { get; }
 
-        public AdminOrdersController(AdminDBContext context)
+        public AdminOrdersController(AdminDBContext context, INotyfService notyfService)
         {
             _context = context;
+            _notifyService = notyfService;
         }
 
         // GET: Admin/AdminOrders
@@ -71,6 +74,23 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
             }
 
             return View(order);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatus(int id, string status)
+        {
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
+            {
+                _notifyService.Error("Cập nhật trạng thái không thành công");
+                return NotFound();
+            }
+            order.OrderStatus = status;
+            _context.Orders.Update(order);
+            await _context.SaveChangesAsync();
+            _notifyService.Success("Cập nhật trạng thái thành công");
+            return RedirectToAction(nameof(Index));
+
         }
 
         [HttpGet]
