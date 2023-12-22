@@ -1,6 +1,6 @@
 console.log("hello");)
 (function ($) {
-	lmao
+
 	'use strict';
 	/*----------------------------------------*/
 	/*  Check if element exists

@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="rating-box-wrap pb-7">
                                     <div class="add-to-cart">
-                                        <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="cart.html" style="border-radius: 3px;">Thêm vào giỏ hàng</a>
+                                        <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0 wcart" href="#!" style="border-radius: 3px;">Thêm vào giỏ hàng</a>
                                         <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="cart.html" style="background-color: #FF424E; border-radius: 3px;">Mua ngay</a>
                                     </div>
                                 </div>
@@ -291,7 +291,7 @@
                                         <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
                                             <div class="product-item" style="padding: 10px;">
                                                 <div class="product-img">
-                                                    <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/85/f8/63/dee737a78ed2344fffaecc857efda34a.jpg" alt="Product Images">
+                                                    <img class="img-full" src="@item.ProductImage" onerror="this.src='/assets/images/product/default_image.png';onerror='';" alt="Product Images">
                                                 </div>
                                                 <div class="product-content texx">
                                                     <img src="https://salt.tikicdn.com/ts/tka/69/cf/22/1be823299ae34c7ddcd922e73abd4909.png" style="height: 20px; width: 80px;">
@@ -325,40 +325,41 @@
     <script>
         $(document).ready(function () {
             $('.feature_image').click(function () {
-                console.log("click");
-               var src = $(this).attr('src');
-                $('#main_image').attr('src', src);           
-           
-            });
-           
-            // $(function (){
-            //     $(".wcart").click(function () {
-            //         var productid = parseFloat($(this).attr("data-productid"));
-            //         $.ajax({
-            //             url: '/api/cart/add',
-            //             type: "POST",
-            //             dataType: "JSON",
-            //             data: { productid: productid },
-            //             success: function (response) {
-            //                 if (response.result == 'Redirect') {
-            //                     window.location = response.url;
-            //                 }
-            //                 else {
-            //                     loadHeaderCart();
-            //                     location.reload();
-            //                 }
-            //                 console.log(response);
-            //             },
-            //             error: function (error) {
-            //                 alert("Error: " + error.responseText);
-            //             }
-            //         });
-            //     });
-            // }
+                var src = $(this).attr('src');
+                $('#main_image').attr('src', src);
 
-            // function loadHeaderCart() { 
-            //     $(#headerCart).load("/AjaxContent/HeaderCart");
-            // }
+            });
+
+            $(function () {
+                $(".wcart").click(function () {
+                    var productid = parseFloat($(this).attr("data-productid"));
+                    $.ajax({
+                        url: '/api/cart/add',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: { productid: productid },
+                        success: function (response) {
+                            if (response.result == 'Redirect') {
+                                window.location = response.url;
+                            }
+                            else {
+                                loadHeaderCart();
+                                location.reload();
+                            }
+                            console.log(response);
+                           
+                        },
+                        error: function (error) {
+                            alert("Error: " + error.responseText);
+                        }
+                    });
+                });
+            });
+        
+
+            function loadHeaderCart() { 
+                $('#headerCart').load("/AjaxContent/HeaderCart");
+            }
            
           
             
