@@ -8,6 +8,7 @@ using Rotativa;
 using Rotativa.AspNetCore;
 using DoAn_FrameWork.Areas.Admin.Models;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
@@ -24,6 +25,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminOrders
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 8, string searchTerm = "")
         {
             var query = _context.Orders.Include(o => o.Customer).AsQueryable();
@@ -55,6 +57,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminOrders/Details/5
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Orders == null)
@@ -77,6 +80,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> UpdateStatus(int id, string status)
         {
             var order = await _context.Orders.FindAsync(id);
@@ -94,6 +98,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<FileResult> ExportordersInExcel()
         {
             var orders = await _context.Orders.Include(o => o.Customer).Include(o => o.Payment).Include(o => o.Shipping).ToListAsync();
@@ -101,6 +106,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
             return GenerateExcel(fileName, orders);
         }
 
+        [Authorize(Roles = "Admin, Employee")]
         private FileResult GenerateExcel(string fileName, IEnumerable<Order> orders)
         {
             DataTable dataTable = new DataTable("orders");
@@ -141,7 +147,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
 
         }
 
-
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<ActionResult> GeneratePDF(int id)
         {
             var model = await _context.Orders

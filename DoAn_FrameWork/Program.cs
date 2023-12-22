@@ -1,4 +1,4 @@
-//var builder = WebApplication.CreateBuilder(args);
+﻿//var builder = WebApplication.CreateBuilder(args);
 
 //// Add services to the container.
 //builder.Services.AddControllersWithViews();
@@ -79,6 +79,25 @@ builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<DoAn_FrameWork.Areas.Admin.Models.AdminDBContext>()
     .AddDefaultTokenProviders();
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Thiết lập về Password
+    options.Password.RequireDigit = false; // Không bắt phải có số
+    options.Password.RequireLowercase = false; // Không bắt phải có chữ thường
+    options.Password.RequireNonAlphanumeric = false; // Không bắt ký tự đặc biệt
+    options.Password.RequireUppercase = false; // Không bắt buộc chữ in
+    options.Password.RequiredLength = 3; // Số ký tự tối thiểu của password
+    options.Password.RequiredUniqueChars = 1; // Số ký tự riêng biệt
+
+    // Cấu hình Lockout - khóa user
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // Khóa 5 phút
+    options.Lockout.AllowedForNewUsers = true;
+
+    // Cấu hình về User.
+    options.User.AllowedUserNameCharacters = // các ký tự đặt tên user
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = true;  // Email là duy nhất  
+});
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
@@ -104,6 +123,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseNotyf();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
 
@@ -112,7 +132,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
       name: "areas",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+      pattern: "{area:exists}/{controller=AdminAccount}/{action=Login}/{id?}"
     );
 });
 
