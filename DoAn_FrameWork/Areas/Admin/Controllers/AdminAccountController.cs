@@ -148,7 +148,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                 var passwordChecked = await _userManager.CheckPasswordAsync(user, loginVM.PassWord);
                 if (passwordChecked)
                 {
-                    var result = await _signInManager.PasswordSignInAsync(user, loginVM.PassWord, false, false);
+                    var result = await _signInManager.PasswordSignInAsync(user, loginVM.PassWord, true, false);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index", "Home");

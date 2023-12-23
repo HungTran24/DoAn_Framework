@@ -40,7 +40,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin, Employee")]
+        [AllowAnonymous]
         public IActionResult GetSaleChartData()
         {
             // Lọc dữ liệu từ cơ sở dữ liệu và sau đó thực hiện các phép tính trong bộ nhớ
@@ -67,7 +67,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin, Employee")]
+        [AllowAnonymous]
         public IActionResult GetCusChartData()
         {
             var orders = _context.Orders
