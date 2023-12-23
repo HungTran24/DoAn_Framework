@@ -208,7 +208,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="font-weight-medium">
-                                            @Model.NumberOfProducts Products
+                                            @Model.NumberOfProducts Types of product
                                         </div>
                                         <div class="text-muted">
                                             @Model.NumberOfGroupProducts Group products
@@ -358,11 +358,7 @@
         $.ajax({
             url: 'Admin/Home/GetCusChartData', // Đường dẫn tới action trong controller
             method: 'GET',
-            async: true,
             success: function (data) {
-                console.log(data);
-
-
                 updateCusChart(data);
             },
             error: function (error) {
@@ -569,6 +565,7 @@
     // Gọi hàm getDataAndUpdateChart khi trang được tải
     document.addEventListener("DOMContentLoaded", function () {
         getDataAndUpdateSaleChart();
+
     });
 </script>
 

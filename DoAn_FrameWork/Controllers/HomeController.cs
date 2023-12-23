@@ -17,6 +17,7 @@ namespace DoAn_FrameWork.Controllers
             _logger = logger;
         }
         //[Authentication]
+
         public IActionResult Index(int? page, String SearchString = "")
         {
             //if (SearchString != "")
