@@ -24,14 +24,21 @@ namespace DoAn_FrameWork.Models
         public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<ProductImage> ProductImages { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<RoleClaim> RoleClaims { get; set; } = null!;
         public virtual DbSet<Shipping> Shippings { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<UserClaim> UserClaims { get; set; } = null!;
+        public virtual DbSet<UserLogin> UserLogins { get; set; } = null!;
+        public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
+        public virtual DbSet<UserToken> UserTokens { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-LTA3PDR;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+                optionsBuilder.UseSqlServer("Data Source=HUNG_LAPTOP;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
             }
         }
 
@@ -93,17 +100,6 @@ namespace DoAn_FrameWork.Models
                     .HasColumnName("group_product_name");
             });
 
-            modelBuilder.Entity<GroupProduct>(entity =>
-            {
-                entity.ToTable("group_products");
-
-                entity.Property(e => e.GroupProductId).HasColumnName("group_product_id");
-
-                entity.Property(e => e.GroupProductName)
-                    .HasMaxLength(200)
-                    .HasColumnName("group_product_name");
-            });
-
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.ToTable("orders");
@@ -116,7 +112,9 @@ namespace DoAn_FrameWork.Models
 
                 entity.Property(e => e.CustomerId).HasColumnName("customer_id");
 
-                entity.Property(e => e.OrderStatus).HasColumnName("order_status");
+                entity.Property(e => e.OrderStatus)
+                    .HasMaxLength(300)
+                    .HasColumnName("order_status");
 
                 entity.Property(e => e.OrderTotal).HasColumnName("order_total");
 
@@ -197,7 +195,7 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.GroupProductId).HasColumnName("group_product_id");
 
                 entity.Property(e => e.ProductDesc)
-                    .HasMaxLength(2000)
+                    .HasMaxLength(3000)
                     .HasColumnName("product_desc");
 
                 entity.Property(e => e.ProductImage)
@@ -276,6 +274,21 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.ShippingPhone)
                     .HasMaxLength(300)
                     .HasColumnName("shipping_phone");
+            });
+
+            modelBuilder.Entity<UserLogin>(entity =>
+            {
+                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+            });
+
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.RoleId });
+            });
+
+            modelBuilder.Entity<UserToken>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
             });
 
             OnModelCreatingPartial(modelBuilder);

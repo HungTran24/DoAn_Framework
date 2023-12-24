@@ -71,13 +71,40 @@
                                     <td class="sort-city">@item.OrderTotal</td>
                                     <td class="sort-city">@item.OrderStatus</td>
                                     <td class="sort-city">@item.CreatedAt</td>
-                                    <td class="sort-type">
-                                        <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminOrders" asp-action="Details" asp-route-id="@item.OrderId">
-                                            View
-                                        </a>
-                                        <a class="btn btn-outline-danger w-10" asp-area="Admin" asp-controller="AdminOrders" asp-action="GeneratePDF" asp-route-id="@item.OrderId">
-                                            Export PDF
-                                        </a>
+                                    <td class="sort-type" style="display: flex;">
+                                        <div class="mx-1">
+                                            <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminOrders" asp-action="Details" asp-route-id="@item.OrderId">
+                                                View
+                                            </a>
+                                        </div>
+
+                                        <div class="mx-1">
+                                            <a class="btn btn-outline-danger w-10" asp-area="Admin" asp-controller="AdminOrders" asp-action="GeneratePDF" asp-route-id="@item.OrderId">
+                                                Export PDF
+                                            </a>
+                                        </div>
+
+
+                                        <div class="dropdown btn-update-status mx-1">
+                                            <a  class="btn dropdown-toggle btn-outline-dark" data-bs-toggle="dropdown">Status</a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Pending"})">
+                                                    Pending
+                                                </a>
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Confirmed"})">
+                                                    Confirmed
+                                                </a>
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Shipped"})">
+                                                    Shipped
+                                                </a>
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Done"})">
+                                                    Done
+                                                </a>
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Cancel"})">Cancel</a>
+                                            </div>
+                                        </div>
+                                        
+
                                         @* <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminOrders", new { id = item.OrderId })" data-toggle="tooltip" title="Delete">
                                             Delete
                                         </a> *@
@@ -131,102 +158,53 @@
         </div>
     </div>
 </div>
+<script>
 
-@* <script>
     $(document).ready(function () {
-        $('.btn-delete').on('click', function (e) {
+        $('.dropdown-item').click(function (e) {
             e.preventDefault();
 
-            var deleteUrl = $(this).attr('href');
-            var deleteButton = $(this);
+            var orderStatus = $(this).text().trim();
+            var orderId = $(this).closest('tr').find('.sort-name').text().trim();
+            var ActionUrl = $(this).attr('href');
+            var currentElement = $(this);
 
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You won\'t be able to revert this!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Gửi yêu cầu Ajax để xóa
-                    $.ajax({
-                        url: deleteUrl,
-                        type: 'POST', // Hoặc 'DELETE' tùy thuộc vào cấu hình của bạn
-                        success: function (response) {
-                            // Xử lý thành công (có thể làm mới trang hoặc xóa hàng từ bảng)
-                            deleteButton.closest('tr').remove();
-                            Swal.fire('Deleted!', 'Your record has been deleted.', 'success');
+            $.ajax({
+                url: ActionUrl, // Sửa đường dẫn tới phương thức UpdateStatus
+                method: "POST",
+                data: { id: orderId, status: orderStatus },
+                success: function () {
+                    var statusInRow = currentElement.closest('tr').find('.sort-city:eq(4)');
+                    statusInRow.text(orderStatus);
+                    currentElement.closest('tr').find('.dropdown-item').removeClass('active');
+                    currentElement.addClass('active');
+                    
+                },
+                error: function () {
+                    console.error('Lỗi khi cập nhật trạng thái');
+                }
+            });
 
-                        },
-                        error: function (error) {
-                            Swal.fire('Error!', 'An error occurred while deleting the record.', 'error');
-                        }
-                    });
+        });
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        // Lặp qua mỗi hàng trong bảng
+        $('.table-tbody').find('tr').each(function () {
+            
+            var status = $(this).find('.sort-city:eq(4)').text().trim(); 
+            
+
+            
+            $(this).find('.dropdown-item').each(function () {
+                if ($(this).text().trim() === status) {
+                    $(this).addClass('active');
                 }
             });
         });
-    });
-</script> *@
+    }); 
+</script>
 
 
-@* <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderTotal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Payment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shipping)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderTotal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.CustomerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Payment.PaymentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shipping.ShippingId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table> *@

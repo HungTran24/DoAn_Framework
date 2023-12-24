@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NlrT4BQpeckbabQao6dgzZLsvvmhNIUNIqiVbij2V/M=",
+  "Hash": "6LQWtv9J8m0HX28/IOh60XwV4TfKVE/FWEC6gavmXtE=",
   "Source": "DoAn_FrameWork",
   "BasePath": "_content/DoAn_FrameWork",
   "Mode": "Default",
@@ -33029,6 +33029,57 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Rotativa\\wkhtmltopdf.exe"
+    },
+    {
+      "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\SQLDb\\ProcedureFrameWork.sql",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "SQLDb/ProcedureFrameWork.sql",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SQLDb\\ProcedureFrameWork.sql"
+    },
+    {
+      "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\SQLDb\\script.sql",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "SQLDb/script.sql",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SQLDb\\script.sql"
+    },
+    {
+      "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\SQLDb\\themhoadown.sql",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "SQLDb/themhoadown.sql",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SQLDb\\themhoadown.sql"
     }
   ]
 }

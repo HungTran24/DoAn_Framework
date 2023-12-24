@@ -9,7 +9,7 @@
     <div class="container-xl">
         <div class="col">
             <h2 class="page-title">
-                Vai trò
+                User
             </h2>
         </div>
         <div class="row g-2 align-items-center">
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="col-md-auto">
-                <form asp-area="Admin" asp-controller="AdminRoles" asp-action="Index" autocomplete="off" novalidate="">
+                <form asp-area="Admin" asp-controller="AdminAccount" asp-action="Index" autocomplete="off" novalidate="">
                     <div class="input-icon">
                         <span class="input-icon-addon">
                             <!-- Biểu tượng tìm kiếm -->
@@ -75,7 +75,7 @@
                                         <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminAccount" asp-action="Edit" asp-route-id="@item.Id">
                                             Edit
                                         </a>
-                                        <a class="btn btn-outline-danger w-10 btn-delete" href="@Url.Action("Delete", "AdminAccount", new { id = item.Id })">
+                                        <a class="btn btn-danger w-10 btn-delete" href="@Url.Action("Delete", "AdminAccount", new { id = item.Id })">
                                             Delete
                                         </a>
                                         @* <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminRoles", new { id = item.OrderId })" data-toggle="tooltip" title="Delete">

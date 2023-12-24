@@ -53,7 +53,7 @@
                                 <th><button class="table-sort" data-sort="sort-name">ID</button></th>
                                 <th><button class="table-sort" data-sort="sort-city">Tên</button></th>
                                 <th><button class="table-sort" data-sort="sort-city">Ảnh</button></th>
-                                <th><button class="table-sort" data-sort="sort-city">Mô tả</button></th>
+                               @*  <th><button class="table-sort" data-sort="sort-city">Mô tả</button></th> *@
                                 <th><button class="table-sort" data-sort="sort-city">Giá</button></th>
                                 <th><button class="table-sort" data-sort="sort-city">Giảm giá</button></th>
                                 <th><button class="table-sort" data-sort="sort-city">SLB</button></th>
@@ -71,7 +71,7 @@
                                     <td class="sort-name">@item.ProductId</td>
                                     <td class="sort-city">@item.ProductName</td>
                                     <td class="sort-city"><img src="@item.ProductImage"/></td>
-                                    <td class="sort-city">@item.ProductDesc</td>
+                                    @* <td class="sort-city">@item.ProductDesc</td> *@
                                     <td class="sort-city">@item.ProductPrice</td>
                                     <td class="sort-city">@item.DiscountPercentage</td>
                                     <td class="sort-city">@item.SaleQuantity</td>
@@ -79,14 +79,20 @@
                                     <td class="sort-city">@item.WarrantyTime</td>
                                     <td class="sort-city">@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>
                                     <td class="sort-city">@Html.DisplayFor(modelItem => item.GroupProduct.GroupProductName)</td>
-                                    <td class="sort-type">
-                                        <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId">
-                                            Edit
-                                        </a>
-                                        
-                                        <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminProducts", new { id = item.ProductId })" data-toggle="tooltip" title="Delete">
-                                            Delete
-                                        </a>
+                                    <td class="sort-type" >
+                                        <div style="display: flex;">
+                                            <div>
+                                                <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId">
+                                                    Edit
+                                                </a>
+                                            </div>
+
+                                            <div>
+                                                <a class="btn btn-danger w-10 btn-delete" href="@Url.Action("Delete", "AdminProducts", new { id = item.ProductId })" data-toggle="tooltip" title="Delete">
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             }
