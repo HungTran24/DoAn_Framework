@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using DoAn_FrameWork.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
@@ -18,6 +19,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminCategory
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 8, string searchTerm = "")
         {
             // Lọc dữ liệu theo tên nếu có giá trị tìm kiếm
@@ -47,6 +49,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminCategory/Create
+        [Authorize(Roles = "Admin, Employee")]
         public IActionResult Create()
         {
             return View();
@@ -70,6 +73,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminCategory/Edit/5
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -123,6 +127,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
 
         // GET: Admin/AdminCategory/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Delete(int id)
         {
             try

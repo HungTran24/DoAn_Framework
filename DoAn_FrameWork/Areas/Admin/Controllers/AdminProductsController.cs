@@ -7,6 +7,7 @@ using ClosedXML.Excel;
 using System.Data;
 using DoAn_FrameWork.Areas.Admin.Models;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
@@ -25,6 +26,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 8, string searchTerm = "")
         {
             var query = _context.Products.AsQueryable();
@@ -56,6 +58,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts/Details/5
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Products == null)
@@ -76,6 +79,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts/Create
+        [Authorize(Roles = "Admin, Employee")]
         public IActionResult Create()
         {
             ViewData["Categories"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
@@ -143,6 +147,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts/Edit/5
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Products == null)
@@ -217,6 +222,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
 
         // GET: Admin/AdminProducts/Delete/5
         [HttpGet]
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Delete(int? id)
         {
             try
@@ -239,6 +245,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<FileResult> ExportProductsInExcel()
         {
             var products = await _context.Products.Include(p => p.Category).Include(p => p.GroupProduct).ToListAsync();
