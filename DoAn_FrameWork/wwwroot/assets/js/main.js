@@ -1,4 +1,3 @@
-console.log("hello");)
 (function ($) {
 
 	'use strict';
@@ -169,7 +168,8 @@ console.log("hello");)
 	}
 	/* --- Product Image Slider--- */
 
-	if ($('.single-product-thumbs').elexists()) {
+	if ($('.single-product-thumbs').elExists()) {
+		
 		
 		$('.swiper-button-next,.swiper-button-prev').css({
 			visibility: 'visible',
@@ -177,21 +177,22 @@ console.log("hello");)
 			border: 'none',
 			backgroundcolor: 'black',
 		});
+		
 
-		var myswiper = new swiper('.single-product-thumbs', {
-			slidesperview: 4,
-			spacebetween: 30,
-			loop: true,
-			observer: true,
-			observeparents: true,
-			parallax: true,
+		var myswiper = new Swiper('.single-product-thumbs', {
+			spaceBetween: 10,
+			slidesPerView: 4,
+			freeMode: true,
+			watchSlidesVisibility: true,
+			watchSlidesProgress: true,
+			loop: false,
 			pagination: {
 				el: '.swiper-pagination',
 				clickable: true,
 			}, 
 			navigation: {
-				nextel: '.swiper-button-next',
-				prevel: '.swiper-button-prev',
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
 			},
 			breakpoints: {
 				320: {
@@ -208,6 +209,12 @@ console.log("hello");)
 				}
 			}
 		});
+		var myswiper_main = new Swiper('.single-product-slider', {
+            spaceBetween: 30,
+            thumbs: {
+                swiper: myswiper
+            }
+        });
 	}
 
 	/* --- Product List Slider--- */
@@ -279,6 +286,7 @@ console.log("hello");)
 
 	/* --- Blog Slider--- */
 	if ($('.blog-slider').elExists()) {
+
 		var mySwiper = new Swiper('.blog-slider', {
 			slidesPerView: 3,
 			spaceBetween: 30,
@@ -399,65 +407,69 @@ console.log("hello");)
 		});
 	}
 
-	/* ---Product Detail Horizontal Slider--- */
-	if ($('.single-product-slider').elExists()) {
-		
-		console.log("hello");
-		var singleProduct = new Swiper('.single-product-thumbs', {
-			spaceBetween: 30,
-			slidesPerView: 4,
-			freeMode: false,
-			watchSlidesVisibility: true,
-			watchSlidesProgress: true,
-			allowTouchMove: false,
-			loop: false,
-			navigation: {
-				nextEl: '.gallery-button-next',
-				prevEl: '.gallery-button-prev',
-			},
-			pagination: {
-				el: '.gallery-pagination',
-				clickable: true
-			},
-			breakpoints: {
-				320: {
-					slidesPerView: 3,
-					allowTouchMove: true
-				},
-				768: {
-					slidesPerView: 4,
-					allowTouchMove: true
-				},
-				1200: {
-					slidesPerView: 4,
-					allowTouchMove: false
-				}
-			}
-		});
-		var singleProduct = new Swiper('.single-product-slider', {
-			autoplay: false,
-			delay: 5000,
-			slidesPerView: 1,
-			slidesPerGroup: 1,
-			watchSlidesProgress: true,
-			watchSlidesVisibility: true,
-			allowTouchMove: true,
-			setWrapperSize: true,
-			waitForTransition: true,
-			loop: false,
-			navigation: {
-				nextEl: '.gallery-button-next',
-				prevEl: '.gallery-button-prev',
-			},
-			pagination: {
-				el: '.gallery-pagination',
-				clickable: true
-			},
-			thumbs: {
-				swiper: singleProduct
-			}
-		});
-	}
+	///* ---Product Detail Horizontal Slider--- */
+	//if ($('.single-product-slider').elExists()) {
+
+	//	var singleProduct = new Swiper('.single-product-thumbs', {
+	//		spaceBetween: 30,
+	//		slidesPerView: 4,
+	//		watchSlidesVisibility: true,
+	//		watchSlidesProgress: true,
+	//		allowTouchMove: true,
+	//		loop: true,
+	//		navigation: {
+	//			nextEl: '.swiper-button-next',
+	//			prevEl: '.swiper-button-prev',
+	//		},
+	//		pagination: {
+	//			el: '.gallery-pagination',
+	//			clickable: true
+	//		},
+	//		breakpoints: {
+	//			320: {
+	//				slidesPerView: 3,
+	//				allowTouchMove: true
+	//			},
+	//			768: {
+	//				slidesPerView: 4,
+	//				allowTouchMove: true
+	//			},
+	//			1200: {
+	//				slidesPerView: 4,
+	//				allowTouchMove: false
+	//			}
+	//		}
+	//	});
+	//	$('.gallery-button-next,.gallery-button-prev').css({
+	//		visibility: 'visible',
+	//		opacity: 0.6,
+	//		border: 'none',
+	//		backgroundcolor: 'black',
+	//	});
+	//	var singleProduct = new Swiper('.single-product-slider', {
+	//		autoplay: false,
+	//		delay: 5000,
+	//		slidesPerView: 1,
+	//		slidesPerGroup: 1,
+	//		watchSlidesProgress: true,
+	//		watchSlidesVisibility: true,
+	//		allowTouchMove: true,
+	//		setWrapperSize: true,
+	//		waitForTransition: true,
+	//		loop: false,
+	//		navigation: {
+	//			nextEl: '.gallery-button-next',
+	//			prevEl: '.gallery-button-prev',
+	//		},
+	//		pagination: {
+	//			el: '.gallery-pagination',
+	//			clickable: true
+	//		},
+	//		thumbs: {
+	//			swiper: singleProduct
+	//		}
+	//	});
+	//}
 
 	/* ---Scene--- */
 	$('.scene').each(function () {
