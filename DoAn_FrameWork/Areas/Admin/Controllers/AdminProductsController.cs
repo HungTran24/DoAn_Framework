@@ -122,6 +122,8 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                     StockQuantity = productVM.StockQuantity,
                     WarrantyTime = productVM.WarrantyTime,
                     GroupProductId = productVM.GroupProduct.GroupProductId,
+                    Color = productVM.Color,
+                    Options = productVM.Options,
                 };
                 if (product.GroupProductId == 0) product.GroupProductId = null;
                 _context.Add(product);

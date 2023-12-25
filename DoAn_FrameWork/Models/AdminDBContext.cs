@@ -188,11 +188,19 @@ namespace DoAn_FrameWork.Models
                     .HasColumnName("category_id")
                     .HasDefaultValueSql("((1))");
 
+                entity.Property(e => e.Color)
+                    .HasMaxLength(500)
+                    .HasColumnName("color");
+
                 entity.Property(e => e.DiscountPercentage)
                     .HasColumnName("discount_percentage")
                     .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.GroupProductId).HasColumnName("group_product_id");
+
+                entity.Property(e => e.Options)
+                    .HasMaxLength(500)
+                    .HasColumnName("options");
 
                 entity.Property(e => e.ProductDesc)
                     .HasMaxLength(3000)

@@ -5,7 +5,7 @@
 }
 
 <main class="main-content">
-    <div class="breadcrumb-area breadcrumb-height" data-bg-image="~/assets/images/breadcrumb/bg/1-1-1920x373.jpg">
+    @* <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/breadcrumb/bg/1-1-1920x373.jpg">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-lg-12">
@@ -21,18 +21,33 @@
                 </div>
             </div>
         </div>
+    </div> *@
+    <div class="container h-100 p-2">
+        <div class="row h-100">
+            <div class="col-md-12" >
+                <div class="breadcrumb-item">
+                    <h2 class="breadcrumb-heading">Giỏ hàng</h2>
+                    <ul>
+                        <li>
+                            <a >Trang chủ <i class="pe-7s-angle-right"></i></a>
+                        </li>
+                        <li>Giỏ hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="cart-area section-space-y-axis-100">
+    <div class="cart-area p-5">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 cart-content">
                     @if (Model != null && Model.Count() > 0)
                     {
                         <form action="javascript:void(0)">
                             <div class="table-content table-responsive">
                                 <table class="table">
-                                    <thead>
-                                        <tr>
+                                    <thead class="cart-head">
+                                        <tr style="background-color:#3399ff; color:white; font-weight:bold">
                                             <th class="product_remove">Xóa</th>
                                             <th class="product-thumbnail">Ảnh</th>
                                             <th class="cart-product-name">Sản phẩm</th>
@@ -41,30 +56,31 @@
                                             <th class="product-subtotal">Thành tiền</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="cart_items">
                                         @if (Model != null && Model.Count() > 0)
                                         {
                                             foreach (var item in Model)
                                             {
                                                 <tr>
                                                     <td class="product_remove">
-                                                        <a href="javascript:void(0)">
+                                                        <a href="javascript:void(0)" class="remove_cart-item" data-id="@item.product.ProductId">
                                                             <i class="pe-7s-close" title="Remove"></i>
                                                         </a>
                                                     </td>
                                                     <td class="product-thumbnail">
                                                         <a href="javascript:void(0)">
-                                                            <img src="~/assets/images/product/small-size/1-1-112x124.jpg" alt="@item.product.ProductName">
+                                                            <img src="@item.product.ProductImage" style="height:112px; width:112px; object-fit:cover"
+                                                            onerror="this.src='/assets/images/product/default_image.png';onerror='';" alt="@item.product.ProductName">
                                                         </a>
                                                     </td>
                                                     <td class="product-name"><a href="javascript:void(0)">@item.product.ProductName</a></td>
-                                                    <td class="product-price"><span class="amount">@item.product.ProductPrice.Value.ToString("#, ##0") đ</span></td>
+                                                    <td class="product-price"><span class="price">@item.product.ProductPrice</span></td>
                                                     <td class="quantity">
                                                         <div class="cart-plus-minus">
-                                                            <input class="cart-plus-minus-box" value="@item.amount" type="text">
+                                                            <input class="cart-plus-minus-box" id="data-amount" value="@item.amount" type="text">
                                                         </div>
                                                     </td>
-                                                    <td class="product-subtotal"><span class="amount">@item.Total</span></td>
+                                                    <td class="product-subtotal" data-id="@item.product.ProductId"><span class="amount">@item.Total.ToString("#,##0")</span></td>
                                                 </tr>
                                             }
 
@@ -77,10 +93,12 @@
                                     <div class="cart-page-total">
                                         <h2>Thanh toán</h2>
                                         <ul>
-                                            @* <li>Tổng tiền:  <span> @Model.Sum(x=>x.Total).ToString("#, ##0")) đ</span></li> *@
-                                            <li>Tổng tiền:  <span> 999.999.999 d</span></li>
+                                            <li>Tổng tiền:  <span class="sum-total"> @Model.Sum(x=>x.Total).ToString("#,##0") đ </span> </li>
+                                           
                                         </ul>
-                                        <a href="javascript:void(0)">Proceed to checkout</a>
+                                        <a asp-controller="Checkout" asp-action="Index"  id="checkout-btn">Proceed to checkout</a>
+                                        <a href="javascript:void(0)" class="update-btn">Làm mới</a>
+
                                     </div>
                                 </div>
                             </div>
@@ -96,4 +114,100 @@
         </div>
     </div>
 </main>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
 
+            var cart_items = $('.remove_cart-item');
+            cart_items.each(function () {
+                $(this).click(function () {
+
+                    var productid = $(this).data('id');
+                    console.log("remove" + productid);
+
+                    $.ajax({
+                        url: '/api/cart/remove',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            productid: productid,
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            if (response.success == 'false') {
+                                console.log(response);
+                            }
+                            else {
+                                console.log(response);
+                            }
+
+                        },
+                        error: function (error) {
+                            alert("Error: " + error.responseText);
+                            console.log(error.responseText);
+                        }
+                    });
+                    $(this).closest('tr').remove();
+
+                    if ($('.cart_items tr').length == 0) {
+                        $('.cart-content').empty();
+                        $('.cart-content').html("<p>Hiện chưa có sản phẩm trong giỏ hàng.</p>");
+                       
+                    }
+                });
+
+            });
+            
+            $(".update-btn").click(function () {
+                var total_temp = 0;
+                var promises = [];
+                $(".cart_items .product-subtotal").each(function () {
+                    var productId = $(this).data('id');
+                    
+                    var price = parseFloat($(this).parent().find(".price").text());
+                    var quantity = parseFloat($(this).parent().find(".cart-plus-minus-box").val());
+                    var _total = $(this).find(".amount");
+                    
+                    var promise = $.ajax({
+                        url: '/api/cart/update',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            productid: productId,
+                            amount: quantity
+                        },
+                        success: function (response) {
+                            var total = price * quantity;
+                            
+                            _total.text(total.toLocaleString()); // Format sum-total to 100,000,000
+                            total_temp += total;
+                            console.log("Tông trang ajax:"+total_temp);
+                            
+                            
+                        },
+                        error: function (error) {
+                            alert("Error: " + error.responseText);
+                            console.log(error.responseText);
+                        }
+                    });
+                    promises.push(promise);
+                });
+                $.when.apply($, promises).then(function () {
+                    
+                    $('.sum-total').text(total_temp.toLocaleString()+' đ'); // Format sum-total to 100,000,000
+                    
+                });
+            });
+               
+
+            var cartItems = @Html.Raw(Json.Serialize(Model));
+            
+
+            $("#checkout-btn").click(function () {
+                var amount = $("#data-amount").val();
+               
+            });
+        });
+
+    </script>
+}
