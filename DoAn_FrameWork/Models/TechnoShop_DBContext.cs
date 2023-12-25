@@ -24,14 +24,21 @@ namespace DoAn_FrameWork.Models
         public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<ProductImage> ProductImages { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<RoleClaim> RoleClaims { get; set; } = null!;
         public virtual DbSet<Shipping> Shippings { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<UserClaim> UserClaims { get; set; } = null!;
+        public virtual DbSet<UserLogin> UserLogins { get; set; } = null!;
+        public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
+        public virtual DbSet<UserToken> UserTokens { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-LTA3PDR;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+                optionsBuilder.UseSqlServer("Data Source=Tri;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
             }
         }
 
@@ -45,8 +52,7 @@ namespace DoAn_FrameWork.Models
 
                 entity.Property(e => e.CategoryName)
                     .HasMaxLength(300)
-                    .HasColumnName("category_name")
-                    .IsFixedLength();
+                    .HasColumnName("category_name");
             });
 
             modelBuilder.Entity<Customer>(entity =>
@@ -57,13 +63,11 @@ namespace DoAn_FrameWork.Models
 
                 entity.Property(e => e.CustomerEmail)
                     .HasMaxLength(300)
-                    .HasColumnName("customer_email")
-                    .IsFixedLength();
+                    .HasColumnName("customer_email");
 
                 entity.Property(e => e.CustomerName)
                     .HasMaxLength(300)
-                    .HasColumnName("customer_name")
-                    .IsFixedLength();
+                    .HasColumnName("customer_name");
 
                 entity.Property(e => e.Password)
                     .HasMaxLength(50)
@@ -82,8 +86,7 @@ namespace DoAn_FrameWork.Models
 
                 entity.Property(e => e.Username)
                     .HasMaxLength(300)
-                    .HasColumnName("username")
-                    .IsFixedLength();
+                    .HasColumnName("username");
             });
 
             modelBuilder.Entity<GroupProduct>(entity =>
@@ -109,7 +112,9 @@ namespace DoAn_FrameWork.Models
 
                 entity.Property(e => e.CustomerId).HasColumnName("customer_id");
 
-                entity.Property(e => e.OrderStatus).HasColumnName("order_status");
+                entity.Property(e => e.OrderStatus)
+                    .HasMaxLength(300)
+                    .HasColumnName("order_status");
 
                 entity.Property(e => e.OrderTotal).HasColumnName("order_total");
 
@@ -165,14 +170,12 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.PaymentId).HasColumnName("payment_id");
 
                 entity.Property(e => e.PaymentMethod)
-                    .HasMaxLength(50)
-                    .HasColumnName("payment_method")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("payment_method");
 
                 entity.Property(e => e.PaymentStatus)
-                    .HasMaxLength(20)
-                    .HasColumnName("payment_status")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("payment_status");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -200,19 +203,17 @@ namespace DoAn_FrameWork.Models
                     .HasColumnName("options");
 
                 entity.Property(e => e.ProductDesc)
-                    .HasMaxLength(1000)
-                    .HasColumnName("product_desc")
-                    .IsFixedLength();
+                    .HasMaxLength(3000)
+                    .HasColumnName("product_desc");
 
                 entity.Property(e => e.ProductImage)
-                    .HasMaxLength(50)
-                    .HasColumnName("product_image")
-                    .IsFixedLength();
+                    .HasMaxLength(2000)
+                    .IsUnicode(false)
+                    .HasColumnName("product_image");
 
                 entity.Property(e => e.ProductName)
                     .HasMaxLength(300)
-                    .HasColumnName("product_name")
-                    .IsFixedLength();
+                    .HasColumnName("product_name");
 
                 entity.Property(e => e.ProductPrice).HasColumnName("product_price");
 
@@ -244,9 +245,9 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.ProductImageId).HasColumnName("product_image_id");
 
                 entity.Property(e => e.Image)
-                    .HasMaxLength(50)
-                    .HasColumnName("image")
-                    .IsFixedLength();
+                    .HasMaxLength(2000)
+                    .IsUnicode(false)
+                    .HasColumnName("image");
 
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
 
@@ -263,29 +264,39 @@ namespace DoAn_FrameWork.Models
                 entity.Property(e => e.ShippingId).HasColumnName("shipping_id");
 
                 entity.Property(e => e.ShippingAddress)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_address")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_address");
 
                 entity.Property(e => e.ShippingEmail)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_email")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_email");
 
                 entity.Property(e => e.ShippingName)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_name")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_name");
 
                 entity.Property(e => e.ShippingNote)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_note")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_note");
 
                 entity.Property(e => e.ShippingPhone)
-                    .HasMaxLength(50)
-                    .HasColumnName("shipping_phone")
-                    .IsFixedLength();
+                    .HasMaxLength(300)
+                    .HasColumnName("shipping_phone");
+            });
+
+            modelBuilder.Entity<UserLogin>(entity =>
+            {
+                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+            });
+
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.RoleId });
+            });
+
+            modelBuilder.Entity<UserToken>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
             });
 
             OnModelCreatingPartial(modelBuilder);

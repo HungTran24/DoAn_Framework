@@ -22,6 +22,8 @@ namespace DoAn_FrameWork.Areas.Admin.Models
         public int? StockQuantity { get; set; }
         public int? WarrantyTime { get; set; }
         public int? GroupProductId { get; set; }
+        public string? Color { get; set; }
+        public string? Options { get; set; }
 
         public virtual Category? Category { get; set; }
         public virtual GroupProduct? GroupProduct { get; set; }

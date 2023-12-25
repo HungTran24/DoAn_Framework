@@ -53,6 +53,9 @@
                                 <th><button class="table-sort" data-sort="sort-name">ID</button></th>
                                 <th><button class="table-sort" data-sort="sort-city">Tên</button></th>
                                 <th><button class="table-sort" data-sort="sort-city">Ảnh</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Màu sắc</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Options</button></th>
+
                                @*  <th><button class="table-sort" data-sort="sort-city">Mô tả</button></th> *@
                                 <th><button class="table-sort" data-sort="sort-city">Giá</button></th>
                                 <th><button class="table-sort" data-sort="sort-city">Giảm giá</button></th>
@@ -71,6 +74,9 @@
                                     <td class="sort-name">@item.ProductId</td>
                                     <td class="sort-city">@item.ProductName</td>
                                     <td class="sort-city"><img src="@item.ProductImage"/></td>
+                                    <td class="sort-city">@item.Color</td>
+                                    <td class="sort-city">@item.Options</td>
+
                                     @* <td class="sort-city">@item.ProductDesc</td> *@
                                     <td class="sort-city">@item.ProductPrice</td>
                                     <td class="sort-city">@item.DiscountPercentage</td>
