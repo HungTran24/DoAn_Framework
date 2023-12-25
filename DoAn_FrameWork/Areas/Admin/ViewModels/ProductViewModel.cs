@@ -1,4 +1,4 @@
-﻿using DoAn_FrameWork.Models;
+﻿using DoAn_FrameWork.Areas.Admin.Models;
 
 namespace DoAn_FrameWork.Areas.Admin.ViewModels
 {

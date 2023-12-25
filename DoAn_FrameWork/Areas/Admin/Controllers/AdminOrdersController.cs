@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DoAn_FrameWork.Models;
+using ClosedXML.Excel;
+using System.Data;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using Rotativa;
+using Rotativa.AspNetCore;
+using DoAn_FrameWork.Areas.Admin.Models;
+using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminOrdersController : Controller
     {
-        private readonly TechnoShop_DBContext _context;
+        private readonly AdminDBContext _context;
+        public INotyfService _notifyService { get; }
 
-        public AdminOrdersController(TechnoShop_DBContext context)
+        public AdminOrdersController(AdminDBContext context, INotyfService notyfService)
         {
             _context = context;
+            _notifyService = notyfService;
         }
 
         // GET: Admin/AdminOrders
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 8, string searchTerm = "")
         {
             var query = _context.Orders.Include(o => o.Customer).AsQueryable();
@@ -51,6 +57,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminOrders/Details/5
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Orders == null)
@@ -62,6 +69,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                 .Include(o => o.Customer)
                 .Include(o => o.Payment)
                 .Include(o => o.Shipping)
+                .Include(o => o.OrderDetails).ThenInclude(od => od.Product)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {
@@ -71,129 +79,91 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
             return View(order);
         }
 
-        // GET: Admin/AdminOrders/Create
-        public IActionResult Create()
-        {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
-            ViewData["PaymentId"] = new SelectList(_context.Payments, "PaymentId", "PaymentId");
-            ViewData["ShippingId"] = new SelectList(_context.Shippings, "ShippingId", "ShippingId");
-            return View();
-        }
-
-        // POST: Admin/AdminOrders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,CustomerId,ShippingId,PaymentId,OrderTotal,OrderStatus,CreatedAt")] Order order)
+        [Authorize(Roles = "Admin, Employee")]
+        public async Task<IActionResult> UpdateStatus(int id, string status)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(order);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", order.CustomerId);
-            ViewData["PaymentId"] = new SelectList(_context.Payments, "PaymentId", "PaymentId", order.PaymentId);
-            ViewData["ShippingId"] = new SelectList(_context.Shippings, "ShippingId", "ShippingId", order.ShippingId);
-            return View(order);
-        }
-
-        // GET: Admin/AdminOrders/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Orders == null)
-            {
-                return NotFound();
-            }
-
             var order = await _context.Orders.FindAsync(id);
             if (order == null)
             {
+                _notifyService.Error("Cập nhật trạng thái không thành công");
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", order.CustomerId);
-            ViewData["PaymentId"] = new SelectList(_context.Payments, "PaymentId", "PaymentId", order.PaymentId);
-            ViewData["ShippingId"] = new SelectList(_context.Shippings, "ShippingId", "ShippingId", order.ShippingId);
-            return View(order);
-        }
-
-        // POST: Admin/AdminOrders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,CustomerId,ShippingId,PaymentId,OrderTotal,OrderStatus,CreatedAt")] Order order)
-        {
-            if (id != order.OrderId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(order);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OrderExists(order.OrderId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", order.CustomerId);
-            ViewData["PaymentId"] = new SelectList(_context.Payments, "PaymentId", "PaymentId", order.PaymentId);
-            ViewData["ShippingId"] = new SelectList(_context.Shippings, "ShippingId", "ShippingId", order.ShippingId);
-            return View(order);
-        }
-
-        // GET: Admin/AdminOrders/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Orders == null)
-            {
-                return NotFound();
-            }
-
-            var order = await _context.Orders
-                .Include(o => o.Customer)
-                .Include(o => o.Payment)
-                .Include(o => o.Shipping)
-                .FirstOrDefaultAsync(m => m.OrderId == id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-
-            return View(order);
-        }
-
-        // POST: Admin/AdminOrders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Orders == null)
-            {
-                return Problem("Entity set 'TechnoShop_DBContext.Orders'  is null.");
-            }
-            var order = await _context.Orders.FindAsync(id);
-            if (order != null)
-            {
-                _context.Orders.Remove(order);
-            }
-
+            order.OrderStatus = status;
+            _context.Orders.Update(order);
             await _context.SaveChangesAsync();
+            _notifyService.Success("Cập nhật trạng thái thành công");
             return RedirectToAction(nameof(Index));
+
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, Employee")]
+        public async Task<FileResult> ExportordersInExcel()
+        {
+            var orders = await _context.Orders.Include(o => o.Customer).Include(o => o.Payment).Include(o => o.Shipping).ToListAsync();
+            var fileName = "orders.xlsx";
+            return GenerateExcel(fileName, orders);
+        }
+
+        [Authorize(Roles = "Admin, Employee")]
+        private FileResult GenerateExcel(string fileName, IEnumerable<Order> orders)
+        {
+            DataTable dataTable = new DataTable("orders");
+            dataTable.Columns.AddRange(new DataColumn[]
+            {
+                 new DataColumn("ID"),
+                 new DataColumn("Customer Name"),
+                 new DataColumn("Shipping"),
+                 new DataColumn("Payment"),
+                 new DataColumn("Description"),
+                 new DataColumn("Total"),
+                 new DataColumn("Status"),
+                 new DataColumn("Created At"),
+            });
+
+            foreach (var order in orders)
+            {
+                dataTable.Rows.Add(
+                    order.OrderId,
+                    order.Customer?.CustomerName,
+                    order.Shipping?.ShippingName,
+                    order.Payment?.PaymentMethod,
+                    order.OrderTotal,
+                    order.OrderStatus,
+                    order.CreatedAt
+                    );
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dataTable);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+                };
+            };
+
+        }
+
+        [Authorize(Roles = "Admin, Employee")]
+        public async Task<ActionResult> GeneratePDF(int id)
+        {
+            var model = await _context.Orders
+            .Include(o => o.Customer)
+            .Include(o => o.Payment)
+            .Include(o => o.Shipping)
+            .Include(o => o.OrderDetails)
+            .ThenInclude(od => od.Product)
+            .FirstOrDefaultAsync(m => m.OrderId == id);
+            var pdf = new ViewAsPdf("Invoice", model) // Replace "Your_View_Name" with the name of your view
+            {
+                FileName = "Invoice.pdf" // Name of the exported PDF file
+            };
+
+            // Return the PDF as ActionResult
+            return pdf;
         }
 
         private bool OrderExists(int id)

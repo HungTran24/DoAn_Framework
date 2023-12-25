@@ -1,27 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DoAn_FrameWork.Models;
 using DoAn_FrameWork.Interfaces;
 using DoAn_FrameWork.Areas.Admin.ViewModels;
 using ClosedXML.Excel;
 using System.Data;
+using DoAn_FrameWork.Areas.Admin.Models;
+using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminProductsController : Controller
     {
-        private readonly TechnoShop_DBContext _context;
+        private readonly AdminDBContext _context;
         private readonly IPhotoService _photoService;
+        public INotyfService _notifyService { get; }
 
-        public AdminProductsController(TechnoShop_DBContext context, IPhotoService photoService)
+        public AdminProductsController(AdminDBContext context, IPhotoService photoService, INotyfService notyfService)
         {
             _context = context;
             _photoService = photoService;
+            _notifyService = notyfService;
         }
 
         // GET: Admin/AdminProducts
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 8, string searchTerm = "")
         {
             var query = _context.Products.AsQueryable();
@@ -53,6 +58,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts/Details/5
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Products == null)
@@ -73,6 +79,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts/Create
+        [Authorize(Roles = "Admin, Employee")]
         public IActionResult Create()
         {
             ViewData["Categories"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
@@ -140,6 +147,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts/Edit/5
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Products == null)
@@ -213,8 +221,8 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Delete(int? id)
         {
             try
@@ -237,6 +245,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<FileResult> ExportProductsInExcel()
         {
             var products = await _context.Products.Include(p => p.Category).Include(p => p.GroupProduct).ToListAsync();

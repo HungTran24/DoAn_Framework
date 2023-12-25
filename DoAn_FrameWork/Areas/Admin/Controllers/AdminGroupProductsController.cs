@@ -1,21 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DoAn_FrameWork.Models;
 using System.Data;
+using DoAn_FrameWork.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminGroupProductsController : Controller
     {
-        private readonly TechnoShop_DBContext _context;
+        private readonly AdminDBContext _context;
 
-        public AdminGroupProductsController(TechnoShop_DBContext context)
+        public AdminGroupProductsController(AdminDBContext context)
         {
             _context = context;
         }
 
         // GET: Admin/AdminGroupProducts
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 8, string searchTerm = "")
         {
             var query = _context.GroupProducts.AsQueryable();
@@ -48,6 +50,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminGroupProducts/Details/5
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.GroupProducts == null)
@@ -66,6 +69,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminGroupProducts/Create
+        [Authorize(Roles = "Admin, Employee")]
         public IActionResult Create()
         {
             return View();
@@ -88,6 +92,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminGroupProducts/Edit/5
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.GroupProducts == null)
@@ -140,8 +145,8 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
 
         // GET: Admin/AdminGroupProducts/Delete/5
         // POST: Admin/AdminGroupProducts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
+        [Authorize(Roles = "Admin, Employee")]
         public async Task<IActionResult> Delete(int? id)
         {
             try

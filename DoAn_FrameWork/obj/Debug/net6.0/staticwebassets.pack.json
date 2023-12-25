@@ -6525,6 +6525,34 @@
       "PackagePath": "staticwebassets\\Cus_assests\\scss\\style.scss"
     },
     {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\Rotativa\\help-wkhtmltoimage.txt",
+      "PackagePath": "staticwebassets\\Rotativa\\help-wkhtmltoimage.txt"
+    },
+    {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\Rotativa\\help-wkhtmltopdf.txt",
+      "PackagePath": "staticwebassets\\Rotativa\\help-wkhtmltopdf.txt"
+    },
+    {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\Rotativa\\wkhtmltoimage.exe",
+      "PackagePath": "staticwebassets\\Rotativa\\wkhtmltoimage.exe"
+    },
+    {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\Rotativa\\wkhtmltopdf.exe",
+      "PackagePath": "staticwebassets\\Rotativa\\wkhtmltopdf.exe"
+    },
+    {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\SQLDb\\ProcedureFrameWork.sql",
+      "PackagePath": "staticwebassets\\SQLDb\\ProcedureFrameWork.sql"
+    },
+    {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\SQLDb\\script.sql",
+      "PackagePath": "staticwebassets\\SQLDb\\script.sql"
+    },
+    {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\SQLDb\\themhoadown.sql",
+      "PackagePath": "staticwebassets\\SQLDb\\themhoadown.sql"
+    },
+    {
       "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\css\\plugins\\animate.min.css",
       "PackagePath": "staticwebassets\\assets\\css\\plugins\\animate.min.css"
     },
@@ -6811,10 +6839,6 @@
     {
       "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\payment\\1.png",
       "PackagePath": "staticwebassets\\assets\\images\\payment\\1.png"
-    },
-    {
-      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\product\\default_image.png",
-      "PackagePath": "staticwebassets\\assets\\images\\product\\default_image.png"
     },
     {
       "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\product\\icon\\1.png",
