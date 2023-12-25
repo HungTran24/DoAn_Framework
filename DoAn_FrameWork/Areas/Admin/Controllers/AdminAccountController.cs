@@ -28,7 +28,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
             _roleManager = roleManager;
         }
 
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 8, string searchTerm = "")
         {
             // Lọc dữ liệu theo tên nếu có giá trị tìm kiếm
@@ -74,7 +74,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
             return View(userVMs);
         }
 
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["Roles"] = new SelectList(_roleManager.Roles, "Name");

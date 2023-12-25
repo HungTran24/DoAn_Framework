@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6LQWtv9J8m0HX28/IOh60XwV4TfKVE/FWEC6gavmXtE=",
+  "Hash": "KS5ofMc8sjZTtGqVKSfi5s12b9+1Vgh7noWswp0XFIU=",
   "Source": "DoAn_FrameWork",
   "BasePath": "_content/DoAn_FrameWork",
   "Mode": "Default",
@@ -25056,6 +25056,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\payment\\1.png"
+    },
+    {
+      "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\product\\default_image.png",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "assets/images/product/default_image.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\product\\default_image.png"
     },
     {
       "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\product\\icon\\1.png",

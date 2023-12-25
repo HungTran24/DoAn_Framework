@@ -15,7 +15,7 @@ namespace DoAn_FrameWork.Models
         public int? ShippingId { get; set; }
         public int? PaymentId { get; set; }
         public int? OrderTotal { get; set; }
-        public int? OrderStatus { get; set; }
+        public string? OrderStatus { get; set; }
         public DateTime? CreatedAt { get; set; }
 
         public virtual Customer? Customer { get; set; }

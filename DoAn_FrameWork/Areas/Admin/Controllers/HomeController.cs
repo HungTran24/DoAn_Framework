@@ -15,7 +15,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin, Employee")]
+       // [Authorize(Roles = "Admin, Employee")]
         public IActionResult Index()
         {
             HomeViewModel home = new HomeViewModel();
