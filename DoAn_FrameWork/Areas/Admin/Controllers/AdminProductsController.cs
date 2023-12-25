@@ -103,7 +103,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                 //await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
                 var existingGroupProduct = _context.GroupProducts.FirstOrDefault(g => g.GroupProductName == productVM.GroupProduct.GroupProductName);
-                if (existingGroupProduct == null)
+                if (existingGroupProduct == null && productVM.GroupProduct.GroupProductName != null)
                 {
                     _context.Add(productVM.GroupProduct);
                     await _context.SaveChangesAsync();
@@ -123,6 +123,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                     WarrantyTime = productVM.WarrantyTime,
                     GroupProductId = productVM.GroupProduct.GroupProductId,
                 };
+                if (product.GroupProductId == 0) product.GroupProductId = null;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
 
