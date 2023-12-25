@@ -1,0 +1,210 @@
+﻿@model IEnumerable<DoAn_FrameWork.Areas.Admin.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="col">
+            <h2 class="page-title">
+                Hóa đơn
+            </h2>
+        </div>
+        <div class="row g-2 align-items-center">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <ol class="breadcrumb breadcrumb-arrows">
+                        <li class="breadcrumb-item active"><a href="#">List</a></li>
+                        <!-- Các mục breadcrumb khác nếu cần -->
+                    </ol>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <form asp-area="Admin" asp-controller="AdminOrders" asp-action="Index" autocomplete="off" novalidate="">
+                    <div class="input-icon">
+                        <span class="input-icon-addon">
+                            <!-- Biểu tượng tìm kiếm -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><circle cx="10" cy="10" r="7"></circle><line x1="21" y1="21" x2="15" y2="15"></line></svg>
+                        </span>
+                        <input type="text" value="@ViewBag.SearchTerm" class="form-control" placeholder="Search…" aria-label="Search in website" name="searchTerm">
+                    </div>
+                </form>
+            </div>
+           @*  <div class="col-md-1">
+                <a class="btn btn-success w-100" asp-area="Admin" asp-controller="AdminOrders" asp-action="Create">
+                    Add
+                </a>
+            </div> *@
+
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="card">
+            <div class="card-body">
+                <div id="table-default" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><button class="table-sort" data-sort="sort-name">ID</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Khách hàng</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Vận chuyển</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Thanh toán</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Tổng giá</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Tình trạng</button></th>
+                                <th><button class="table-sort" data-sort="sort-city">Ngày lập</button></th>
+                                <th><button class="table-sort" data-sort="sort-type">Action</button></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="sort-name">@item.OrderId</td>
+                                    <td class="sort-city">@item.Customer?.CustomerName</td>
+                                    <td class="sort-city">@item.Shipping?.ShippingName</td>
+                                    <td class="sort-city">@item.Payment?.PaymentMethod</td>
+                                    <td class="sort-city">@item.OrderTotal</td>
+                                    <td class="sort-city">@item.OrderStatus</td>
+                                    <td class="sort-city">@item.CreatedAt</td>
+                                    <td class="sort-type" style="display: flex;">
+                                        <div class="mx-1">
+                                            <a class="btn btn-primary w-10" asp-area="Admin" asp-controller="AdminOrders" asp-action="Details" asp-route-id="@item.OrderId">
+                                                View
+                                            </a>
+                                        </div>
+
+                                        <div class="mx-1">
+                                            <a class="btn btn-outline-danger w-10" asp-area="Admin" asp-controller="AdminOrders" asp-action="GeneratePDF" asp-route-id="@item.OrderId">
+                                                Export PDF
+                                            </a>
+                                        </div>
+
+
+                                        <div class="dropdown btn-update-status mx-1">
+                                            <a  class="btn dropdown-toggle btn-outline-dark" data-bs-toggle="dropdown">Status</a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Pending"})">
+                                                    Pending
+                                                </a>
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Confirmed"})">
+                                                    Confirmed
+                                                </a>
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Shipped"})">
+                                                    Shipped
+                                                </a>
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Done"})">
+                                                    Done
+                                                </a>
+                                                <a class="dropdown-item" href="@Url.Action("UpdateStatus", "AdminOrders", new { id = item.OrderId, status = "Cancel"})">Cancel</a>
+                                            </div>
+                                        </div>
+                                        
+
+                                        @* <a class="btn btn-warning w-10 btn-delete" href="@Url.Action("Delete", "AdminOrders", new { id = item.OrderId })" data-toggle="tooltip" title="Delete">
+                                            Delete
+                                        </a> *@
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                    <div class="col-md-auton mt-3" style="display: flex; flex-grow: 1;">
+                        <ul class="pagination">
+                            @if (ViewBag.TotalPages > 1)
+                            {
+                                @if (ViewBag.CurrentPage > 1)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, pageSize = ViewBag.PageSize })">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 6l-6 6l6 6"></path></svg>
+                                        </a>
+                                    </li>
+                                }
+
+                                for (int i = 1; i <= ViewBag.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                                    </li>
+                                }
+
+                                @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, pageSize = ViewBag.PageSize })">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 6l6 6l-6 6"></path></svg>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                        <div class="btn-export">
+                            <a asp-area="Admin" asp-controller="AdminOrders" asp-action="ExportOrdersInExcel" class="btn btn-outline-success w-10">
+                                Export to Excel
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $('.dropdown-item').click(function (e) {
+            e.preventDefault();
+
+            var orderStatus = $(this).text().trim();
+            var orderId = $(this).closest('tr').find('.sort-name').text().trim();
+            var ActionUrl = $(this).attr('href');
+            var currentElement = $(this);
+
+            $.ajax({
+                url: ActionUrl, // Sửa đường dẫn tới phương thức UpdateStatus
+                method: "POST",
+                data: { id: orderId, status: orderStatus },
+                success: function () {
+                    var statusInRow = currentElement.closest('tr').find('.sort-city:eq(4)');
+                    statusInRow.text(orderStatus);
+                    currentElement.closest('tr').find('.dropdown-item').removeClass('active');
+                    currentElement.addClass('active');
+                    
+                },
+                error: function () {
+                    console.error('Lỗi khi cập nhật trạng thái');
+                }
+            });
+
+        });
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        // Lặp qua mỗi hàng trong bảng
+        $('.table-tbody').find('tr').each(function () {
+            
+            var status = $(this).find('.sort-city:eq(4)').text().trim(); 
+            
+
+            
+            $(this).find('.dropdown-item').each(function () {
+                if ($(this).text().trim() === status) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    }); 
+</script>
+
+
+

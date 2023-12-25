@@ -1,4 +1,5 @@
-﻿using DoAn_FrameWork.Models;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using DoAn_FrameWork.Models;
 using DoAn_FrameWork.ModelViews;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +12,11 @@ namespace DoAn_FrameWork.Controllers
     public class ProductController : Controller
     {
         private readonly TechnoShop_DBContext _context;
-        public ProductController(TechnoShop_DBContext context)
+        public INotyfService _notifyService { get; }
+        public ProductController(TechnoShop_DBContext context, INotyfService notifyService)
         {
             _context = context;
+            _notifyService = notifyService;
         }
 
         public IActionResult Index(int? page, String SearchString = "", String selectedValue = "")
@@ -123,9 +126,11 @@ namespace DoAn_FrameWork.Controllers
             try
             {
                 var product = _context.Products.SingleOrDefault(x => x.ProductId == id);
+       
 
                 if (product == null)
                 {
+                    _notifyService.Error("This is an product == null");
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -139,11 +144,16 @@ namespace DoAn_FrameWork.Controllers
                     .AsNoTracking()
                     .Where(x => x.GroupProductId == groupProductId && x.ProductId != id)
                     .ToList();
+                var productImages = _context.ProductImages
+                    .AsNoTracking()
+                    .Where(x => x.ProductId == id)
+                    .ToList();
                 var model = new ProductDetailViewModel
                 {
                     Product = product,
                     RelativeProducts = relative_products,
-                    VariantProducts = variant_products
+                    VariantProducts = variant_products,
+                    ProductImages = productImages
                 };
 
                 return View(model);
@@ -151,9 +161,11 @@ namespace DoAn_FrameWork.Controllers
             catch (Exception ex)
             {
                 // Log the exception
+                _notifyService.Error("This is an Error Notification"+ex);
+                TempData["Error"] = "An error occurred: " + ex.Message;
                 return RedirectToAction("Index", "Home");
             }
 
         }
     }
-        }
+}

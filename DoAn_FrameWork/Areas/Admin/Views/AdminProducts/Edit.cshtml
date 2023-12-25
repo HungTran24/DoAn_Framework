@@ -1,11 +1,246 @@
-﻿@model DoAn_FrameWork.Models.Product
+﻿@model DoAn_FrameWork.Areas.Admin.Models.Product
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+
+@section Styles {
+    <!-- Đặt các đoạn mã CSS ở đây -->
+    <link href="~/admintemplate/dist/libs/dropzone/dist/dropzone.css?1684106062" rel="stylesheet">
+    <style>
+        .btn-remove:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="~/admintemplate/dist/libs/dropzone/dist/dropzone-min.js?1684106062" defer=""></script>
+    <script src="~/admintemplate/dist/js/demo-theme.min.js?1684106062"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            new Dropzone("#dropzone-default")
+        })
+    </script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            new Dropzone("#dropzone-multiple")
+        })
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new Dropzone("#dropzone-custom")
+        })
+    </script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.btn-add-group').on('click', function () {
+                $("#group-add-block").show();
+                $('#select-group').prop('disabled', true);
+            });
+        });
+
+    </script>
+
+}
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Sản phẩm
+                </h2>
+            </div>
+            <div class="card-body">
+                <ol class="breadcrumb breadcrumb-arrows">
+                    <li class="breadcrumb-item "><a asp-area="Admin" asp-controller="AdminProducts" asp-action="Index">List</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Edit</a></li>
+                    <!-- Các mục breadcrumb khác nếu cần -->
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="col-12">
+            <form method="post" asp-action="Update" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ProductId" />
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Nhập thông tin chỉnh sửa</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="ProductName">Tên sản phẩm</label>
+                            <input asp-for="ProductName" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="ProductName">Tên sản phẩm</label>
+                            <input asp-for="ProductName" class="form-control">
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Category">Danh mục</label>
+                            <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.Categories">
+                                <option disabled selected>--select--</option>
+                            </select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="row row-cards">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dropzone" id="dropzone" action="." autocomplete="off" novalidate>
+                                        <div class="fallback">
+                                            <input name="ProductImage" type="file" />
+                                            <span asp-validation-for="ProductImage" class="text-danger"></span>
+                                        </div>
+                                        
+                                        <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview"> 
+                                            <div class="dz-image">
+                                                <img src="@Model.ProductImage" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dropzone" id="dropzone" action="." autocomplete="off" novalidate>
+                                        <div class="fallback">
+                                            <input name="ProductImagesVM" type="file" multiple="multiple" />
+                                            <span asp-validation-for="ProductImages" class="text-danger"></span>
+                                        </div>
+                                            <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">
+                                                <div class="dz-image">
+                                                @if (Model.ProductImages != null)
+                                                {
+                                                    @foreach (var item in Model.ProductImages)
+                                                    {
+                                                        <img src="@item.Image" />
+                                                    }
+                                                }
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                   
+
+                    @*                     <input type="file" multiple="multiple" class="dz-hidden-input" tabindex="-1" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
+                    <input type="file" multiple="multiple" class="dz-hidden-input" tabindex="-1" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
+                    *@
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="ProductDesc">Mô tả sản phẩm</label>
+                            <textarea id="mytextarea" asp-for="ProductDesc"></textarea>
+                            <span asp-validation-for="ProductDesc" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="ProductPrice">Giá sản phẩm</label>
+                            <input asp-for="ProductPrice" class="form-control">
+                            <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="DiscountPercentage">Phần trăm giảm giá</label>
+                            <input asp-for="DiscountPercentage" class="form-control">
+                            <span asp-validation-for="DiscountPercentage" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="SaleQuantity">Số lượng đã bán</label>
+                            <input asp-for="SaleQuantity" class="form-control">
+                            <span asp-validation-for="SaleQuantity" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="StockQuantity">Số lượng kho</label>
+                            <input asp-for="StockQuantity" class="form-control">
+                            <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="WarrantyTime">Thời gian bảo hành</label>
+                            <input asp-for="WarrantyTime" class="form-control">
+                            <span asp-validation-for="WarrantyTime" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div style="display: flex;">
+                                <label class="form-label " asp-for="GroupProduct">Chọn nhóm sản phẩm (có thể không chọn)</label>
+                                <a class="btn btn-outline-dark w-5 h-4 btn-add-group" style="margin-left: 4px">Add</a>
+                            </div>
+
+                            <select class="form-control" id="select-group" asp-for="GroupProductId" asp-items="ViewBag.GroupProducts">
+                                <option disabled selected>--select--</option>
+                            </select>
+                            <span asp-validation-for="GroupProduct" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div id="group-add-block" class="card-body " style="display: none;">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="GroupProduct.GroupProductName">Tên nhóm sản phẩm</label>
+                            <input asp-for="GroupProduct.GroupProductName" class="form-control">
+                            <span asp-validation-for="GroupProduct.GroupProductName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-end">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+@* <h1>Edit</h1>
 
 <h4>Product</h4>
 <hr />
@@ -60,6 +295,11 @@
                 <span asp-validation-for="WarrantyTime" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="GroupProductId" class="control-label"></label>
+                <select asp-for="GroupProductId" class="form-control" asp-items="ViewBag.GroupProductId"></select>
+                <span asp-validation-for="GroupProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -72,4 +312,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+} *@

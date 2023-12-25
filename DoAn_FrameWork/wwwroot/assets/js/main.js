@@ -1,4 +1,5 @@
 (function ($) {
+
 	'use strict';
 	/*----------------------------------------*/
 	/*  Check if element exists
@@ -165,9 +166,59 @@
 			}
 		});
 	}
+	/* --- Product Image Slider--- */
+
+	if ($('.single-product-thumbs').elExists()) {
+		
+		
+		$('.swiper-button-next,.swiper-button-prev').css({
+			visibility: 'visible',
+			opacity: 0.6,
+			border: 'none',
+			backgroundcolor: 'black',
+		});
+		
+
+		var myswiper = new Swiper('.single-product-thumbs', {
+			spaceBetween: 10,
+			slidesPerView: 4,
+			freeMode: true,
+			watchSlidesVisibility: true,
+			watchSlidesProgress: true,
+			loop: false,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			}, 
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			breakpoints: {
+				320: {
+					slidesperview: 1,
+				},
+				576: {
+					slidesperview: 2,
+				},
+				992: {
+					slidesperview: 3,
+				},
+				1501: {
+					slidesperview: 4,
+				}
+			}
+		});
+		var myswiper_main = new Swiper('.single-product-slider', {
+            spaceBetween: 30,
+            thumbs: {
+                swiper: myswiper
+            }
+        });
+	}
 
 	/* --- Product List Slider--- */
-	if($('.product-list-slider').elExists()){
+	if ($('.product-list-slider').elExists()) {
 		var mySwiper = new Swiper('.product-list-slider', {
 			slidesPerView: 3,
 			spaceBetween: 30,
@@ -201,7 +252,7 @@
 	}
 
 	/* --- Product List Slider Two--- */
-	if($('.widgets-list-slider').elExists()){
+	if ($('.widgets-list-slider').elExists()) {
 		var mySwiper = new Swiper('.widgets-list-slider', {
 			slidesPerView: 1,
 			spaceBetween: 25,
@@ -234,7 +285,8 @@
 	}
 
 	/* --- Blog Slider--- */
-	if($('.blog-slider').elExists()){
+	if ($('.blog-slider').elExists()) {
+
 		var mySwiper = new Swiper('.blog-slider', {
 			slidesPerView: 3,
 			spaceBetween: 30,
@@ -245,20 +297,20 @@
 			},
 			breakpoints: {
 				320: {
-				  slidesPerView: 1,
+					slidesPerView: 1,
 				},
 				768: {
-				  slidesPerView: 2,
+					slidesPerView: 2,
 				},
 				1200: {
-				  slidesPerView: 3,
+					slidesPerView: 3,
 				}
 			}
 		});
 	}
 
 	/* --- Single Blog Slider--- */
-	if($('.single-blog-slider').elExists()){
+	if ($('.single-blog-slider').elExists()) {
 		var swiper = new Swiper('.single-blog-slider', {
 			slidesPerView: 1,
 			effect: "fade",
@@ -284,7 +336,7 @@
 	});
 
 	/* --- Testimonial Sliderr--- */
-	if($('.testimonial-slider').elExists()){
+	if ($('.testimonial-slider').elExists()) {
 		var mySwiper = new Swiper('.testimonial-slider', {
 			slidesPerView: 1,
 			spaceBetween: 30,
@@ -301,7 +353,7 @@
 	}
 
 	/* --- Brand Sliderr--- */
-	if($('.brand-slider').elExists()){
+	if ($('.brand-slider').elExists()) {
 		var mySwiper = new Swiper('.brand-slider', {
 			slidesPerView: 5,
 			spaceBetween: 30,
@@ -316,23 +368,23 @@
 			},
 			breakpoints: {
 				320: {
-				  slidesPerView: 2,
+					slidesPerView: 2,
 				},
 				480: {
-				  slidesPerView: 3,
+					slidesPerView: 3,
 				},
 				768: {
-				  slidesPerView: 4,
+					slidesPerView: 4,
 				},
 				992: {
-				  slidesPerView: 5,
+					slidesPerView: 5,
 				}
 			}
 		});
 	}
 
 	/* --- Team Member Sliderr--- */
-	if($('.team-member-slider').elExists()){
+	if ($('.team-member-slider').elExists()) {
 		var mySwiper = new Swiper('.team-member-slider', {
 			slidesPerView: 3,
 			spaceBetween: 30,
@@ -343,72 +395,86 @@
 			},
 			breakpoints: {
 				320: {
-				  slidesPerView: 1,
+					slidesPerView: 1,
 				},
 				576: {
-				  slidesPerView: 2,
+					slidesPerView: 2,
 				},
 				768: {
-				  slidesPerView: 3,
+					slidesPerView: 3,
 				}
 			}
 		});
 	}
 
-	/* ---Product Detail Horizontal Slider--- */
-	if($('.single-product-slider').elExists()){
-		var singleProduct = new Swiper('.single-product-thumbs', {
-			spaceBetween: 30,
-			slidesPerView: 4,
-			freeMode: false,
-			watchSlidesVisibility: true,
-			watchSlidesProgress: true,
-			allowTouchMove: false,
-			loop: false,
-			breakpoints: {
-				320: {
-				  slidesPerView: 3,
-				  allowTouchMove: true
-				},
-				768: {
-				  slidesPerView: 4,
-				  allowTouchMove: true
-				},
-				1200: {
-				  slidesPerView: 4,
-				  allowTouchMove: false
-				}
-			}
-		});
-		var singleProduct = new Swiper('.single-product-slider', {
-			autoplay: false,
-			delay: 5000,
-			slidesPerView: 1,
-			slidesPerGroup: 1,
-			watchSlidesProgress: true,
-			watchSlidesVisibility: true,
-			allowTouchMove: true,
-			setWrapperSize: true,
-			waitForTransition: true,
-			loop: false,
-			navigation: {
-				nextEl: '.gallery-button-next',
-				prevEl: '.gallery-button-prev',
-			},
-			pagination: {
-				el: '.gallery-pagination',
-				clickable: true
-			},
-			thumbs: {
-				swiper: singleProduct
-			}
-		});
-	}
+	///* ---Product Detail Horizontal Slider--- */
+	//if ($('.single-product-slider').elExists()) {
+
+	//	var singleProduct = new Swiper('.single-product-thumbs', {
+	//		spaceBetween: 30,
+	//		slidesPerView: 4,
+	//		watchSlidesVisibility: true,
+	//		watchSlidesProgress: true,
+	//		allowTouchMove: true,
+	//		loop: true,
+	//		navigation: {
+	//			nextEl: '.swiper-button-next',
+	//			prevEl: '.swiper-button-prev',
+	//		},
+	//		pagination: {
+	//			el: '.gallery-pagination',
+	//			clickable: true
+	//		},
+	//		breakpoints: {
+	//			320: {
+	//				slidesPerView: 3,
+	//				allowTouchMove: true
+	//			},
+	//			768: {
+	//				slidesPerView: 4,
+	//				allowTouchMove: true
+	//			},
+	//			1200: {
+	//				slidesPerView: 4,
+	//				allowTouchMove: false
+	//			}
+	//		}
+	//	});
+	//	$('.gallery-button-next,.gallery-button-prev').css({
+	//		visibility: 'visible',
+	//		opacity: 0.6,
+	//		border: 'none',
+	//		backgroundcolor: 'black',
+	//	});
+	//	var singleProduct = new Swiper('.single-product-slider', {
+	//		autoplay: false,
+	//		delay: 5000,
+	//		slidesPerView: 1,
+	//		slidesPerGroup: 1,
+	//		watchSlidesProgress: true,
+	//		watchSlidesVisibility: true,
+	//		allowTouchMove: true,
+	//		setWrapperSize: true,
+	//		waitForTransition: true,
+	//		loop: false,
+	//		navigation: {
+	//			nextEl: '.gallery-button-next',
+	//			prevEl: '.gallery-button-prev',
+	//		},
+	//		pagination: {
+	//			el: '.gallery-pagination',
+	//			clickable: true
+	//		},
+	//		thumbs: {
+	//			swiper: singleProduct
+	//		}
+	//	});
+	//}
 
 	/* ---Scene--- */
 	$('.scene').each(function () {
-        new Parallax($(this)[0]);
-    });
+		new Parallax($(this)[0]);
+	});
 
 	/*----------------------------------------*/
 	/* Toggle Function Active
@@ -531,29 +597,29 @@
 	}
 
 	/*------------------------------------
-	    Magnific Popup
-	    ------------------------------------- */
-		if ($('.popup-vimeo').elExists()){
-			$('.popup-vimeo').magnificPopup({
-				type: 'iframe',
-				disableOn: function () {
-					if ($(window).width() < 600) {
-						return false;
-					}
-					return true;
+		Magnific Popup
+		------------------------------------- */
+	if ($('.popup-vimeo').elExists()) {
+		$('.popup-vimeo').magnificPopup({
+			type: 'iframe',
+			disableOn: function () {
+				if ($(window).width() < 600) {
+					return false;
 				}
-			});
-		}
-		if ($('.gallery-popup').elExists()){
-			$('.gallery-popup').magnificPopup({
-				type: 'image',
-				gallery: {
-					enabled: true
-				}
-			});
-		}
-		
-	
+				return true;
+			}
+		});
+	}
+	if ($('.gallery-popup').elExists()) {
+		$('.gallery-popup').magnificPopup({
+			type: 'image',
+			gallery: {
+				enabled: true
+			}
+		});
+	}
+
+
 	/*------------------------------------
 	Toolbar Button
 	------------------------------------- */
@@ -685,9 +751,9 @@
 	if ($('.nice-select').elExists()) {
 		$('.nice-select').niceSelect();
 	}
-	
+
 	/*--------------------------------
-    Ajax Contact Form
+	Ajax Contact Form
 -------------------------------- */
 	$(function () {
 		// Get the form.
@@ -702,39 +768,39 @@
 			var formData = $(form).serialize();
 			// Submit the form using AJAX.
 			$.ajax({
-					type: 'POST',
-					url: $(form).attr('action'),
-					data: formData
-				})
-			.done(function (response) {
-				// Make sure that the formMessages div has the 'success' class.
-				$(formMessages).removeClass('error');
-				$(formMessages).addClass('success');
-
-				// Set the message text.
-				$(formMessages).text(response);
-
-				// Clear the form.
-				$('#contact-form input,#contact-form textarea').val('');
+				type: 'POST',
+				url: $(form).attr('action'),
+				data: formData
 			})
-			.fail(function (data) {
-				// Make sure that the formMessages div has the 'error' class.
-				$(formMessages).removeClass('success');
-				$(formMessages).addClass('error');
+				.done(function (response) {
+					// Make sure that the formMessages div has the 'success' class.
+					$(formMessages).removeClass('error');
+					$(formMessages).addClass('success');
 
-				// Set the message text.
-				if (data.responseText !== '') {
-					$(formMessages).text(data.responseText);
-				} else {
-					$(formMessages).text('Oops! An error occured and your message could not be sent.');
-				}
-			});
+					// Set the message text.
+					$(formMessages).text(response);
+
+					// Clear the form.
+					$('#contact-form input,#contact-form textarea').val('');
+				})
+				.fail(function (data) {
+					// Make sure that the formMessages div has the 'error' class.
+					$(formMessages).removeClass('success');
+					$(formMessages).addClass('error');
+
+					// Set the message text.
+					if (data.responseText !== '') {
+						$(formMessages).text(data.responseText);
+					} else {
+						$(formMessages).text('Oops! An error occured and your message could not be sent.');
+					}
+				});
 		});
 
 	});
-	
+
 	/*--------------------------------
-    Scroll To Top
+	Scroll To Top
 -------------------------------- */
 	function scrollToTop() {
 		var $scrollUp = $('.scroll-to-top'),
@@ -764,5 +830,6 @@
 	}
 
 	scrollToTop();
-
+	
 })(jQuery);
+//Hung function 

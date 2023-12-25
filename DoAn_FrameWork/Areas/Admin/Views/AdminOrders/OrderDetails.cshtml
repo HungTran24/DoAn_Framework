@@ -1,0 +1,74 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DoAn_FrameWork.Areas.Admin.Models.Order
+
+<div class="card-body">
+    <div class="row">
+        <div class="col-6">
+            <p class="h3">Company</p>
+            <address>
+                45 Tân Lập<br>
+                Đông Hòa, Dĩ An<br>
+                Bình Dương<br>
+                TechNoShop@gmail.com
+            </address>
+        </div>
+
+        <div class="col-6 text-end">
+            <p class="h3">Client</p>
+            <address>
+                @Model.Shipping?.ShippingAddress<br>
+                @*  State, City<br>
+                Region, Postal Code<br> *@
+                @Model.Customer?.CustomerEmail
+            </address>
+        </div>
+        <div class="col-12 my-5">
+            <h1>Invoice @Model.OrderId</h1>
+        </div>
+    </div>
+    <table class="table table-transparent table-responsive">
+        <thead>
+            <tr>
+                <th class="text-center" style="width: 1%"></th>
+                <th>Product</th>
+                <th class="text-center" style="width: 1%">Qnt</th>
+                <th class="text-end" style="width: 1%">Unit</th>
+                <th class="text-end" style="width: 1%">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr>
+                    <td class="text-center">@item.OrderDetailsId</td>
+                    <td>
+                        <p class="strong mb-1">@item.Product?.ProductName</p>
+                        <div class="text-muted">@item.Product?.ProductDesc</div>
+                    </td>
+                    <td class="text-center">
+                        @item.ProductSalesQuantity
+                    </td>
+                    <td class="text-end">@String.Format("{0:N0}", item.Product?.ProductPrice) VNĐ</td>
+                    <td class="text-end">@String.Format("{0:N0}",item.ProductSalesQuantity*item.Product?.ProductPrice) VNĐ</td>
+                </tr>
+            }
+
+
+            @* <tr>
+            <td colspan="4" class="strong text-end">Subtotal</td>
+            <td class="text-end">@String.Format("{0:N0}", Model.OrderTotal) VNĐ</td>
+            </tr> *@
+
+            <tr>
+                <td colspan="4" class="strong text-uppercase text-end">Total Due</td>
+                <td class="font-weight-bold text-end">@String.Format("{0:N0}", Model.OrderTotal) VNĐ</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="text-muted text-center mt-5">
+        Thank you very much for doing business with us. We look forward to working with
+        you again!
+    </p>
+</div>
