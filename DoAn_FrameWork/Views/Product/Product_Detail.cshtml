@@ -7,7 +7,7 @@
 }
 
 <main class="main-content">
-    <div class="breadcrumb-area breadcrumb-height" style="height: 50px;" data-bg-image="~/assets/images/breadcrumb/bg/1-1-1920x373.jpg">
+    <div class="breadcrumb-area breadcrumb-height" style="height: 50px;" data-bg-image="">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-lg-12">
@@ -32,26 +32,18 @@
                     <div class="single-product-img h-100">
                         <div class="swiper-container single-product-slider">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <a href="~/assets/images/product/large-size/2-1-555x645.jpg" class="single-img gallery-popup">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Image">
-                                    </a>
-                                </div>
-@*                                 <div class="swiper-slide">
-                                    <a href="~/assets/images/product/large-size/2-2-555x645.jpg" class="single-img gallery-popup">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Image">
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="~/assets/images/product/large-size/2-3-555x645.jpg" class="single-img gallery-popup">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Image">
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="~/assets/images/product/large-size/2-4-555x645.jpg" class="single-img gallery-popup">
-                                        <img class="img-full" src="~/assets/images/product/large-size/2-4-555x645.jpg" alt="Product Image">
-                                    </a>
-                                </div> *@
+                              
+                                    @foreach (var item in Model.ProductImages)
+                                    {
+                                        
+                                        <div class="swiper-slide">
+                                            <a href="@item.Image" class="single-img gallery-popup">
+                                                <img class="img-full" src="@item.Image" onerror="this.src='/assets/images/product/default_image.png';onerror='';" alt="Product Image" id="main_image"
+                                              style="object-fit:contain;">
+                                            </a>
+                                        </div>
+                                        
+                                    }
                             </div>
                             <!-- Add Pagination -->
                             <div class="swiper-pagination"></div>
@@ -75,15 +67,18 @@
                                                 <li><i class="pe-7s-star"></i></li>
                                                 <li><i class="pe-7s-star"></i></li>
                                                 <li><i class="pe-7s-star"></i></li>
-                                                <li>4.6 | Đã bán 509</li>
+                                                <li>4.6 | Đã bán <span>@Model.Product.SaleQuantity</span></li>
                                             </ul>
                                         </span>
                                         
                                     </div>
                                 </div>
                                 <p class="short-desc mb-6" style="font-size: 17px;">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    Địa chỉ nhận hàng: Khu phố 6, phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh
+                                    
+                                    <strong>Bảo hành</strong>: <span style="font-weight:500; color:#3399ff ">@Model.Product.WarrantyTime tháng</span>
+                                    <br/>
+                                    <br/>
+                                    <span>Sản phẩm có sẳn:</span><span> @Model.Product.StockQuantity</span> 
                                 </p>
                                 @if (@Model.Product.GroupProductId != null)
                                 {
@@ -106,35 +101,35 @@
                                     <label style="line-height: 50px;">Số lượng</label>
                                     <div class="quantity">
                                         <div class="cart-plus-minus" style="margin-left: 25px; margin-top: 10px;">
-                                            <input class="cart-plus-minus-box" value="1" type="text" style="height: 30px;">
+                                            <input id="data-amount" class="cart-plus-minus-box" value="1" type="text" style="height: 30px;">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="rating-box-wrap pb-7">
                                     <div class="add-to-cart">
-                                        <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="cart.html" style="border-radius: 3px;">Thêm vào giỏ hàng</a>
-                                        <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="cart.html" style="background-color: #FF424E; border-radius: 3px;">Mua ngay</a>
+                                        <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0 wcart" data-productid="@Model.Product.ProductId" href="#!" style="border-radius: 3px;">Thêm vào giỏ hàng</a>
+                              @*           <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="cart.html" style="background-color: #FF424E; border-radius: 3px;">Mua ngay</a> *@
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 order-lg-2 order-1 pt-10 pt-lg-0">
+                         
+                            
                             <div class="swiper-container single-product-thumbs">
                                 <div class="swiper-wrapper">
-                                    <a href="javascript:void(0)" class="swiper-slide">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Thumnail">
-                                    </a>
-                                    <a href="javascript:void(0)" class="swiper-slide">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Thumnail">
-                                    </a>
-                                    <a href="javascript:void(0)" class="swiper-slide">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Thumnail">
-                                    </a>
-                                    <a href="javascript:void(0)" class="swiper-slide">
-                                        <img class="img-full" src="https://salt.tikicdn.com/cache/750x750/ts/product/79/3b/b8/b133553304074a398d267dfccc3854a0.jpg" alt="Product Thumnail">
-                                    </a>
+                                    @foreach (var item in Model.ProductImages)
+                                    {
+                                        <div class="swiper-slide">
+                                            <img class="img-full feature_image" src="@item.Image" alt="Product Thumbnail">
+                                        </div>
+                                    }
                                 </div>
+                                <div class="swiper-pagination"></div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -166,11 +161,7 @@
                         <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                             <div class="product-description-body">
                                 <p class="short-desc mb-0">
-                                    Thiết kế tối giản, trang nhã với mặt lưng tráng gương mờ hiện đại.<\br>
-
-                                     Màn hình Super AMOLED Infinity-U 6.6 inch với độ phân giải FHD+ và tần số quét 120Hz.<\br>
-
-                                     Bộ camera sau đa dạng với camera chính 48MP, camera góc siêu rộng 8MP và camera macro 5MP.<\br>
+                                    @Model.Product.ProductDesc
                                 </p>
                             </div>
                         </div>
@@ -291,7 +282,7 @@
                                         <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
                                             <div class="product-item" style="padding: 10px;">
                                                 <div class="product-img">
-                                                    <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/85/f8/63/dee737a78ed2344fffaecc857efda34a.jpg" alt="Product Images">
+                                                    <img class="img-full" src="@item.ProductImage" onerror="this.src='/assets/images/product/default_image.png';onerror='';" alt="Product Images">
                                                 </div>
                                                 <div class="product-content texx">
                                                     <img src="https://salt.tikicdn.com/ts/tka/69/cf/22/1be823299ae34c7ddcd922e73abd4909.png" style="height: 20px; width: 80px;">
@@ -323,35 +314,48 @@
 </main>
 @section Scripts{
     <script>
-        $(document).ready(function () {
-            $(function ()){
+        
+
+            $(function () {
                 $(".wcart").click(function () {
-                    var productid = parseFloat($(this).attr("data-productid"));
+                    var productid = parseInt($(this).attr("data-productid"));
+
+                    var amount = parseInt($("#data-amount").val());
+                    alert(amount);
                     $.ajax({
                         url: '/api/cart/add',
                         type: "POST",
                         dataType: "JSON",
-                        data: { productid: productid },
+                        data: { productid: productid,
+                                amount: amount},
                         success: function (response) {
-                            if (response.result == 'Redirect') {
-                                window.location = response.url;
-                            }
-                                            esle {
-                                loadHeaderCart();
-                                location.reload();
-                            }
                             console.log(response);
+                            if (response.success == 'false') {
+                                console.log(response);
+                            }
+                            else {
+                                // loadHeaderCart();
+                                // location.reload();
+                                console.log("Thêm vào giỏ hàng thành công");
+                            }
+                           
+                           
                         },
                         error: function (error) {
                             alert("Error: " + error.responseText);
+                            console.log(error.responseText);
                         }
                     });
                 });
-            }
+            });
+        
 
-            function loadHeaderCart() { 
-                $(#headerCart).load("/AjaxContent/HeaderCart");
-            }
-        });
+            // function loadHeaderCart() { 
+            //     $('#headerCart').load("/AjaxContent/HeaderCart");
+            // }
+           
+          
+            
+        // });
     </script>
 }
