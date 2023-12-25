@@ -84,16 +84,18 @@
                                 {
                                     <div class="varint_product_color" style="display: flex; margin-bottom: 15px;">
                                         <label for="variant-color" style="line-height: 56px;">Màu sắc</label>
-                                        <div class="color-wrapper" style=" display: flex; margin-left: 25px;">
-                                            <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@Model.VariantProducts.FirstOrDefault().ProductId">
-                                                <div class="color-box" style="border: 1px solid #ccc; padding: 10px;margin: 5px;">Bạch Kim</div>
-                                            </a>
-                                            <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@Model.VariantProducts.Skip(1).FirstOrDefault().ProductId">
-                                                <div class="color-box" style="border: 1px solid #ccc; padding: 10px;margin: 5px;">Xanh</div>
-                                            </a>
-
-                                        </div>
+                                    @foreach (var item in Model.VariantProducts)
+                                    {
+                                            <div class="color-wrapper" style=" display: flex; margin-left: 25px;">
+                                                <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
+                                                    <div class="color-box" style="border: 1px solid #ccc; padding: 10px;margin: 5px;">@item.Color</div>
+                                                </a>
+                                            </div>
+                                        }
                                     </div>
+
+                                    
+
                                 }
                                
                                
