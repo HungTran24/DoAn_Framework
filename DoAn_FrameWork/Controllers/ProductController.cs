@@ -24,7 +24,7 @@ namespace DoAn_FrameWork.Controllers
             try
             {
                 var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-                var pageSize = 8;
+                var pageSize = 16;
                 var lsProducts = _context.Products
                     .AsNoTracking()
                     .OrderByDescending(x => x.ProductId);
