@@ -80,7 +80,7 @@
                                     <br/>
                                     <span>Sản phẩm có sẳn:</span><span> @Model.Product.StockQuantity</span> 
                                 </p>
-                                @if (@Model.Product.GroupProductId != null)
+                               @*  @if (@Model.Product.GroupProductId != null)
                                 {
                                     <div class="varint_product_color" style="display: flex; margin-bottom: 15px;">
                                         <label for="variant-color" style="line-height: 56px;">Màu sắc</label>
@@ -94,7 +94,7 @@
 
                                         </div>
                                     </div>
-                                }
+                                } *@
                                
                                
                                 <div class="quantity-with-btn pb-7" style="display: flex;">
@@ -321,7 +321,7 @@
                     var productid = parseInt($(this).attr("data-productid"));
 
                     var amount = parseInt($("#data-amount").val());
-                    alert(amount);
+                   
                     $.ajax({
                         url: '/api/cart/add',
                         type: "POST",
@@ -342,7 +342,7 @@
                            
                         },
                         error: function (error) {
-                            alert("Error: " + error.responseText);
+                          
                             console.log(error.responseText);
                         }
                     });
