@@ -64,7 +64,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddMemoryCache();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
-
+builder.Services.AddSingleton<IVnPayService, VnPayService>();
 var app = builder.Build();
 IConfiguration configuration = app.Configuration;
 
