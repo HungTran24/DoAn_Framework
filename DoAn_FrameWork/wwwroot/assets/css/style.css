@@ -16329,6 +16329,7 @@ blockquote .inner-content .user-name:before {
   -webkit-transition: all 300ms ease;
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
