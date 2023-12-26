@@ -38,7 +38,7 @@ namespace DoAn_FrameWork.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=HUNG_LAPTOP;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+                optionsBuilder.UseSqlServer("Data Source=Tri;Initial Catalog=TechnoShop_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
             }
         }
 
@@ -188,11 +188,19 @@ namespace DoAn_FrameWork.Models
                     .HasColumnName("category_id")
                     .HasDefaultValueSql("((1))");
 
+                entity.Property(e => e.Color)
+                    .HasMaxLength(500)
+                    .HasColumnName("color");
+
                 entity.Property(e => e.DiscountPercentage)
                     .HasColumnName("discount_percentage")
                     .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.GroupProductId).HasColumnName("group_product_id");
+
+                entity.Property(e => e.Options)
+                    .HasMaxLength(500)
+                    .HasColumnName("options");
 
                 entity.Property(e => e.ProductDesc)
                     .HasMaxLength(3000)
