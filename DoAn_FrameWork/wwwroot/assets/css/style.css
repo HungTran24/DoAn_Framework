@@ -16954,9 +16954,9 @@ blockquote .inner-content .user-name:before {
 }
 
 .swiper-button-next:hover, .swiper-button-prev:hover {
-  background-color: #fff;
-  border-color: #fff;
-  color: #000;
+  background-color: red!important;
+  border-color: none!important;
+  color: #fff;
 }
 
 .swiper-arrow:hover .swiper-button-next, .swiper-arrow:hover .swiper-button-prev {
