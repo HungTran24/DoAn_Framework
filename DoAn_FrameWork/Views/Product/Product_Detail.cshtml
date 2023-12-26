@@ -5,8 +5,45 @@
     ViewData["Title"] = "Product Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .btn-secondary-hover:hover {
+        background: #3399ff!important;
+        color: #fff!important;
+        opacity: 0.85;
+        border: none;
+    }
+    .btn-buy-now:hover{
+        opacity: 0.85;
+    }
 
-<main class="main-content">
+    .quantity .cart-plus-minus{
+        background:none
+    }
+    #data-amount{
+        border-radius: 8px;
+        background: none;
+        border: 1px solid #ddd;
+    }
+
+    .product-item {
+        transition: transform 0.3s ease;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .product-item:hover {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+        transform: translateY(-1px);
+    }
+
+    .product-tab-style-2 li.nav-item a {
+        background-color: #bbb;
+        border-radius: 5px;
+        font-size: 14px;
+        color: #fff;
+    }
+</style>
+<main class="main-content" style="background: #F5F5FA">
     <div class="breadcrumb-area breadcrumb-height" style="height: 50px;" data-bg-image="">
         <div class="container h-100">
             <div class="row h-100">
@@ -25,13 +62,13 @@
             </div>
         </div>
     </div>
-    <div class="single-product-area section-space-top-100" style="padding-top: 20px;">
+    <div class="single-product-area ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="single-product-img h-100">
                         <div class="swiper-container single-product-slider">
-                            <div class="swiper-wrapper">
+                            <div class="swiper-wrapper" style="background: #fff;">
                               
                                     @foreach (var item in Model.ProductImages)
                                     {
@@ -51,44 +88,44 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="product-thumb-with-content row">
-                        <div class="col-12 order-lg-1 order-2 pt-10 pt-lg-0">
+                    <div class="product-thumb-with-content row" style="font-family:Inter,Helvetica,Arial,sans-serif;">
+                        <div class="col-12 order-lg-1 order-2 pt-10 pt-lg-0" style="background: #fff; border-radius: 5px;">
                             <div class="single-product-content">
-                                <h2 class="title" style=" font-family: Poppins, sans-serif; font-size: 25px; font-weight: 400;">@Model.Product.ProductName</h2>
+                                <h2 class="title" style=" font-family: Poppins, sans-serif; font-size: 21px; font-weight: 400; padding-top: 15px;">@Model.Product.ProductName</h2>
                                 <div class="price-box pb-1">
-                                    <span class="new-price text-danger" style="font-size: 25px;">@Model.Product.ProductPrice<sup>₫</sup></span>
+                                    <span class="new-price text-danger" style="font-size: 24px;">@Model.Product.ProductPrice.Value.ToString("#,##0") <super>đ</super></span>
                                 </div>
-                                <div class="rating-box-wrap pb-7">
-                                    <div class="rating-box">
+                                <div class="rating-box-wrap" style="padding-bottom: 10px;">
+                                    <div class="rating-box" >
                                         <span>
-                                            <ul>
-                                                <li><i class="pe-7s-star"></i></li>
-                                                <li><i class="pe-7s-star"></i></li>
-                                                <li><i class="pe-7s-star"></i></li>
-                                                <li><i class="pe-7s-star"></i></li>
-                                                <li><i class="pe-7s-star"></i></li>
-                                                <li>4.6 | Đã bán <span>@Model.Product.SaleQuantity</span></li>
+                                            <ul style="align-items: center;">
+                                                <li style="margin-right: 0px;">4.9</li>
+                                                <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                <li style="margin-left: 5px;"> (590) | Đã bán @Model.Product.SaleQuantity</li>
                                             </ul>
                                         </span>
                                         
                                     </div>
                                 </div>
-                                <p class="short-desc mb-6" style="font-size: 17px;">
-                                    
-                                    <strong>Bảo hành</strong>: <span style="font-weight:500; color:#3399ff ">@Model.Product.WarrantyTime tháng</span>
-                                    <br/>
-                                    <br/>
-                                    <span>Sản phẩm có sẳn:</span><span> @Model.Product.StockQuantity</span> 
-                                </p>
+                                <div class="short-desc" style="font-size: 17px;padding-bottom: 10px;">
+                                    <span style="color: #010101"> Bảo hành</span>: <span style="font-weight:500; color:#3399ff ">@Model.Product.WarrantyTime tháng</span>
+                                </div>
+                                <div>
+                                    <span>Sản phẩm có sẵn:</span><span> @Model.Product.StockQuantity</span>
+                                </div>
                                 @if (@Model.Product.GroupProductId != null)
                                 {
-                                    <div class="varint_product_color" style="display: flex; margin-bottom: 15px;">
+                                    <div class="variant_product_color" style="display: flex; align-items: center;">
                                         <label for="variant-color" style="line-height: 56px;">Màu sắc</label>
                                     @foreach (var item in Model.VariantProducts)
                                     {
                                             <div class="color-wrapper" style=" display: flex; margin-left: 25px;">
                                                 <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
-                                                    <div class="color-box" style="border: 1px solid #ccc; padding: 10px;margin: 5px;">@item.Color</div>
+                                                    <div class="color-box" style="border: 1px solid #ddd;border-radius: 5px; padding: 0 6px;">@item.Color</div>
                                                 </a>
                                             </div>
                                         }
@@ -99,7 +136,7 @@
                                 }
                                
                                
-                                <div class="quantity-with-btn pb-7" style="display: flex;">
+                                <div class="quantity-with-btn" style="display: flex; padding-bottom: 15px;">
                                     <label style="line-height: 50px;">Số lượng</label>
                                     <div class="quantity">
                                         <div class="cart-plus-minus" style="margin-left: 25px; margin-top: 10px;">
@@ -107,19 +144,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="rating-box-wrap pb-7">
-                                    <div class="add-to-cart">
-                                        <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0 wcart" data-productid="@Model.Product.ProductId" href="#!" style="border-radius: 3px;">Thêm vào giỏ hàng</a>
-                              @*           <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="cart.html" style="background-color: #FF424E; border-radius: 3px;">Mua ngay</a> *@
+                                <div class="group-btn" style="display: flex;">
+                                    <div class="rating-box-wrap pb-7">
+                                        <div class="add-to-cart">
+                                            <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0 wcart" data-productid="@Model.Product.ProductId" href="#!" style="border-radius: 3px; text-transform: none;height: 38px;line-height: 39px;">Thêm vào giỏ hàng</a>
+                                            @*           <a class="btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" href="cart.html" style="background-color: #FF424E; border-radius: 3px;">Mua ngay</a> *@
+                                        </div>
+                                    </div>
+                                    <div class="buy-now">
+                                        <button class="btn btn-buy-now" style="border-radius: 5px; background: #FA414C; color: #fff; margin-left: 20px;">Mua ngay</button>
                                     </div>
                                 </div>
+                              
                             </div>
                         </div>
                         <div class="col-12 order-lg-2 order-1 pt-10 pt-lg-0">
                          
                             
                             <div class="swiper-container single-product-thumbs">
-                                <div class="swiper-wrapper">
+                                <div class="swiper-wrapper" style="background: #fff;">
                                     @foreach (var item in Model.ProductImages)
                                     {
                                         <div class="swiper-slide">
@@ -138,38 +181,38 @@
             </div>
         </div>
     </div>
-    <div class="product-tab-area section-space-top-100">
+    <div class="product-tab-area" style="padding-top: 15px;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <ul class="nav product-tab-nav product-tab-style-2" role="tablist">
+                <div class="col-lg-12" style="background: #fff; padding-top: 10px;">
+                    <ul class="nav product-tab-nav product-tab-style-2" role="tablist" style="border: none;">
                         <li class="nav-item" role="presentation">
-                            <a class="active btn btn-custom-size" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">
-                                Description
+                            <a class="active btn btn-custom-size" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true" >
+                                Mô tả
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="btn btn-custom-size" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">
-                                Reviews
+                            <a class="btn btn-custom-size" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false" >
+                                Đánh giá
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="btn btn-custom-size" id="shipping-tab" data-bs-toggle="tab" href="#shipping" role="tab" aria-controls="shipping" aria-selected="false">
-                                Shipping
+                            <a class="btn btn-custom-size" id="shipping-tab" data-bs-toggle="tab" href="#shipping" role="tab" aria-controls="shipping" aria-selected="false" >
+                                Giao hàng
                             </a>
                         </li>
                     </ul>
                     <div class="tab-content product-tab-content">
                         <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                             <div class="product-description-body">
-                                <p class="short-desc mb-0">
+                                <p class="short-desc" style="padding-bottom: 5px;">
                                     @Model.Product.ProductDesc
                                 </p>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                            <div class="product-review-body">
-                                <h4 class="heading mb-5">3 Đánh giá</h4>
+                            <div class="product-review-body" style="font-family:Inter,Helvetica,Arial,sans-serif;">
+                                <h4 class="heading mb-5" style="font-family:Inter,Helvetica,Arial,sans-serif;">3 Đánh giá</h4>
                                 <ul class="user-info-wrap">
                                     <li>
                                         <ul class="user-info">
@@ -179,17 +222,17 @@
                                             <li class="user-comment">
                                                 <div class="rating-box">
                                                     <ul>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
-                                                        <li><i class="pe-7s-star"></i></li>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
                                                     </ul>
                                                 </div>
                                                 <div class="meta">
                                                     <span><strong>Ngọc Tuấn -</strong> 18:42 30-11-2023</span>
                                                 </div>
-                                                <p class="short-desc mb-0">
+                                                <p class="short-desc mb-0" style="font-family:Inter,Helvetica,Arial,sans-serif;">
                                                     Giá thành rẻ, miễn síp, shop hỗ trợ nhiệt tình.
                                                 </p>
                                             </li>
@@ -221,9 +264,9 @@
                                     </li>
                                 </ul>
                                 <div class="feedback-area pt-5">
-                                    <h2 class="heading mb-1">Để lại đánh giá</h2>
+                                    <h2 class="heading mb-1" style="font-family:Inter,Helvetica,Arial,sans-serif;">Để lại đánh giá</h2>
                                     <div class="rating-box">
-                                        <span>Đánh giá của bạn</span>
+                                        <span >Đánh giá của bạn</span>
                                         <ul class="ps-4">
                                             <li><i class="pe-7s-star"></i></li>
                                             <li><i class="pe-7s-star"></i></li>
@@ -244,15 +287,15 @@
                                         <div class="form-field mt-6">
                                             <textarea name="message" placeholder="Nhận xét..." class="textarea-field"></textarea>
                                         </div>
-                                        <div class="button-wrap mt-8">
-                                            <button type="submit" value="submit" class="btn btn-custom-size lg-size btn-secondary btn-primary-hover btn-lg rounded-0" name="submit">Submit</button>
+                                        <div class="button-wrap mt-8" style="padding-bottom: 15px;">
+                                            <button type="submit" value="submit" class="btn btn-custom-size " name="submit" style="background: #3399ff; border-radius: 5px; color: #fff">Gửi</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
-                            <div class="product-shipping-body">
+                            <div class="product-shipping-body" style="font-family:Inter,Helvetica,Arial,sans-serif;">
                                 <h4 class="title">Giao hàng</h4>
                                 <p class="short-desc mb-4">
                                    Thời gian giao hàng 15-20 ngày
@@ -264,10 +307,10 @@
             </div>
         </div>
     </div>
-    <div class="product-slider-area section-space-top-95 section-space-bottom-100">
+    <div class="product-slider-area" style="font-family:Inter,Helvetica,Arial,sans-serif;padding-top:20px; padding-bottom: 20px;">
         <div class="container">
-            <div class="section-title text-center pb-55">
-                <h2 class="title mb-0">Sản phẩm liên quan</h2>
+            <div class="section-title">
+                <h2 class="title mb-0" style="font-family:Inter,Helvetica,Arial,sans-serif;font-size: 20px;opacity: 0.7;text-align: center;padding-bottom: 10px;">Sản phẩm liên quan</h2>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -275,31 +318,30 @@
 
                         <div class="swiper-container product-slider border-issue">
 
-                            <div class="swiper-wrapper">
+                            <div class="swiper-wrapper" style="background: #fff; padding-top: 15px;">
                                 @* <h2>@Model.RelativeProducts.Count</h2> *@
                                
                                     @foreach (var item in Model.RelativeProducts)
                                     {
                                      <div class="col-lg-3 " style="margin-bottom: 14px;">
                                         <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
-                                            <div class="product-item" style="padding: 10px;">
+                                            <div class="product-item" style="margin: 0 5px;">
                                                 <div class="product-img">
                                                     <img class="img-full" src="@item.ProductImage" onerror="this.src='/assets/images/product/default_image.png';onerror='';" alt="Product Images">
                                                 </div>
-                                                <div class="product-content texx">
+                                                <div class="product-content" style="border:none; text-align: left;">
                                                     <img src="https://salt.tikicdn.com/ts/tka/69/cf/22/1be823299ae34c7ddcd922e73abd4909.png" style="height: 20px; width: 80px;">
                                                     <span class="new-price" style="font-size: 13px; font-weight: 400; color: rgb(39, 39, 42);display: -webkit-box;-webkit-box-orient: vertical; -webkit-line-clamp: 2;overflow: hidden;text-overflow: ellipsis;">@item.ProductName</span>
                                                     <div class="price-box pb-1">
-                                                        <span class="new-price">@item.ProductPrice.Value.ToString("#,##0")<super>đ</super></span>
+                                                        <span class="new-price">@item.ProductPrice.Value.ToString("#,##0") <super>đ</super></span>
                                                     </div>
                                                     <div class="rating-box">
-                                                        <ul>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                            <li><i class="pe-7s-star"></i></li>
-                                                        </ul>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                        <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;"><g clip-path="url(#a)"><path d="M6.448 2.029a.5.5 0 0 0-.896 0L4.287 4.59l-2.828.41a.5.5 0 0 0-.277.854l2.046 1.994-.483 2.816a.5.5 0 0 0 .726.528L6 9.863l2.53 1.33a.5.5 0 0 0 .725-.527l-.483-2.817 2.046-1.994a.5.5 0 0 0-.277-.853L7.713 4.59 6.448 2.029Z" fill="#FFC400"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(1 1.5)" d="M0 0h10v10H0z"></path></clipPath></defs></svg>
+                                                  
                                                     </div>
                                                 </div>
                                             </div>
