@@ -92,7 +92,7 @@
                             </li>
                          
                             <li class="sort">
-                                <select id="sort-select">
+                                <select id="sort-select" style="border: 1px solid #ddd; border-radius: 5px;">
                                     <option value="1">Sắp xếp theo</option>
                                     <option value="2">Giá thấp nhất</option>
                                     <option value="3">Giá cao nhất</option>
@@ -107,7 +107,7 @@
                                     {
                                     <div class="col-lg-3 col-sm-6" style="margin-bottom: 14px;">
                                         <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
-                                            <div class="product-item">
+                                            <div class="product-item" style="border: 1px solid #eee; border-radius: 5px;">
                                                 <div class="product-img">
                                                         <img class="img-full" src="~/assets/images/product/default_image.png" alt="Product Images">
                                                 </div>

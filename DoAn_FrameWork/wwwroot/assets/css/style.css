@@ -16329,6 +16329,7 @@ blockquote .inner-content .user-name:before {
   -webkit-transition: all 300ms ease;
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -16954,9 +16955,9 @@ blockquote .inner-content .user-name:before {
 }
 
 .swiper-button-next:hover, .swiper-button-prev:hover {
-  background-color: #fff;
-  border-color: #fff;
-  color: #000;
+  background-color: red!important;
+  border-color: none!important;
+  color: #fff;
 }
 
 .swiper-arrow:hover .swiper-button-next, .swiper-arrow:hover .swiper-button-prev {
@@ -17843,7 +17844,7 @@ blockquote .inner-content .user-name:before {
 }
 
 .product-tab-style-2 li.nav-item a {
-  background-color: #010101;
+  background-color: #bbb;
   border-radius: 0;
   font-size: 14px;
   color: #fff;

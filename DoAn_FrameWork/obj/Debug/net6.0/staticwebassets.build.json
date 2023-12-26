@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rmDXblVqPVLXJ1UsXz9NrMb0ZPzyUdMYhbe09e8mBL4=",
+  "Hash": "2gYbp4u4sntxEZ4q7ubJ7/eNIyQ3HLgq8kCiya1DVvg=",
   "Source": "DoAn_FrameWork",
   "BasePath": "_content/DoAn_FrameWork",
   "Mode": "Default",
@@ -24310,6 +24310,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\about\\team\\1-3-370x350.jpg"
     },
     {
+      "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\aqua_blog.png",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "assets/images/aqua_blog.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\aqua_blog.png"
+    },
+    {
       "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\avatar\\1.jpg",
       "SourceId": "DoAn_FrameWork",
       "SourceType": "Discovered",
@@ -25007,6 +25024,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\Logo_full_black.svg"
     },
     {
+      "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\macbook_blog.png",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "assets/images/macbook_blog.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\macbook_blog.png"
+    },
+    {
       "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\megamenu\\slider\\1.jpg",
       "SourceId": "DoAn_FrameWork",
       "SourceType": "Discovered",
@@ -25532,6 +25566,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\product\\small-size\\1-6-112x124.jpg"
+    },
+    {
+      "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\samsung_blog.png",
+      "SourceId": "DoAn_FrameWork",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\",
+      "BasePath": "_content/DoAn_FrameWork",
+      "RelativePath": "assets/images/samsung_blog.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\samsung_blog.png"
     },
     {
       "Identity": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\security.jpg",

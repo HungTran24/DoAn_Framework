@@ -6673,6 +6673,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\about\\team\\1-3-370x350.jpg"
     },
     {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\aqua_blog.png",
+      "PackagePath": "staticwebassets\\assets\\images\\aqua_blog.png"
+    },
+    {
       "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\avatar\\1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\avatar\\1.jpg"
     },
@@ -6829,6 +6833,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\logo\\dark.png"
     },
     {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\macbook_blog.png",
+      "PackagePath": "staticwebassets\\assets\\images\\macbook_blog.png"
+    },
+    {
       "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\megamenu\\slider\\1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\megamenu\\slider\\1.jpg"
     },
@@ -6951,6 +6959,10 @@
     {
       "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\product\\small-size\\1-6-112x124.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\product\\small-size\\1-6-112x124.jpg"
+    },
+    {
+      "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\samsung_blog.png",
+      "PackagePath": "staticwebassets\\assets\\images\\samsung_blog.png"
     },
     {
       "Id": "E:\\WorkSpace\\FrameWork_Doan_07_12\\DoAn_Framework\\DoAn_FrameWork\\wwwroot\\assets\\images\\security.jpg",

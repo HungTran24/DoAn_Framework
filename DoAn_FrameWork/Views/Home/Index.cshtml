@@ -12,6 +12,40 @@
     .blog-content{
         background: #fff!important;
     }
+
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+        background-color: none!important;
+        border-color: none !important;
+        color: #3399ff;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after{
+        font-size: 25px;
+    }
+
+    .product-item {
+        transition: transform 0.3s ease;
+    }
+
+    .product-item:hover {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+        transform: translateY(-1px);
+    }
+    .title{
+        font-family: Inter,Helvetica,Arial,sans-serif;
+
+    }
+    .title a:hover{
+            color: initial !important;
+            background-color: initial !important;
+    }
+    .shipping-area{
+        margin-top: -75px;
+        padding-bottom: 25px;
+    }
+
+    .link-share, .comments {
+        text-transform: none;
+    }
 </style>
 <!-- Begin Slider Area -->
 <div class="slider-area">
@@ -30,9 +64,8 @@
                     <div class="container">
                         <div class="parallax-with-content">
                             <div class="slide-content">
-                                <h2 class="title mb-9" style="font-size: 30px; color: #fff">Sale off 5% vào dịp lễ</h2>
-                                <div class="button-wrap">
-                                    <a class="btn btn-custom-size lg-size btn-primary btn-white-hover rounded-0" style="background: #F7646D; border-radius: 4px;">Shop Now</a>
+                                <div class="title mb-9" style="font-size: 30px; color: #fff; font-family:Inter,Helvetica,Arial,sans-serif; line-height: 1.5; text-shadow: 1px 1px 1px #ccc;font-weight:530">
+                                    <span style="color:#3399ff">TechnoShop</span> tặng kèm quà Tết từ đơn hàng <span style="color: red;">200k</span>
                                 </div>
                             </div>
                            
@@ -46,10 +79,8 @@
                     <div class="container">
                         <div class="parallax-with-content">
                             <div class="slide-content">
-                                
-                                <h2 class="title mb-9" style="font-size: 30px;">Siêu Sales </h2>
-                                <div class="button-wrap">
-                                    <a class="btn btn-custom-size lg-size btn-primary btn-white-hover rounded-0" style="background: #F7646D; border-radius: 4px;">Shop Now</a>
+                                <div class="title mb-9" style="font-size: 30px; color: #fff; font-family:Inter,Helvetica,Arial,sans-serif; line-height: 1.5; text-shadow: 1px 1px 1px #ccc;font-weight: 530;">
+                                    Nhập mã <span style="color: #3399ff;">TNS590</span> giảm giá 5% cho tổng đơn hàng
                                 </div>
                             </div>
                            
@@ -62,14 +93,14 @@
         <div class="swiper-pagination with-bg d-md-none"></div>
 
         <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next" style="background: none; color: #fff;"></div>
+        <div class="swiper-button-prev" style="background: none; color: #fff;"></div>
     </div>
 
 </div>
 <!-- Slider Area End Here -->
 <!-- Begin Shipping Area -->
-<div class="shipping-area section-space-top-100" style="margin-top:-60px">
+<div class="shipping-area section-space-top-100">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6 pt-6 pt-lg-0">
@@ -106,13 +137,13 @@
     </div>
 </div>
 <!-- Shipping Area End Here -->
-<div class="container-area" style="background:#F5F5FA">
-    <div class="product-area section-space-top-100" style="background: #fff">
+<div class="container-area" style="background:#F5F5FA; padding-bottom: 20px">
+    <div class="product-area section-space-top-100" style="background: #F5F5FA; padding-top: 25px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <ul class="nav product-tab-nav pb-10" id="myTab" role="tablist" style="font-size: 20px;font-weight: 500;">
-                        PHỔ BIẾN
+                    <ul class="nav product-tab-nav" id="myTab" role="tablist" style="font-size: 20px;font-weight: 500;padding-bottom: 25px;">
+                        SẢN PHẨM PHỔ BIẾN
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="all-items" role="tabpanel" aria-labelledby="all-items-tab">
@@ -121,7 +152,7 @@
                                 {
                                     <div class="col-xl-3 col-lg-4 col-sm-6" style="margin-bottom: 14px;">
                                         <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
-                                            <div class="product-item">
+                                            <div class="product-item" style="background: #fff">
                                                 <div class="product-img">
 
                                                     <img class="img-full" src="@item.ProductImage" onerror="this.src='/assets/images/product/default_image.png';onerror='';"  alt="Product Images">
@@ -147,9 +178,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pagination-area pt-10">
+                    <div class="pagination-area">
                         <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center" style="font-size: 25px; margin-bottom: 25px;">
+                            <ul class="pagination justify-content-center" style="font-size: 25px; margin-bottom: 10px;">
                                 @Html.PagedListPager(Model, page=>Url.Action("Index", new{page=page}))
                             </ul>
                         </nav>
@@ -159,11 +190,10 @@
         </div>
     </div>
 
-    <div class="blog-area section-space-y-axis-100" style="background: #F5F5FA; padding-top: 30px; padding-bottom: 40px;">
+    <div class="blog-area section-space-y-axis-100" style="background: #fff; padding-top: 30px; padding-bottom:20px;">
         <div class="container">
-            <div class="section-title text-center pb-55">
-                <span class="sub-title text-primary">XEM THÊM</span>
-                <h2 class="title mb-0" style="font-family: "Poppins", sans-serif;font-weight: 500;font-size: 28px;">Tin tức mới nhất</h2>
+            <div class="section-title text-center" style="padding-bottom: 20px;">
+                <h2 class="title mb-0" style=" font-family: Inter,Helvetica,Arial,sans-serif;font-weight: 500;font-size: 20px;">Tin tức mới nhất</h2>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -173,16 +203,16 @@
                                 <div class="blog-item">
                                     <div class="blog-img">
                                         <a href="blog-detail-left-sidebar.html">
-                                            <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/11/13/de/d500a772339882fd6660b3004da9733c.jpg.webp" alt="Blog Image">
+                                            <img class="img-full" src="~/assets/images/aqua_blog.png" alt="Blog Image" style="height: 350px">
                                         </a>
                                     </div>
-                                    <div class="blog-content">
+                                    <div class="blog-content" style=" font-family: Inter,Helvetica,Arial,sans-serif;">
                                         <div class="blog-meta text-dim-gray pb-3">
                                             <ul>
-                                                <li class="date"><i class="fa fa-calendar-o me-2"></i>May 21, 2021</li>
+                                                <li class="date"><i class="fa fa-calendar-o me-2"></i>25/12/2023</li>
                                                 <li>
                                                     <span class="comments me-3">
-                                                        <a href="javascript:void(0)">5 bình luận</a>
+                                                        <a href="javascript:void(0)">5 Bình luận</a>
                                                     </span>
                                                     <span class="link-share">
                                                         <a href="javascript:void(0)">Chia sẻ</a>
@@ -191,11 +221,42 @@
                                             </ul>
                                         </div>
                                         <h5 class="title mb-4">
-                                            <a href="blog-detail-left-sidebar.html">Tiêu đề tin tức 1</a>
+                                            <a href="https://dientungaynay.vn/san-pham-cong-nghe/dien-tu-tieu-dung">Dây chuyền sản xuất Smart Line chính thức đi vào hoạt động</a>
                                         </h5>
-                                        <p class="short-desc mb-5">Nội dung tin tức 1</p>
+                                        <p class="short-desc mb-5">AQUA</p>
                                         <div class="button-wrap">
-                                            <a class="btn btn-custom-size btn-dark btn-lg rounded-0" href="blog-detail-left-sidebar.html">Đọc thêm</a>
+                                            <a class="btn btn-custom-size btn-dark btn-lg rounded-0" href="https://dientungaynay.vn/san-pham-cong-nghe/dien-tu-tieu-dung">Đọc thêm</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="blog-item">
+                                    <div class="blog-img">
+                                        <a href="">
+                                            <img class="img-full" src="~/assets/images/samsung_blog.png" alt="Blog Image" style="height: 350px">
+                                        </a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <div class="blog-meta text-dim-gray pb-3">
+                                            <ul>
+                                                <li class="date"><i class="fa fa-calendar-o me-2"></i>26/12/2023</li>
+                                                <li>
+                                                    <span class="comments me-3">
+                                                        <a href="javascript:void(0)">2 Bình luận</a>
+                                                    </span>
+                                                    <span class="link-share">
+                                                        <a href="javascript:void(0)">Chia sẻ</a>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h5 class="title mb-4">
+                                            <a href="https://dientungaynay.vn/dien-tu-tieu-dung/samsung-ra-mat-4-giai-phap-hien-thi-moi-danh-cho-doanh-nghiep">Samsung ra mắt 4 giải pháp hiển thị mới cho doanh nghiệp</a>
+                                        </h5>
+                                        <p class="short-desc mb-5">Samsung</p>
+                                        <div class="button-wrap">
+                                            <a class="btn btn-custom-size btn-dark btn-lg rounded-0" href="https://dientungaynay.vn/dien-tu-tieu-dung/samsung-ra-mat-4-giai-phap-hien-thi-moi-danh-cho-doanh-nghiep">Đọc thêm</a>
                                         </div>
                                     </div>
                                 </div>
@@ -204,16 +265,16 @@
                                 <div class="blog-item">
                                     <div class="blog-img">
                                         <a href="blog-detail-left-sidebar.html">
-                                            <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/a2/38/6c/ce008c63f4ac771550439da44f5f8ee8.png.webp" alt="Blog Image">
+                                            <img class="img-full" src="~/assets/images/macbook_blog.png" alt="Blog Image" style="height: 350px">
                                         </a>
                                     </div>
                                     <div class="blog-content">
                                         <div class="blog-meta text-dim-gray pb-3">
                                             <ul>
-                                                <li class="date"><i class="fa fa-calendar-o me-2"></i>May 21, 2021</li>
+                                                <li class="date"><i class="fa fa-calendar-o me-2"></i>27/12/2023</li>
                                                 <li>
                                                     <span class="comments me-3">
-                                                        <a href="javascript:void(0)">2 bình luận</a>
+                                                        <a href="javascript:void(0)">2 Bình luận</a>
                                                     </span>
                                                     <span class="link-share">
                                                         <a href="javascript:void(0)">Chia sẻ</a>
@@ -222,42 +283,11 @@
                                             </ul>
                                         </div>
                                         <h5 class="title mb-4">
-                                            <a href="blog-detail-left-sidebar.html">Tiêu đề tin tức 2</a>
+                                            <a href="https://dientungaynay.vn/dien-tu-tieu-dung/macbook-pro-moi-su-dung-chip-m3-co-gia-tu-3939-trieu-dong">MacBook Pro mới sử dụng chip M3 có giá từ 39,39 triệu đồng</a>
                                         </h5>
-                                        <p class="short-desc mb-5">Nội dung tin tức 2</p>
+                                        <p class="short-desc mb-5">Apple</p>
                                         <div class="button-wrap">
-                                            <a class="btn btn-custom-size btn-dark btn-lg rounded-0" href="blog-detail-left-sidebar.html">Đọc thêm</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="blog-item">
-                                    <div class="blog-img">
-                                        <a href="blog-detail-left-sidebar.html">
-                                            <img class="img-full" src="https://salt.tikicdn.com/cache/280x280/ts/product/98/9b/52/89f12609da590e912ba9741bcf186603.jpg.webp" alt="Blog Image">
-                                        </a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <div class="blog-meta text-dim-gray pb-3">
-                                            <ul>
-                                                <li class="date"><i class="fa fa-calendar-o me-2"></i>May 21, 2021</li>
-                                                <li>
-                                                    <span class="comments me-3">
-                                                        <a href="javascript:void(0)">2 bình luận</a>
-                                                    </span>
-                                                    <span class="link-share">
-                                                        <a href="javascript:void(0)">Chia sẻ</a>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h5 class="title mb-4">
-                                            <a href="blog-detail-left-sidebar.html">Tiêu đề tin tức 3</a>
-                                        </h5>
-                                        <p class="short-desc mb-5">Nội dung tin tức 3</p>
-                                        <div class="button-wrap">
-                                            <a class="btn btn-custom-size btn-dark btn-lg rounded-0" href="blog-detail-left-sidebar.html">Đọc thêm</a>
+                                            <a class="btn btn-custom-size btn-dark btn-lg rounded-0" href="https://dientungaynay.vn/dien-tu-tieu-dung/macbook-pro-moi-su-dung-chip-m3-co-gia-tu-3939-trieu-dong">Đọc thêm</a>
                                         </div>
                                     </div>
                                 </div>
