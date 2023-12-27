@@ -181,13 +181,13 @@
                             
                             _total.text(total.toLocaleString()); // Format sum-total to 100,000,000
                             total_temp += total;
-                            console.log("Tông trang ajax:"+total_temp);
+                            //console.log("Tông trang ajax:"+total_temp);
                             
                             
                         },
                         error: function (error) {
                             alert("Error: " + error.responseText);
-                            console.log(error.responseText);
+                            //console.log(error.responseText);
                         }
                     });
                     promises.push(promise);

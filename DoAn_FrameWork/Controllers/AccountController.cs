@@ -9,7 +9,15 @@ namespace DoAn_FrameWork.Controllers
         TechnoShop_DBContext _context = new TechnoShop_DBContext();
         public IActionResult Index()
         {
+            //get order list theo customer
+            var customerName = HttpContext.Session.GetString("Username");
+            var customerid = _context.Customers.FirstOrDefault(x => x.Username == customerName).CustomerId;
+            //var orderList = _context.Orders.Include(x => x.Customer).Where(x => x.CustomerId == customerid).Include(x => x.OrderDetails).ThenInclude(x => x.Product).ToList();
+            var orderList = _context.Orders.Where(x => x.CustomerId == customerid).ToList();
+            //view bag
+            ViewBag.OrderList = orderList;
             return View();
+            
         }
         [HttpPost]
         public IActionResult Index(Customer user)
