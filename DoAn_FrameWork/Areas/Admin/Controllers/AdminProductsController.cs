@@ -8,6 +8,7 @@ using System.Data;
 using DoAn_FrameWork.Areas.Admin.Models;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
+using ClosedXML;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
@@ -125,7 +126,12 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                     Color = productVM.Color,
                     Options = productVM.Options,
                 };
-                if (product.GroupProductId == 0) product.GroupProductId = null;
+                if (product.GroupProductId == 0) {
+                    if (productVM.GroupProductId != null)
+                        product.GroupProductId = productVM.GroupProductId;
+                    else 
+                        product.GroupProductId = null;
+                }
                 _context.Add(product);
                 await _context.SaveChangesAsync();
 
@@ -175,21 +181,21 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update([Bind("ProductId,ProductName,ProductPrice,ProductImage,ProductDesc,DiscountPercentage,CategoryId,SaleQuantity,StockQuantity,WarrantyTime,GroupProductId")] Product product, IFormFile? ProductImage, List<IFormFile>? ProductImages)
+        public async Task<IActionResult> Update(Product product, IFormFile? ProductImageVM, List<IFormFile>? ProductImagesVM)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (ProductImage != null)
+                    if (ProductImageVM != null)
                     {
-                        var result = await _photoService.AddPhotoAsync(ProductImage);
+                        var result = await _photoService.AddPhotoAsync(ProductImageVM);
                         product.ProductImage = result.Url.ToString();
                     }
 
-                    if (ProductImages.Count != 0)
+                    if (ProductImagesVM.Count != 0)
                     {
-                        foreach (var image in ProductImages)
+                        foreach (var image in ProductImagesVM)
                         {
                             var resUpload = await _photoService.AddPhotoAsync(image);
                             var productImages = new ProductImage
