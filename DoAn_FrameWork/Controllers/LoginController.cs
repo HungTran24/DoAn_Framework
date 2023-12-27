@@ -41,7 +41,7 @@ public class LoginController : Controller
                 && x.Password.Equals(user.Password)).FirstOrDefault();
             if (u != null)
             {
-                var lsDonhang = _context.Orders
+                var lsDonhang = _context.Order
                     .AsNoTracking()
                     .Where(x => x.CustomerId == u.CustomerId)
                     .OrderByDescending(x => x.PaymentId).ToList();

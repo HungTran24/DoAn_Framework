@@ -19,7 +19,7 @@ namespace DoAn_FrameWork.Models
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<GroupProduct> GroupProducts { get; set; } = null!;
-        public virtual DbSet<Order> Orders { get; set; } = null!;
+        public virtual DbSet<Order> Order { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;

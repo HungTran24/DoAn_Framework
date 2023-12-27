@@ -9,7 +9,15 @@ namespace DoAn_FrameWork.Controllers
         TechnoShop_DBContext _context = new TechnoShop_DBContext();
         public IActionResult Index()
         {
+            //get order list theo customer
+            var customerName = HttpContext.Session.GetString("Username");
+            var customerid = _context.Customers.FirstOrDefault(x => x.Username == customerName).CustomerId;
+            //var orderList = _context.Orders.Include(x => x.Customer).Where(x => x.CustomerId == customerid).Include(x => x.OrderDetails).ThenInclude(x => x.Product).ToList();
+            var orderList = _context.Order.Where(x => x.CustomerId == customerid).ToList();
+            //view bag
+            ViewBag.OrderList = orderList;
             return View();
+            
         }
         [HttpPost]
         public IActionResult Index(Customer user)
@@ -33,6 +41,16 @@ namespace DoAn_FrameWork.Controllers
             }
             //await Task.Delay(1500);
             return View();
+        }
+        //show order detail
+        public IActionResult OrderDetail(int id)
+        {
+            // List<OrderDetail> orderDetails = _context.OrderDetails.Include(x => x.Product).Include(x=>x.Order).Where(x => x.OrderId == id).ToList();
+            Order order = _context.Order.Include(x => x.OrderDetails).ThenInclude(p => p.Product).FirstOrDefault(x => x.OrderId == id);
+
+            return View(order);
+            //get total price
+           
         }
     }
 }

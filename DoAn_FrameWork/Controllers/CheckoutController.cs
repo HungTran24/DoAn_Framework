@@ -246,7 +246,7 @@ namespace DoAn_FrameWork.Controllers
                 ShippingId = shipping.ShippingId,
                 OrderTotal = cart.Sum(x => x.product.ProductPrice * x.amount)
             };
-            _context.Orders.Add(order);
+            _context.Order.Add(order);
             _context.SaveChanges();
 
             //add order detail
