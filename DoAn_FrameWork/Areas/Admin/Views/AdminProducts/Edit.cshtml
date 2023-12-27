@@ -115,8 +115,10 @@
                                 <div class="card-body">
                                     <div class="dropzone" id="dropzone" action="." autocomplete="off" novalidate>
                                         <div class="fallback">
-                                            <input name="ProductImage" type="file" />
-                                            <span asp-validation-for="ProductImage" class="text-danger"></span>
+                                            <input name="ProductImageVM" type="file" />
+                                            <input type="hidden" asp-for="ProductImage" />
+
+                                            @* <span asp-validation-for="ProductImage" class="text-danger"></span> *@
                                         </div>
                                         
                                         <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview"> 
@@ -136,6 +138,9 @@
                                         <div class="fallback">
                                             <input name="ProductImagesVM" type="file" multiple="multiple" />
                                             <span asp-validation-for="ProductImages" class="text-danger"></span>
+                                            <input type="hidden" asp-for="ProductImages" />
+
+
                                         </div>
                                             <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">
                                                 <div class="dz-image">
@@ -163,8 +168,21 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label" asp-for="ProductDesc">Mô tả sản phẩm</label>
-                            <textarea id="mytextarea" asp-for="ProductDesc"></textarea>
+                            <textarea id="mytextarea" asp-for="ProductDesc">@Model.ProductDesc</textarea>
                             <span asp-validation-for="ProductDesc" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-body ">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Color">Màu sắc</label>
+                            <input asp-for="Color" class="form-control">
+                            <span asp-validation-for="Color" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Options">Options</label>
+                            <input asp-for="Options" class="form-control">
+                            <span asp-validation-for="Options" class="text-danger"></span>
                         </div>
                     </div>
 
