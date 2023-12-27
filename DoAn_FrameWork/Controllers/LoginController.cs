@@ -32,7 +32,7 @@ public class LoginController : Controller
         }
     }
     [HttpPost]
-    public IActionResult Login(Customer user)
+    public async Task<IActionResult> Login(Customer user)
     {
         if (HttpContext.Session.GetString("Username") == null)
         {
@@ -49,6 +49,8 @@ public class LoginController : Controller
                 HttpContext.Session.SetString("Username", u.Username.ToString());
                 HttpContext.Session.SetString("CustomerName", u.CustomerName.ToString());
                 HttpContext.Session.SetString("CustomerEmail", u.CustomerEmail.ToString());
+                HttpContext.Session.SetString("Phone", u.Phone.ToString());
+                await Task.Delay(1000);
                 return RedirectToAction("Index", "Account");
             }
             else {
@@ -63,7 +65,7 @@ public class LoginController : Controller
     }
 
     [HttpPost]
-    public IActionResult Register(Customer user)
+    public async Task<IActionResult> Register(Customer user)
     {
         if (ModelState.IsValid)
         {
@@ -74,7 +76,7 @@ public class LoginController : Controller
                 {
                     _context.Customers.Add(user);
                     _context.SaveChanges();
-                    //TempData["RegisterSuccess"] = "Đăng ký thành công!";
+                    await Task.Delay(500);
                     return RedirectToAction("Login", "Login");
                 }
                 else
