@@ -213,6 +213,7 @@
     </div>
 </section>
    
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -232,9 +233,9 @@
         document.addEventListener("DOMContentLoaded", function () {
             var registerButton = document.querySelector('.submit-login');
             registerButton.addEventListener('click', function () {
-                var usernameValue = document.getElementById('Username').value;
-                var passwordValue = document.getElementById('Password').value;
-                showSuccessToast();
+                // var usernameValue = document.getElementById('Username').value;
+                // var passwordValue = document.getElementById('Password').value;
+                Success();
                 //ok
             });
         });

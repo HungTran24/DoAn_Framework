@@ -152,7 +152,7 @@
                                             </div>
                                             <div class="single-input">
                                                 @Html.TextBoxFor(x => x.Password, new { @type = "password", placeholder = "Mật khẩu hiện tại", name = "customer_currentpass", required = "required" })
-                                                @Html.ValidationMessageFor(x => x.Password)
+                                              @*   @Html.ValidationMessageFor(x => x.Password) *@
                                             </div>
                                             <div class="single-input">
                                                 @Html.TextBoxFor(x => x.Password, new { @type = "password", placeholder = "Mật khẩu mới", name = "customer_newpass", required = "required" })
@@ -160,7 +160,7 @@
                                             <div class="single-input">
                                                 @Html.TextBoxFor(x => x.RePassword, new { @type = "password", placeholder = "Xác nhận mật khẩu mới", name = "customer_renewpass", required = "required" })
                                                 <br>
-                                                @Html.ValidationMessageFor(x => x.RePassword)
+@*                                                 @Html.ValidationMessageFor(x => x.RePassword) *@
                                             </div>
                                             <div class="single-input">
                                                 <input class="btn resetpass-btn" type="submit" name="luuthaydoi" value="Lưu thay đổi" style="background: #3399ff; border-radius: 5px; border:none; color: #fff;">
