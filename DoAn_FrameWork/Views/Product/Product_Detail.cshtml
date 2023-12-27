@@ -69,7 +69,13 @@
                     <div class="single-product-img h-100">
                         <div class="swiper-container single-product-slider">
                             <div class="swiper-wrapper" style="background: #fff;">
-                              
+
+                                <div class="swiper-slide">
+                                    <a href="@Model.Product.ProductImage" class="single-img gallery-popup">
+                                        <img class="img-full" src="@Model.Product.ProductImage" onerror="this.src='/assets/images/product/default_image.png';onerror='';" alt="Product Image" id="main_image"
+                                             style="object-fit:contain;">
+                                    </a>
+                                </div>
                                     @foreach (var item in Model.ProductImages)
                                     {
                                         
@@ -166,6 +172,9 @@
                         <div class="col-12 order-lg-2 order-1" style="padding:0">
                             <div class="swiper-container single-product-thumbs">
                                 <div class="swiper-wrapper" style="background: #fff;">
+                                    <div class="swiper-slide">
+                                        <img class="img-full feature_image" src="@Model.Product.ProductImage" alt="Product Thumbnail">
+                                    </div>
                                     @foreach (var item in Model.ProductImages)
                                     {
                                         <div class="swiper-slide">

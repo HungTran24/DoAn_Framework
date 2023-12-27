@@ -148,6 +148,9 @@ namespace DoAn_FrameWork.Controllers
                     .AsNoTracking()
                     .Where(x => x.ProductId == id)
                     .ToList();
+                //thêm ảnh mặc định vào đầu list
+                
+
                 var model = new ProductDetailViewModel
                 {
                     Product = product,
