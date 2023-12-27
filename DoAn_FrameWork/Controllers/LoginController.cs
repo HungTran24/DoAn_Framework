@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using DoAn_FrameWork.Models;
 using Microsoft.EntityFrameworkCore;
 using MailKit.Net.Smtp;
