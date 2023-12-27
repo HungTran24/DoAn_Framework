@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using DoAn_FrameWork.Models;
 using Microsoft.EntityFrameworkCore;
 using MailKit.Net.Smtp;
@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace DoAn_FrameWork.Controllers;
-
-using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
 using System.Runtime.InteropServices;
@@ -17,18 +15,11 @@ using System.Text;
 public class LoginController : Controller
 {
     TechnoShop_DBContext _context = new TechnoShop_DBContext();
-    public INotyfService _notifyService { get; }
-
-    public LoginController(INotyfService notifyService)
-    {
-        _notifyService = notifyService;
-    }
     [HttpGet]
     public IActionResult Index()
     {
         return View();
     }
-
     public IActionResult Login()
     {
         if (HttpContext.Session.GetString("Username") == null)
@@ -41,7 +32,7 @@ public class LoginController : Controller
         }
     }
     [HttpPost]
-    public IActionResult Login(Customer user)
+    public async Task<IActionResult> Login(Customer user)
     {
         if (HttpContext.Session.GetString("Username") == null)
         {
@@ -58,13 +49,12 @@ public class LoginController : Controller
                 HttpContext.Session.SetString("Username", u.Username.ToString());
                 HttpContext.Session.SetString("CustomerName", u.CustomerName.ToString());
                 HttpContext.Session.SetString("CustomerEmail", u.CustomerEmail.ToString());
-                
-
+                HttpContext.Session.SetString("Phone", u.Phone.ToString());
+                await Task.Delay(1000);
                 return RedirectToAction("Index", "Account");
             }
             else {
                 ViewBag.LoginFail = "Sai thông tin tài khoản!";
-                _notifyService.Warning("Sai thông tin tài khoản!");
             }
         }
         return View();
@@ -75,7 +65,7 @@ public class LoginController : Controller
     }
 
     [HttpPost]
-    public IActionResult Register(Customer user)
+    public async Task<IActionResult> Register(Customer user)
     {
         if (ModelState.IsValid)
         {
@@ -86,8 +76,7 @@ public class LoginController : Controller
                 {
                     _context.Customers.Add(user);
                     _context.SaveChanges();
-                    //TempData["RegisterSuccess"] = "Đăng ký thành công!";
-                    _notifyService.Success("Đăng ký thành công!");
+                    await Task.Delay(500);
                     return RedirectToAction("Login", "Login");
                 }
                 else
@@ -95,24 +84,21 @@ public class LoginController : Controller
                     if (user.Phone.Length != 10 || !user.Phone.StartsWith("0"))
                     {
                         ModelState.AddModelError("Phone", "Số điện thoại không đúng định dạng!");
-                        _notifyService.Warning("Số điện thoại không đúng định dạng!");
                     }
                     if (user.Password != user.RePassword)
                     {
                         ModelState.AddModelError("RePassword", "Mật khẩu không khớp!");
-                        _notifyService.Warning("Mật khẩu không khớp!");
                     }
                     if (!IsValidEmail(user.CustomerEmail))
                     {
                         ModelState.AddModelError("CustomerEmail", "Email không đúng định dạng!");
-                        _notifyService.Warning("Email không đúng định dạng!");
                     }
                 }
             }
             else
             {
                 ViewBag.RegisterFail = "Tài khoản đã tồn tại!";
-                _notifyService.Warning("Tài khoản đã tồn tại!");
+                //ok
             }
         }
         return View();
