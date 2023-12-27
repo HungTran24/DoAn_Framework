@@ -30,9 +30,16 @@ namespace DoAn_FrameWork.Controllers
                 existingUser.Password = newPassword;
                 _context.Update(existingUser);
                 _context.SaveChanges();
-
-                return View();
             }
+            else
+            {
+                ModelState.AddModelError("Password", "Mật khẩu hiện tại chưa đúng!");
+            }
+            if (user.Password != user.RePassword)
+            {
+                ModelState.AddModelError("RePassword", "Mật khẩu nhập lại không khớp!");
+            }
+            //await Task.Delay(1500);
             return View();
         }
     }
