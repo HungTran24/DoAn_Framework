@@ -365,7 +365,7 @@
                     var productid = parseInt($(this).attr("data-productid"));
 
                     var amount = parseInt($("#data-amount").val());
-                    alert(amount);
+                
                     $.ajax({
                         url: '/api/cart/add',
                         type: "POST",
@@ -378,8 +378,7 @@
                                 console.log(response);
                             }
                             else {
-                                // loadHeaderCart();
-                                // location.reload();
+                                
                                 console.log("Thêm vào giỏ hàng thành công");
                             }
                            

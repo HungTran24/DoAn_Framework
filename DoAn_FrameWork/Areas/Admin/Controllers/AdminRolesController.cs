@@ -22,7 +22,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminRole
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 8, string searchTerm = "")
         {
             // Lọc dữ liệu theo tên nếu có giá trị tìm kiếm
@@ -53,7 +53,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminRole/Create
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();

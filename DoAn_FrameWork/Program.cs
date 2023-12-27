@@ -64,7 +64,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddMemoryCache();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
-
+builder.Services.AddSingleton<IVnPayService, VnPayService>();
 var app = builder.Build();
 IConfiguration configuration = app.Configuration;
 
@@ -94,7 +94,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
       name: "areas",
-      pattern: "{area:exists}/{controller=AdminAccount}/{action=Login}/{id?}"
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
     );
 });
 
