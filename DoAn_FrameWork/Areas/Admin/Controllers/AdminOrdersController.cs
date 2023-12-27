@@ -86,7 +86,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
             var order = await _context.Orders.FindAsync(id);
             if (order == null)
             {
-                _notifyService.Error("Cập nhật trạng thái không thành công");
+                _notifyService.Error("Cập nhật trạng thái thất bại");
                 return NotFound();
             }
             order.OrderStatus = status;

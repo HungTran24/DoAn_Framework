@@ -147,11 +147,12 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                     _context.Add(productImages);
                     await _context.SaveChangesAsync();
                 }
-
+                _notifyService.Success("Thêm sản phẩm thành công");
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Categories"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewData["GroupProducts"] = new SelectList(_context.GroupProducts, "GroupProductId", "GroupProductName");
+            _notifyService.Error("Thêm mới thất bại");
             return View(productVM);
         }
 
@@ -207,7 +208,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                             await _context.SaveChangesAsync();
                         }
                     }
-
+                    
                     _context.Update(product);
                     await _context.SaveChangesAsync();
                 }
@@ -222,10 +223,12 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                         throw;
                     }
                 }
+                _notifyService.Success("Cập nhật thành công");
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
             ViewData["GroupProductId"] = new SelectList(_context.GroupProducts, "GroupProductId", "GroupProductId", product.GroupProductId);
+            _notifyService.Error("Cập nhật thất bại");
             return View(product);
         }
 
@@ -278,6 +281,9 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                  new DataColumn("Sale quantity"),
                  new DataColumn("Stock quantity"),
                  new DataColumn("Warranty time"),
+                 new DataColumn("Color"),
+                 new DataColumn("Options"),
+
             });
 
             foreach (var product in products)
@@ -293,7 +299,9 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                     product.GroupProduct?.GroupProductName,
                     product.SaleQuantity,
                     product.StockQuantity,
-                    product.WarrantyTime
+                    product.WarrantyTime,
+                    product.Color,
+                    product.Options
                     );
             }
 

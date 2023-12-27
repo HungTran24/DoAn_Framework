@@ -69,6 +69,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                 _notifyService.Success("Thêm mới thành công");
                 return RedirectToAction(nameof(Index));
             }
+            _notifyService.Error("Thêm mới thất bại");
             return View(category);
         }
 
@@ -122,6 +123,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            _notifyService.Error("Cập nhật thất bại");
             return View(category);
         }
 
