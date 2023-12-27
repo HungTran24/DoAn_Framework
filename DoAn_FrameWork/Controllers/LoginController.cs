@@ -98,6 +98,7 @@ public class LoginController : Controller
             else
             {
                 ViewBag.RegisterFail = "Tài khoản đã tồn tại!";
+                //ok
             }
         }
         return View();
