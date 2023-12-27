@@ -109,7 +109,7 @@
                                         <a asp-controller="Product" asp-action="Product_Detail" asp-route-id="@item.ProductId">
                                             <div class="product-item" style="border: 1px solid #eee; border-radius: 5px;">
                                                 <div class="product-img">
-                                                        <img class="img-full" src="~/assets/images/product/default_image.png" alt="Product Images">
+                                                    <img class="img-full" src="@item.ProductImage" style="height:210px; width:210px; object-fit:cover" alt="Product Images">
                                                 </div>
                                                 <div class="product-content" style="border-radius: 0 0 5px 5px;padding: 5px 10px 10px 10px;text-align: left">
                                                     <img src="https://salt.tikicdn.com/ts/tka/69/cf/22/1be823299ae34c7ddcd922e73abd4909.png" style="height: 20px; width: 80px;">
