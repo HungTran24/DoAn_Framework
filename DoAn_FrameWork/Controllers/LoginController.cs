@@ -53,7 +53,8 @@ public class LoginController : Controller
                 await Task.Delay(1000);
                 return RedirectToAction("Index", "Account");
             }
-            else {
+            else
+            {
                 ViewBag.LoginFail = "Sai thông tin tài khoản!";
             }
         }
