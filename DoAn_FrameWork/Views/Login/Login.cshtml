@@ -214,7 +214,32 @@
 </section>
    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    @await Component.InvokeAsync("Notyf")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        function Success() {
+            Swal.fire({
+                title: 'Thông báo',
+                text: 'Đăng ký thành công!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+        function showSuccessToast() {
+            toastr.options.timeOut = 5000;
+            toastr.success('Đăng ký thành công!', 'Thông báo');
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            var registerButton = document.querySelector('.submit-login');
+            registerButton.addEventListener('click', function () {
+                var usernameValue = document.getElementById('Username').value;
+                var passwordValue = document.getElementById('Password').value;
+                showSuccessToast();
+                //ok
+            });
+        });
+    </script>
+
 </body>
 
 
