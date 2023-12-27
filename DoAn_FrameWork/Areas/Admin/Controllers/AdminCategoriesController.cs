@@ -64,11 +64,17 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(category.CategoryName))
+                {
+                    _notifyService.Error("Thêm mới thất bại, bạn cần điền tên danh mục");
+                    return View(category);
+                }
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 _notifyService.Success("Thêm mới thành công");
                 return RedirectToAction(nameof(Index));
             }
+            _notifyService.Error("Thêm mới thất bại");
             return View(category);
         }
 
@@ -105,6 +111,11 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(category.CategoryName))
+                    {
+                        _notifyService.Error("Cập nhật thất bại, bạn cần điền tên danh mục");
+                        return View(category);
+                    }
                     _context.Update(category);
                     await _context.SaveChangesAsync();
                     _notifyService.Success("Cập nhật thành công");
@@ -122,6 +133,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            _notifyService.Error("Cập nhật thất bại");
             return View(category);
         }
 

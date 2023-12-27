@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DoAn_FrameWork.Areas.Admin.Models
 {
@@ -11,6 +12,8 @@ namespace DoAn_FrameWork.Areas.Admin.Models
         }
 
         public int GroupProductId { get; set; }
+        [Required(ErrorMessage = "Cần điền tên nhóm sản phẩm")]
+
         public string? GroupProductName { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

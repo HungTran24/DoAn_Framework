@@ -102,7 +102,7 @@
                                     }
                                 } *@
                             </select>
-                            <span asp-validation-for="Category" class="text-danger"></span>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                     </div>
 
@@ -113,12 +113,13 @@
                                     <div class="dropzone" id="dropzone" action="." autocomplete="off" novalidate>
                                         <div class="fallback">
                                             <input asp-for="ProductImage" type="file" />
-                                            <span asp-validation-for="ProductImage" class="text-danger"></span>
                                         </div>
                                         <div class="dz-message">
                                             <h3 class="dropzone-msg-title">Ảnh sản phẩm</h3>
                                         </div>
                                     </div>
+                                    <span asp-validation-for="ProductImage" class="text-danger"></span>
+
                                 </div>
                             </div>
                         </div>
@@ -129,12 +130,13 @@
                                     <div class="dropzone" id="dropzone" action="." autocomplete="off" novalidate>
                                         <div class="fallback">
                                             <input name="ProductImagesVM" type="file" multiple="multiple" />
-                                            <span asp-validation-for="ProductImages" class="text-danger"></span>
                                         </div>
                                         <div class="dz-message">
                                             <h3 class="dropzone-msg-title">Các ảnh khác</h3>
                                         </div>
                                     </div>
+                                    <span asp-validation-for="ProductImages" class="text-danger"></span>
+
                                 </div>
                             </div>
                         </div>

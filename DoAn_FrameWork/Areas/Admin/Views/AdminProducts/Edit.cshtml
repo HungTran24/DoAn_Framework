@@ -77,7 +77,7 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="col-12">
-            <form method="post" asp-action="Update" enctype="multipart/form-data">
+            <form method="post" asp-action="Edit" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="ProductId" />
                 <div class="card">
@@ -88,23 +88,25 @@
                         <div class="mb-3">
                             <label class="form-label" asp-for="ProductName">Tên sản phẩm</label>
                             <input asp-for="ProductName" class="form-control">
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+
                         </div>
                     </div>
 
-                    <div class="card-body">
+                    @* <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label" asp-for="ProductName">Tên sản phẩm</label>
                             <input asp-for="ProductName" class="form-control">
                             <span asp-validation-for="ProductName" class="text-danger"></span>
                         </div>
-                    </div>
+                    </div> *@
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label" asp-for="Category">Danh mục</label>
                             <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.Categories">
                                 <option disabled selected>--select--</option>
                             </select>
-                            <span asp-validation-for="Category" class="text-danger"></span>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                     </div>
 

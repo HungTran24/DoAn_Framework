@@ -119,6 +119,7 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                     ModelState.AddModelError("", "User đã tồn tại");
                 }
             }
+            _notifyService.Error("Thêm mới thất bại");
             ViewData["Roles"] = new SelectList(_roleManager.Roles, "Name");
             return View(userVM);
         }

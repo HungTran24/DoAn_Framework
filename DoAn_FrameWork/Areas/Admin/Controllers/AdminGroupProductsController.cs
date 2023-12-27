@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using DoAn_FrameWork.Areas.Admin.Models;
 using Microsoft.AspNetCore.Authorization;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace DoAn_FrameWork.Areas.Admin.Controllers
 {
@@ -10,10 +11,12 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
     public class AdminGroupProductsController : Controller
     {
         private readonly AdminDBContext _context;
+        public INotyfService _notifyService { get; }
 
-        public AdminGroupProductsController(AdminDBContext context)
+        public AdminGroupProductsController(AdminDBContext context, INotyfService notyfService)
         {
             _context = context;
+            _notifyService = notyfService;
         }
 
         // GET: Admin/AdminGroupProducts
@@ -86,8 +89,10 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
             {
                 _context.Add(groupProduct);
                 await _context.SaveChangesAsync();
+                _notifyService.Success("Thêm mới thành công");
                 return RedirectToAction(nameof(Index));
             }
+            _notifyService.Error("Thêm mới thất bại");
             return View(groupProduct);
         }
 
@@ -138,8 +143,10 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                         throw;
                     }
                 }
+                _notifyService.Success("Cập nhật thành công");
                 return RedirectToAction(nameof(Index));
             }
+            _notifyService.Error("Cập nhật thất bại");
             return View(groupProduct);
         }
 

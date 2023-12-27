@@ -126,10 +126,11 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                     Color = productVM.Color,
                     Options = productVM.Options,
                 };
-                if (product.GroupProductId == 0) {
+                if (product.GroupProductId == 0)
+                {
                     if (productVM.GroupProductId != null)
                         product.GroupProductId = productVM.GroupProductId;
-                    else 
+                    else
                         product.GroupProductId = null;
                 }
                 _context.Add(product);
@@ -147,11 +148,12 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                     _context.Add(productImages);
                     await _context.SaveChangesAsync();
                 }
-
+                _notifyService.Success("Thêm sản phẩm thành công");
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Categories"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewData["GroupProducts"] = new SelectList(_context.GroupProducts, "GroupProductId", "GroupProductName");
+            _notifyService.Error("Thêm mới thất bại");
             return View(productVM);
         }
 
@@ -181,51 +183,42 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(Product product, IFormFile? ProductImageVM, List<IFormFile>? ProductImagesVM)
+        public async Task<IActionResult> Edit(Product product, IFormFile? ProductImageVM, List<IFormFile>? ProductImagesVM)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    if (ProductImageVM != null)
-                    {
-                        var result = await _photoService.AddPhotoAsync(ProductImageVM);
-                        product.ProductImage = result.Url.ToString();
-                    }
 
-                    if (ProductImagesVM.Count != 0)
+                if (ProductImageVM != null)
+                {
+                    var result = await _photoService.AddPhotoAsync(ProductImageVM);
+                    product.ProductImage = result.Url.ToString();
+                }
+
+                if (ProductImagesVM.Count != 0)
+                {
+                    foreach (var image in ProductImagesVM)
                     {
-                        foreach (var image in ProductImagesVM)
+                        var resUpload = await _photoService.AddPhotoAsync(image);
+                        var productImages = new ProductImage
                         {
-                            var resUpload = await _photoService.AddPhotoAsync(image);
-                            var productImages = new ProductImage
-                            {
-                                Image = resUpload.Url.ToString(),
-                                ProductId = product.ProductId,
-                            };
-                            _context.Add(productImages);
-                            await _context.SaveChangesAsync();
-                        }
+                            Image = resUpload.Url.ToString(),
+                            ProductId = product.ProductId,
+                        };
+                        _context.Add(productImages);
+                        await _context.SaveChangesAsync();
                     }
+                }
 
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.ProductId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(product);
+                await _context.SaveChangesAsync();
+
+                _notifyService.Success("Cập nhật thành công");
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
-            ViewData["GroupProductId"] = new SelectList(_context.GroupProducts, "GroupProductId", "GroupProductId", product.GroupProductId);
+            ViewData["Categories"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
+            ViewData["GroupProducts"] = new SelectList(_context.GroupProducts, "GroupProductId", "GroupProductName");
+            product.ProductImages = _context.ProductImages.Where(x => x.ProductId == product.ProductId).ToList();
+            _notifyService.Error("Cập nhật thất bại");
             return View(product);
         }
 
@@ -278,6 +271,9 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                  new DataColumn("Sale quantity"),
                  new DataColumn("Stock quantity"),
                  new DataColumn("Warranty time"),
+                 new DataColumn("Color"),
+                 new DataColumn("Options"),
+
             });
 
             foreach (var product in products)
@@ -293,7 +289,9 @@ namespace DoAn_FrameWork.Areas.Admin.Controllers
                     product.GroupProduct?.GroupProductName,
                     product.SaleQuantity,
                     product.StockQuantity,
-                    product.WarrantyTime
+                    product.WarrantyTime,
+                    product.Color,
+                    product.Options
                     );
             }
 
