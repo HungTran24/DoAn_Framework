@@ -201,14 +201,15 @@
         </div>
     </div>
 </main>
-@* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@* <script>
     document.getElementById("sort-select").addEventListener("change", function () {
-        var selectedValue = this.value;
-        // alert("Bạn đã chọn: " + selectedValue);
+        // var selectedValue = this.value;
+        var selectedValue = parseInt(this.value, 10); 
+        alert("Bạn đã chọn: " + selectedValue);
         $.ajax({
             type: 'POST',
-            url: '/Product/SelectedValue',
+            url: 'Product/Index',
             data: { selectedValue: selectedValue },
             success: function (response) {
                 console.log(response);

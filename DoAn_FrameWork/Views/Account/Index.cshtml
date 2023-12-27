@@ -41,6 +41,13 @@
     ::placeholder {
         font-size: 14px;
     }
+
+    .field-validation-error {
+        color: red;
+        font-size: 15px;
+        margin-left: 40px;
+        margin: inherit;
+    }
 </style>
 <main class="main-content" style="background: #F5F5FA; padding-bottom: 15px;">
     <div class="account-page-area section-space-y-axis-100" style="background: #F5F5FA; padding: 10px;">
@@ -145,15 +152,18 @@
                                             </div>
                                             <div class="single-input">
                                                 @Html.TextBoxFor(x => x.Password, new { @type = "password", placeholder = "Mật khẩu hiện tại", name = "customer_currentpass", required = "required" })
+                                                @Html.ValidationMessageFor(x => x.Password)
                                             </div>
                                             <div class="single-input">
                                                 @Html.TextBoxFor(x => x.Password, new { @type = "password", placeholder = "Mật khẩu mới", name = "customer_newpass", required = "required" })
                                             </div>
                                             <div class="single-input">
                                                 @Html.TextBoxFor(x => x.RePassword, new { @type = "password", placeholder = "Xác nhận mật khẩu mới", name = "customer_renewpass", required = "required" })
+                                                <br>
+                                                @Html.ValidationMessageFor(x => x.RePassword)
                                             </div>
                                             <div class="single-input">
-                                                <input class="btn" type="submit" name="luuthaydoi" value="Lưu thay đổi" style="background: #3399ff; border-radius: 5px; border:none; color: #fff;">
+                                                <input class="btn resetpass-btn" type="submit" name="luuthaydoi" value="Lưu thay đổi" style="background: #3399ff; border-radius: 5px; border:none; color: #fff;">
                                             </div>
 
                                         }
@@ -208,6 +218,36 @@
                 li.classList.remove('active');
             });
             this.classList.add('active');
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    function Success() {
+        Swal.fire({
+            title: 'Thông báo',
+            text: 'Đổi mật khẩu thành công!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    }
+    function showSuccessToast() {
+        toastr.options.timeOut = 5000;
+        toastr.success('Đổi mật khẩu thành công!', 'Thông báo');
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        var registerButton = document.querySelector('.resetpass-btn');
+        registerButton.addEventListener('click', function () {
+            var passwordElements = document.querySelectorAll('#Password');
+            var newPasswordValue = passwordElements[1].value;
+            var confirmPassword = document.getElementById('RePassword').value;
+            if (newPasswordValue == confirmPassword) {
+                Success();
+            }
+       
         });
     });
 </script>
