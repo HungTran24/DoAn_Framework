@@ -26,19 +26,19 @@
         <div class="row h-100">
             <div class="col-md-12" >
                 <div class="breadcrumb-item" style="align-items:flex-start; padding-left:15px">
-                    <h2 class="breadcrumb-heading">Giỏ hàng</h2>
+                   @*  <h2 class="breadcrumb-heading">Giỏ hàng</h2> *@
                     <ul>
                         <li>
-                            <a >Trang chủ <i class="pe-7s-angle-right"></i></a>
+                            <a style="font-weight:600">Trang chủ <i class="pe-7s-angle-right"></i></a>
                         </li>
-                        <li>Giỏ hàng</li>
+                        <li style="color:#3399ff">Giỏ hàng</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="cart-area p-5" style="background-color:#fff">
-        <div class="container">
+    <div class="cart-area pb-3" >
+        <div class="container" style="background-color:#fff ;padding:20px; border-radius:5px">
             <div class="row">
                 <div class="col-12 cart-content">
                     @if (Model != null && Model.Count() > 0)
@@ -96,8 +96,8 @@
                                             <li>Tổng tiền:  <span class="sum-total"> @Model.Sum(x=>x.Total).ToString("#,##0") đ </span> </li>
                                            
                                         </ul>
-                                        <a asp-controller="Checkout" asp-action="Index"  id="checkout-btn">Proceed to checkout</a>
-                                        <a href="javascript:void(0)" class="update-btn">Làm mới</a>
+                                        <a asp-controller="Checkout" asp-action="Index"  id="checkout-btn">Thanh toán</a>
+                                        <a href="javascript:void(0)" class="update-btn" style="background:none; color:black; border:1px solid black">Làm mới</a>
 
                                     </div>
                                 </div>

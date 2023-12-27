@@ -17,7 +17,7 @@
                         <td>@item.OrderStatus</td>
                         <td>@item.OrderTotal.Value.ToString("#, ##0") đ</td>
                         <td>
-                            <a href="javascript:void(0)" class="btn btn-secondary btn-primary-hover"><span>Chi tiết</span></a>
+                            <a asp-action="OrderDetail" asp-controller="Account" asp-route-id="@item.OrderId" class="btn btn-secondary btn-primary-hover"><span>Chi tiết</span></a>
                         </td>
                     </tr>
                 }
